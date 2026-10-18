@@ -32,14 +32,14 @@
 
   "params": {
     "footer_description": "Switchlivo — an OEM & ODM manufacturer of smart home, smart hotel and smart-lighting products, with a complete ecosystem and global certification support.",
-    "email": "hello@switchlivo.com",
+    "email": "info@switchlivo.com",
     "location": "",
-    "phone": "",
+    "phone": "+85264190941",
     "contact_form_action": "#",
     "copyright": "Copyright © 2025 Switchlivo. All rights reserved.",
     "whatsapp": {
       "enable": true,
-      "number": "8613800138000",
+      "number": "85264190941",
       "label": "Chat on WhatsApp",
       "message": "Hi Switchlivo, I'd like to get your product catalog."
     }
