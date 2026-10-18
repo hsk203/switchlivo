@@ -327,7 +327,14 @@
             <circle cx="428.2" cy="461.7" r="1.9" fill="#475569"/>
             <rect x="406.6" y="452.4" width="26.4" height="10.2" rx="5.1" fill="#fff" stroke="#CBD5E1" stroke-width="1.6"/>
             <line x1="413.3" y1="453.3" x2="413.3" y2="461.6" stroke="#CBD5E1" stroke-width="1"/>
-            <circle cx="410.6" cy="455.6" r="1.4" fill="#F97316"/>
+            <circle class="vac-sensor" cx="410.6" cy="455.6" r="1.4" fill="#F97316"/>
+            <!-- spinning orange impeller on the robot body (3 blades so the spin reads) -->
+            <g class="vac-fan">
+              <line x1="419.8" y1="457.5" x2="422.0" y2="457.5" stroke="#F97316" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="419.8" y1="457.5" x2="418.7" y2="459.4" stroke="#F97316" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="419.8" y1="457.5" x2="418.7" y2="455.6" stroke="#F97316" stroke-width="1.2" stroke-linecap="round"/>
+              <circle cx="419.8" cy="457.5" r="0.7" fill="#F97316"/>
+            </g>
           </g>
           <!-- base dock: short unit with a left-side notch; mirrored robot shows through.
                Fill and border are split so the border stays OPEN where the robot drives
@@ -910,6 +917,37 @@
     }
   }
 
+  /* robot vacuum sensor dot (upper-left of the body): blinks in place */
+  .vac-sensor {
+    animation: vac-sensor-blink 1s ease-in-out infinite;
+    transform-origin: 410.6px 455.6px;
+  }
+  @keyframes vac-sensor-blink {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.3;
+      transform: scale(1.4);
+    }
+  }
+
+  /* robot vacuum impeller: spins on the body, rides along with the slide */
+  .vac-fan {
+    animation: vac-fan-spin 0.9s linear infinite;
+    transform-origin: 419.8px 457.5px;
+  }
+  @keyframes vac-fan-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   /* motion sensor: the walking man is still; a human-shaped ghost behind it
      grows outwards and fades — same beat as the smoke alarm's ring */
   .ms-ghost {
@@ -1275,7 +1313,9 @@
     .tstat-temp,
     .smoke-pulse,
     .smoke-led,
+    .vac-sensor,
     .vac-led,
+    .vac-fan,
     .ms-ghost,
     .fp-ring,
     .fp-core,
