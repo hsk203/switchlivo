@@ -1,8 +1,8 @@
 {
-  "name": "pinwheel-astro",
+  "name": "switchlivo",
   "version": "4.0.2",
-  "description": "Astro and Tailwindcss Free Theme",
-  "author": "themefisher",
+  "description": "Switchlivo — smart home, smart hotel & smart lighting OEM/ODM manufacturer website",
+  "author": "Switchlivo",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -10,9 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "format": "prettier -w .",
-    "deploy:cf-workers": "npm run build && wrangler deploy",
-    "preview:cf-workers": "npm run build && wrangler dev"
+    "format": "prettier -w ."
   },
   "dependencies": {
     "@astrojs/check": "0.9.9",
@@ -49,7 +47,6 @@
     "prettier-plugin-tailwindcss": "^0.8.0",
     "sharp": "0.35.2",
     "tailwindcss": "^4.3.1",
-    "typescript": "^6.0.3",
-    "wrangler": "^4.105.0"
+    "typescript": "^6.0.3"
   }
 }
