@@ -319,18 +319,8 @@
           <circle class="tstat-led" cx="349" cy="455" r="1.8" fill="#F97316" style="animation-delay:.7s"/>
           <text x="340" y="482" text-anchor="middle" class="lbl">Thermostat</text>
         </g>
-        <!-- 5 robot vacuum: mirrored robot in front of an open-left dock -->
+        <!-- 5 robot vacuum: robot slides out of its base dock and returns -->
         <g class="float" style="animation-delay:1.6s">
-          <!-- base dock: open on the left, rounded right corners -->
-          <path d="M404.8 433.6 h25 a5 5 0 0 1 5 5 v21.2 a5 5 0 0 1 -5 5 h-25 z" fill="#fff" stroke="none"/>
-          <path d="M404.8 433.6 h25 a5 5 0 0 1 5 5 v21.2 a5 5 0 0 1 -5 5 h-25" fill="none" stroke="#CBD5E1" stroke-width="1.7"/>
-          <!-- panel seam + side vents -->
-          <line x1="407.8" y1="443.4" x2="431.8" y2="443.4" stroke="#CBD5E1" stroke-width="1"/>
-          <line x1="410.2" y1="447.4" x2="419.6" y2="447.4" stroke="#CBD5E1" stroke-width="1"/>
-          <line x1="412.6" y1="451" x2="419.6" y2="451" stroke="#CBD5E1" stroke-width="1"/>
-          <!-- charging led + floor plate -->
-          <circle class="vac-led" cx="419.8" cy="439" r="1.5" fill="#F97316"/>
-          <line x1="403.6" y1="464.4" x2="436" y2="464.4" stroke="#CBD5E1" stroke-width="1.3" stroke-linecap="round"/>
           <!-- robot: LDS turret, wheel, body, bumper line, front sensor (mirrored left-right) -->
           <g class="eco-vac">
             <rect x="417.4" y="449.5" width="7.4" height="3" rx="1.5" fill="#fff" stroke="#CBD5E1" stroke-width="1.15"/>
@@ -339,6 +329,18 @@
             <line x1="413.3" y1="453.3" x2="413.3" y2="461.6" stroke="#CBD5E1" stroke-width="1"/>
             <circle cx="410.6" cy="455.6" r="1.4" fill="#F97316"/>
           </g>
+          <!-- base dock: short unit with a left-side notch; mirrored robot shows through -->
+          <path d="M409.8 433.6 h20 a5 5 0 0 1 5 5 v21.2 a5 5 0 0 1 -5 5 h-20 a5 5 0 0 1 -5 -5 v-21.2 a5 5 0 0 1 5 -5 z
+                   M413.8 462 L404.8 462 L404.8 448 L413.8 448 Z" fill="#fff" stroke="#CBD5E1" stroke-width="1.7" fill-rule="evenodd"/>
+          <!-- cover: hide only the dock's left border (the marked red line) -->
+          <rect x="403.9" y="438" width="2" height="26.8" fill="#fff" stroke="none"/>
+          <!-- panel seam + side vents -->
+          <line x1="407.8" y1="443.4" x2="431.8" y2="443.4" stroke="#CBD5E1" stroke-width="1"/>
+          <line x1="410.2" y1="447.4" x2="419.6" y2="447.4" stroke="#CBD5E1" stroke-width="1"/>
+          <line x1="412.6" y1="451" x2="419.6" y2="451" stroke="#CBD5E1" stroke-width="1"/>
+          <!-- charging led + floor plate -->
+          <circle class="vac-led" cx="419.8" cy="439" r="1.5" fill="#F97316"/>
+          <line x1="403.6" y1="464.4" x2="436" y2="464.4" stroke="#CBD5E1" stroke-width="1.3" stroke-linecap="round"/>
           <text x="420" y="482" text-anchor="middle" class="lbl">Robot</text>
           <text x="420" y="495" text-anchor="middle" class="lbl">Vacuum</text>
         </g>
@@ -1082,7 +1084,7 @@
     }
   }
 
-  /* robot vacuum: mirrored robot slides in/out of an open-left dock */
+  /* robot vacuum: mirrored robot slides in/out of its dock notch */
   .eco-vac {
     animation: eco-vac 4.6s ease-in-out infinite;
   }
