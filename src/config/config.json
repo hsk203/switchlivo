@@ -22,21 +22,21 @@
   },
 
   "call_to_action": {
-    "title": "Helping teams in the world with focus",
-    "description": "Lorem ipsum dolor sit sed dmi amet, consectetur adipiscing. Cdo tellus, sed condimentum volutpat.",
+    "title": "Your Trusted Smart Home & Hotel OEM / ODM Partner",
+    "description": "From R&D and mass manufacturing to global certification support, Switchlivo delivers a complete smart-home, smart-hotel and smart-lighting ecosystem.",
     "button": {
-      "label": "Download The Theme",
-      "link": "https://themefisher.com/astro-themes/pinwheel-astro"
+      "label": "Ask For Product Catalog",
+      "link": "/contact"
     }
   },
 
   "params": {
-    "footer_description": "Lorem ipsum dolor sit sed dmi amet, consectetur adipiscing. Cdo tellus, sed condimentum volutpat.",
-    "email": "info@andromeda.io",
-    "location": "2118 Thornridge Cir. Syracuse, Connecticut 35624",
-    "phone": "+704-555-0127",
+    "footer_description": "Switchlivo — an OEM & ODM manufacturer of smart home, smart hotel and smart-lighting products, with a complete ecosystem and global certification support.",
+    "email": "hello@switchlivo.com",
+    "location": "",
+    "phone": "",
     "contact_form_action": "#",
-    "copyright": "Copyright © 2025 a theme by [Themefisher](https://themefisher.com)",
+    "copyright": "Copyright © 2025 Switchlivo. All rights reserved.",
     "whatsapp": {
       "enable": true,
       "number": "8613800138000",
@@ -48,6 +48,6 @@
   "metadata": {
     "meta_author": "Switchlivo",
     "meta_image": "/images/og-image.png",
-    "meta_description": "Switchlivo smart switch panels and smart sockets - connect, control, and build your smart home."
+    "meta_description": "Switchlivo — OEM & ODM manufacturer of smart home, smart hotel and smart-lighting products. Connect, control, and build your smart ecosystem."
   }
 }
