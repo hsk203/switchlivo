@@ -89,19 +89,31 @@ export async function onRequestPost(context: {
     );
     const mailResult = await mailRes.json().catch(() => ({}));
     if (!mailRes.ok) {
+      // 把 Cloudflare 返回的具体错误码/错误信息透出，便于后台排查（不含任何密钥）
+      const cfErrors = Array.isArray((mailResult as { errors?: unknown[] }).errors)
+        ? (mailResult as { errors: { code?: number; message?: string }[] }).errors
+            .map((e) => `${e.code ?? "?"} ${e.message ?? ""}`.trim())
+            .join("; ")
+        : "";
       console.error("[inquiry] Email Sending 发送失败：", mailResult);
       return Response.json(
-        { success: false, msg: "邮件发送失败" },
-        { status: 500 }
+        {
+          success: false,
+          msg: cfErrors
+            ? `邮件发送失败（${mailRes.status}）：${cfErrors}`
+            : `邮件发送失败（HTTP ${mailRes.status}）`,
+        },
+        { status: 502 }
       );
     }
     console.log("[inquiry] 发送成功：", mailResult);
 
     return Response.json({ success: true, msg: "提交成功" });
   } catch (err) {
-    console.error("接口异常：", err);
+    const detail = err instanceof Error ? `${err.name}: ${err.message}` : String(err);
+    console.error("接口异常：", detail);
     return Response.json(
-      { success: false, msg: "服务器异常" },
+      { success: false, msg: `服务器异常（${detail}）` },
       { status: 500 }
     );
   }
