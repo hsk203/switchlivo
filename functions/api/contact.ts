@@ -145,9 +145,10 @@ export async function onRequestPost(context: {
               Authorization: `Bearer ${cfToken}`,
             },
             body: JSON.stringify({
-              from: { name: "Switchlivo", email: "noreply@switchlivo.com" },
-              to: [{ email: "info@switchlivo.com" }],
-              reply_to: { email },
+              // REST API 字段名与 Workers 绑定不同：from 对象用 address（非 email），to 用字符串数组
+              from: { address: "noreply@switchlivo.com", name: "Switchlivo" },
+              to: ["info@switchlivo.com"],
+              reply_to: email,
               subject: `New inquiry from ${name}${
                 payload.company ? " (" + payload.company + ")" : ""
               }`,
