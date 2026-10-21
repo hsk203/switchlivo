@@ -13,6 +13,7 @@
 // Brevo 的 DNS 验证记录加在 brevo 子域上，不动根域 MX/SPF，不影响 Zoho 收发信。
 // 需要的环境变量：BREVO_API_KEY（API Key，在 Brevo 后台 SMTP & API → API Keys 创建，形如 xkeysib-...）。
 // 发件 sender 必须是 Brevo 里已验证的域名（switchlivo.com），否则 API 返回 401/400。
+// [部署 2026-10-21] 已接入 BREVO_API_KEY（Pages 生产环境变量），本提交触发全新部署以加载该变量。
 
 export async function onRequestPost(context: {
   request: Request;
