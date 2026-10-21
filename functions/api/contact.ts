@@ -53,12 +53,16 @@ export async function onRequestPost(context: {
     const CF_EMAIL_TOKEN = env.CF_EMAIL_TOKEN;
 
     if (!CF_ACCOUNT_ID || !CF_EMAIL_TOKEN) {
-      // 兜底：环境变量未配置时不丢数据，落入 Pages 日志（Logs 里可查），前端仍返回成功
-      console.warn(
-        "[inquiry] 发信环境变量未配置（CF_ACCOUNT_ID/CF_EMAIL_TOKEN），询盘仅记录：",
+      // 未配置发信凭据时不能假装成功，否则询盘会静默丢失（用户以为提交成功，实际没发信）。
+      // 返回 503 并把询盘详情记入 Pages 日志。排查：Pages 新增环境变量后必须重新部署才生效。
+      console.error(
+        "[inquiry] 发信环境变量缺失（CF_ACCOUNT_ID/CF_EMAIL_TOKEN），询盘未发送：",
         { name, email, message }
       );
-      return Response.json({ success: true, msg: "提交成功" });
+      return Response.json(
+        { success: false, msg: "邮件服务未就绪，请稍后重试或直接邮件联系我们" },
+        { status: 503 }
+      );
     }
 
     const mailRes = await fetch(
