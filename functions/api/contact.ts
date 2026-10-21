@@ -9,6 +9,7 @@
 // Cloudflare Email Service 发往账号内已验证的 Destination address 免费（Workers Free 可用）。
 // 需要的环境变量：CF_ACCOUNT_ID（账号 ID）+ CF_EMAIL_TOKEN（API Token，Email Sending: Edit 权限）。
 // 收件 info@switchlivo.com 需先在 Email Service → 目标地址 完成验证。
+// （deploy refresh 2026-10-21：触发全新构建以加载后台更新的 CF_EMAIL_TOKEN）
 
 export async function onRequestPost(context: {
   request: Request;
