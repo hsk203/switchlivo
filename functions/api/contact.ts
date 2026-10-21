@@ -88,9 +88,10 @@ export async function onRequestPost(context: {
       return json({ success: false, msg: "Human verify failed." }, 403);
     }
 
-    // ===== 发信：Cloudflare Email Service（REST API）=====
-    const accountId = env.CF_ACCOUNT_ID;
-    const emailToken = env.CF_EMAIL_TOKEN;
+    // ===== 发信：优先 Resend，其次 Cloudflare Email Service，都未配置则记日志 =====
+    const resendKey = env.RESEND_API_KEY;
+    const cfAccount = env.CF_ACCOUNT_ID;
+    const cfToken = env.CF_EMAIL_TOKEN;
     const payload = {
       name,
       email,
@@ -100,15 +101,48 @@ export async function onRequestPost(context: {
       message,
       at: new Date().toISOString(),
     };
-    if (accountId && emailToken) {
+    let sent = false;
+
+    if (resendKey) {
+      // Resend（免费 100 封/天，无需升级套餐）
+      try {
+        const r = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${resendKey}`,
+          },
+          body: JSON.stringify({
+            from: "Switchlivo <noreply@switchlivo.com>",
+            to: ["info@switchlivo.com"],
+            reply_to: email,
+            subject: `New inquiry from ${name}${
+              payload.company ? " (" + payload.company + ")" : ""
+            }`,
+            text:
+              `Name: ${name}\nEmail: ${email}\n` +
+              `Company: ${payload.company}\nCountry: ${payload.country}\n` +
+              `Reason: ${payload.reason}\n\nMessage:\n${message}`,
+          }),
+        });
+        if (r.ok) {
+          sent = true;
+        } else {
+          console.error("[resend] failed", r.status, (await r.text()).slice(0, 400));
+        }
+      } catch (e) {
+        console.error("[resend] error", e);
+      }
+    } else if (cfAccount && cfToken) {
+      // Cloudflare Email Service（需 Workers Paid 计划）
       try {
         const r = await fetch(
-          `https://api.cloudflare.com/client/v4/accounts/${accountId}/email/sending/send`,
+          `https://api.cloudflare.com/client/v4/accounts/${cfAccount}/email/sending/send`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${emailToken}`,
+              Authorization: `Bearer ${cfToken}`,
             },
             body: JSON.stringify({
               from: { name: "Switchlivo", email: "noreply@switchlivo.com" },
@@ -124,17 +158,19 @@ export async function onRequestPost(context: {
             }),
           }
         );
-        const j = (await r.json().catch(() => ({}))) as {
-          success?: boolean;
-        };
-        if (!r.ok || !j.success) {
+        const j = (await r.json().catch(() => ({}))) as { success?: boolean };
+        if (r.ok && j.success) {
+          sent = true;
+        } else {
           console.error("[cf-email] failed", r.status, JSON.stringify(j).slice(0, 400));
         }
       } catch (e) {
         console.error("[cf-email] error", e);
       }
-    } else {
-      // 未配置 CF_ACCOUNT_ID / CF_EMAIL_TOKEN 时退回日志，不丢数据、不报错
+    }
+
+    if (!sent) {
+      // 未配置或发送失败：记录到函数日志，不丢数据
       console.log("[inquiry]", JSON.stringify(payload));
     }
 
