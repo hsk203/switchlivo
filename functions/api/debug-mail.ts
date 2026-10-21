@@ -14,6 +14,10 @@ export async function onRequestPost(context: {
     hasToken: Boolean(CF_EMAIL_TOKEN),
     tokenLength: CF_EMAIL_TOKEN.length,
     tokenHasBadChars: /[^A-Za-z0-9\-_]/.test(CF_EMAIL_TOKEN),
+    // 形状指纹：字母数字一律替换为 x，仅暴露结构与标点，不泄露密钥本身
+    tokenShape:
+      CF_EMAIL_TOKEN.slice(0, 200).replace(/[A-Za-z0-9]/g, "x").slice(0, 200) || "(空)",
+    accountIdShape: CF_ACCOUNT_ID.replace(/[A-Za-z0-9]/g, "x") || "(空)",
   };
   if (!CF_ACCOUNT_ID || !CF_EMAIL_TOKEN) {
     return Response.json({ diag, error: "env vars missing" }, { status: 500 });
