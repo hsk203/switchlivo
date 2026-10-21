@@ -88,19 +88,55 @@ export async function onRequestPost(context: {
       return json({ success: false, msg: "Human verify failed." }, 403);
     }
 
-    // ===== 暂不发信：校验通过直接返回成功（邮件逻辑后续接入 Zoho/Resend） =====
-    console.log(
-      "[inquiry]",
-      JSON.stringify({
-        name,
-        email,
-        company: data["company"] || "",
-        country: data["country"] || "",
-        reason: data["reason"] || "",
-        message,
-        at: new Date().toISOString(),
-      })
-    );
+    // ===== 发信：Cloudflare Email Service（REST API）=====
+    const accountId = env.CF_ACCOUNT_ID;
+    const emailToken = env.CF_EMAIL_TOKEN;
+    const payload = {
+      name,
+      email,
+      company: data["company"] || "",
+      country: data["country"] || "",
+      reason: data["reason"] || "",
+      message,
+      at: new Date().toISOString(),
+    };
+    if (accountId && emailToken) {
+      try {
+        const r = await fetch(
+          `https://api.cloudflare.com/client/v4/accounts/${accountId}/email/sending/send`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${emailToken}`,
+            },
+            body: JSON.stringify({
+              from: { name: "Switchlivo", email: "noreply@switchlivo.com" },
+              to: [{ email: "info@switchlivo.com" }],
+              reply_to: { email },
+              subject: `New inquiry from ${name}${
+                payload.company ? " (" + payload.company + ")" : ""
+              }`,
+              text:
+                `Name: ${name}\nEmail: ${email}\n` +
+                `Company: ${payload.company}\nCountry: ${payload.country}\n` +
+                `Reason: ${payload.reason}\n\nMessage:\n${message}`,
+            }),
+          }
+        );
+        const j = (await r.json().catch(() => ({}))) as {
+          success?: boolean;
+        };
+        if (!r.ok || !j.success) {
+          console.error("[cf-email] failed", r.status, JSON.stringify(j).slice(0, 400));
+        }
+      } catch (e) {
+        console.error("[cf-email] error", e);
+      }
+    } else {
+      // 未配置 CF_ACCOUNT_ID / CF_EMAIL_TOKEN 时退回日志，不丢数据、不报错
+      console.log("[inquiry]", JSON.stringify(payload));
+    }
 
     return json({ success: true, msg: "ok" }, 200);
   } catch (e) {
