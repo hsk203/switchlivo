@@ -2,14 +2,17 @@
 // 密钥从 context.env 读取（Pages 后台 Settings → Environment variables 配置）。
 // 注意：Pages Function 不能用 import.meta.env（那是 Astro/Vite 的写法），必须用 context.env。
 //
-// ⚠️ 运维提醒：修改 Pages 后台环境变量后，必须产生一次新部署（推代码自动部署，或后台点重试部署）才会生效。
+// ⚠️ 运维提醒：修改 Pages 后台环境变量后，必须推一次新提交触发【全新部署】才会生效——
+//    后台手动「重试部署/Redeploy」复用旧部署的环境变量快照，不会加载新值（实测踩坑）。
 //
-// 发信通道：Cloudflare Email Service（REST API）。
-// 注：MailChannels 的 Cloudflare 免费通道已于 2024-08-31 停服（API 返回 401），故弃用。
-// Cloudflare Email Service 发往账号内已验证的 Destination address 免费（Workers Free 可用）。
-// 需要的环境变量：CF_ACCOUNT_ID（账号 ID）+ CF_EMAIL_TOKEN（API Token，Email Sending: Edit 权限）。
-// 收件 info@switchlivo.com 需先在 Email Service → 目标地址 完成验证。
-// （deploy refresh 2026-10-21：触发全新构建以加载后台更新的 CF_EMAIL_TOKEN）
+// 发信通道：Brevo（https://brevo.com，原 Sendinblue，REST API）。
+// 为何不用 Cloudflare Email Service：2026-10 官方把 Email Sending 整个功能锁进 Workers Paid 计划
+// （后台「电子邮件发送」页强制要求升级），免费计划无法 onboard 发送域名。
+// 为何不用 MailChannels：其 Cloudflare 免费通道已于 2024-08-31 停服（API 返回 401）。
+// Brevo 免费档：300 封/天；switchlivo.com 域名验证后可发任意收件人，询盘量绰绰有余。
+// Brevo 的 DNS 验证记录加在 brevo 子域上，不动根域 MX/SPF，不影响 Zoho 收发信。
+// 需要的环境变量：BREVO_API_KEY（API Key，在 Brevo 后台 SMTP & API → API Keys 创建，形如 xkeysib-...）。
+// 发件 sender 必须是 Brevo 里已验证的域名（switchlivo.com），否则 API 返回 401/400。
 
 export async function onRequestPost(context: {
   request: Request;
@@ -50,18 +53,15 @@ export async function onRequestPost(context: {
       );
     }
 
-    // Cloudflare Email Service 发信（REST API，官方文档 2026-10 版字段：
-    // from/to 为字符串、reply_to 为字符串、subject/text/html 为字符串）
-    // 去除所有空白字符（含中间的换行）：后台粘贴变量时可能断行，导致 "Invalid header value"。
-    // 账户 ID 为纯十六进制、token 为字母数字-_，均不含合法空格，此清洗安全。
-    const CF_ACCOUNT_ID = (env.CF_ACCOUNT_ID || "").replace(/\s+/g, "");
-    const CF_EMAIL_TOKEN = (env.CF_EMAIL_TOKEN || "").replace(/\s+/g, "");
+    // Brevo 发信（REST API：POST https://api.brevo.com/v3/smtp/email，api-key 头认证）
+    // 字段：sender{name,email} / to[{email}] / replyTo{email} / subject / htmlContent / textContent。
+    // 清除所有空白字符：后台粘贴变量时可能断行，导致 Authorization 头非法。
+    const BREVO_API_KEY = (env.BREVO_API_KEY || "").replace(/\s+/g, "");
 
-    if (!CF_ACCOUNT_ID || !CF_EMAIL_TOKEN) {
+    if (!BREVO_API_KEY) {
       // 未配置发信凭据时不能假装成功，否则询盘会静默丢失（用户以为提交成功，实际没发信）。
-      // 返回 503 并把询盘详情记入 Pages 日志。排查：Pages 新增环境变量后必须重新部署才生效。
       console.error(
-        "[inquiry] 发信环境变量缺失（CF_ACCOUNT_ID/CF_EMAIL_TOKEN），询盘未发送：",
+        "[inquiry] BREVO_API_KEY 未配置，询盘未发送：",
         { name, email, message }
       );
       return Response.json(
@@ -70,43 +70,37 @@ export async function onRequestPost(context: {
       );
     }
 
-    const mailRes = await fetch(
-      `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/email/sending/send`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${CF_EMAIL_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          from: "noreply@switchlivo.com",
-          to: ["info@switchlivo.com"],
-          reply_to: email,
-          subject: `新询盘：来自 ${name}`,
-          html:
-            `<p><strong>客户姓名：</strong>${name}</p>` +
-            `<p><strong>客户邮箱：</strong>${email}</p>` +
-            `<p><strong>留言内容：</strong></p>` +
-            `<p>${message}</p>`,
-          text: `客户姓名：${name}\n客户邮箱：${email}\n留言：${message}`,
-        }),
-      }
-    );
+    const mailRes = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        "api-key": BREVO_API_KEY,
+        "Content-Type": "application/json",
+        accept: "application/json",
+      },
+      body: JSON.stringify({
+        sender: { name: "Switchlivo", email: "noreply@switchlivo.com" },
+        to: [{ email: "info@switchlivo.com" }],
+        replyTo: { email: email },
+        subject: `新询盘：来自 ${name}`,
+        htmlContent:
+          `<p><strong>客户姓名：</strong>${name}</p>` +
+          `<p><strong>客户邮箱：</strong>${email}</p>` +
+          `<p><strong>留言内容：</strong></p>` +
+          `<p>${message}</p>`,
+        textContent: `客户姓名：${name}\n客户邮箱：${email}\n留言：${message}`,
+      }),
+    });
     const mailResult = await mailRes.json().catch(() => ({}));
     if (!mailRes.ok) {
-      // 把 Cloudflare 返回的具体错误码/错误信息透出，便于后台排查（不含任何密钥）
-      const cfErrors = Array.isArray((mailResult as { errors?: unknown[] }).errors)
-        ? (mailResult as { errors: { code?: number; message?: string }[] }).errors
-            .map((e) => `${e.code ?? "?"} ${e.message ?? ""}`.trim())
-            .join("; ")
-        : "";
-      console.error("[inquiry] Email Sending 发送失败：", mailResult);
+      // 把 Brevo 返回的具体错误信息透出，便于排查（不含任何密钥）
+      const detail =
+        (mailResult as { message?: string }).message ||
+        JSON.stringify(mailResult).slice(0, 200);
+      console.error("[inquiry] Brevo 发送失败：", mailResult);
       return Response.json(
         {
           success: false,
-          msg: cfErrors
-            ? `邮件发送失败（${mailRes.status}）：${cfErrors}`
-            : `邮件发送失败（HTTP ${mailRes.status}）`,
+          msg: `邮件发送失败（${mailRes.status}）：${detail}`,
         },
         { status: 502 }
       );
