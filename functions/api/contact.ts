@@ -2,6 +2,8 @@
 // 密钥从 context.env 读取（Pages 后台 Settings → Environment variables 配置）。
 // 注意：Pages Function 不能用 import.meta.env（那是 Astro/Vite 的写法），必须用 context.env。
 //
+// ⚠️ 运维提醒：修改 Pages 后台环境变量后，必须产生一次新部署（推代码自动部署，或后台点重试部署）才会生效。
+//
 // 发信通道：Cloudflare Email Service（REST API）。
 // 注：MailChannels 的 Cloudflare 免费通道已于 2024-08-31 停服（API 返回 401），故弃用。
 // Cloudflare Email Service 发往账号内已验证的 Destination address 免费（Workers Free 可用）。
