@@ -49,8 +49,9 @@ export async function onRequestPost(context: {
 
     // Cloudflare Email Service 发信（REST API，官方文档 2026-10 版字段：
     // from/to 为字符串、reply_to 为字符串、subject/text/html 为字符串）
-    const CF_ACCOUNT_ID = env.CF_ACCOUNT_ID;
-    const CF_EMAIL_TOKEN = env.CF_EMAIL_TOKEN;
+    // trim()：后台粘贴变量时可能带进换行/空格，会导致 "Invalid header value"
+    const CF_ACCOUNT_ID = (env.CF_ACCOUNT_ID || "").trim();
+    const CF_EMAIL_TOKEN = (env.CF_EMAIL_TOKEN || "").trim();
 
     if (!CF_ACCOUNT_ID || !CF_EMAIL_TOKEN) {
       // 未配置发信凭据时不能假装成功，否则询盘会静默丢失（用户以为提交成功，实际没发信）。
