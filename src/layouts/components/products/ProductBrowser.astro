@@ -465,10 +465,13 @@ const protocolCounts = PRODUCT_PROTOCOLS.map((p) => ({
         (btn) => {
           btn.addEventListener("click", () => {
             const v = btn.getAttribute("data-filter-value")!;
-            if (state[name].has(v)) {
-              state[name].delete(v);
-              btn.classList.remove("active");
-            } else {
+            // 单选互斥：同组内只保留一个选中项，重复点击同一项 = 取消
+            const wasActive = state[name].has(v);
+            state[name].clear();
+            g.querySelectorAll<HTMLElement>(".filter-chip.active").forEach(
+              (b) => b.classList.remove("active")
+            );
+            if (!wasActive) {
               state[name].add(v);
               btn.classList.add("active");
             }
