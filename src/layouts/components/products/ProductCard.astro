@@ -18,7 +18,7 @@ const model = modelFromSlug(product.id);
   data-category={d.category}
   data-region={regions}
   data-protocol={protocols}
-  data-series={series}
+  data-series={d.series ?? ""}
   data-title={d.title}
   data-model={model}
 >
