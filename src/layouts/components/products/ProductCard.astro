@@ -10,6 +10,7 @@ const url = `/products/${product.id}/`;
 const regions = d.region.join(",");
 const protocols = d.protocol.join(",");
 const summary = d.summary ?? "";
+const series = d.series ?? "";
 ---
 
 <article
@@ -17,6 +18,7 @@ const summary = d.summary ?? "";
   data-category={d.category}
   data-region={regions}
   data-protocol={protocols}
+  data-series={series}
 >
   <a href={url} class="block">
     <div class="mb-4 flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg bg-body">
@@ -36,6 +38,13 @@ const summary = d.summary ?? "";
       )
     }
     <div class="mb-3 flex flex-wrap gap-1.5">
+      {
+        series && (
+          <span class="rounded-full bg-text-dark/5 px-2 py-0.5 text-xs font-medium text-text-dark">
+            {series} Series
+          </span>
+        )
+      }
       {
         d.region.map((r) => (
           <span class="rounded-full bg-body px-2 py-0.5 text-xs text-text">

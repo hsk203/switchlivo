@@ -18,6 +18,10 @@ const waLink = `https://wa.me/${wa.number}?text=${encodeURIComponent(
   wa.message
 )}`;
 const activeCategory = PRODUCT_CATEGORIES.find((c) => c.slug === lockedCategory);
+// 系列筛选维度：动态取当前产品集里出现过的系列（数据驱动，自动与 md 同步）
+const seriesList = [
+  ...new Set(products.map((p) => p.data.series).filter(Boolean)),
+].sort();
 ---
 
 <div class="product-browser" data-product-browser>
@@ -75,6 +79,25 @@ const activeCategory = PRODUCT_CATEGORIES.find((c) => c.slug === lockedCategory)
                     {c.label}
                   </button>
                 ))}
+              </div>
+            </div>
+          )
+        }
+
+        {
+          seriesList.length > 0 && (
+            <div class="filter-group mb-4" data-filter-group="series">
+              <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-text">
+                Series
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                {
+                  seriesList.map((s) => (
+                    <button type="button" data-filter-value={s} class="filter-chip">
+                      {s}
+                    </button>
+                  ))
+                }
               </div>
             </div>
           )

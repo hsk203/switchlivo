@@ -1,0 +1,204 @@
+---
+import Base from "@/layouts/Base.astro";
+import Shape from "@/components/Shape.astro";
+import Cta from "@/layouts/partials/Cta.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { render } from "astro:content";
+import { PRODUCT_CATEGORIES } from "@/lib/productsTaxonomy";
+
+export async function getStaticPaths() {
+  const products = await getSinglePage("products");
+  return products.map((p) => ({ params: { slug: p.id }, props: { product: p } }));
+}
+
+const { product } = Astro.props;
+const { Content } = await render(product);
+const d = product.data;
+const categoryLabel =
+  PRODUCT_CATEGORIES.find((c) => c.slug === d.category)?.label ?? d.category;
+
+const metaDescription =
+  d.description ??
+  `${d.title} — Switchlivo ${categoryLabel} with full OEM & ODM customization of logo, UI, housing and protocol stack.`;
+
+const pageData = {
+  title: d.title,
+  page_title: d.page_title ?? d.title,
+  content: d.summary ?? "",
+};
+---
+
+<Base
+  title={d.title}
+  meta_title={d.meta_title ?? `${d.title} | Switchlivo OEM/ODM`}
+  description={metaDescription}
+>
+  <Shape />
+  <section class="page-hero pt-16">
+    <div class="container">
+      <nav class="mb-4 text-sm text-text" aria-label="Breadcrumb">
+        <a href="/products/" class="hover:text-primary">Products</a>
+        <span class="mx-2">/</span>
+        <a href={`/products/${d.category}/`} class="hover:text-primary">{categoryLabel}</a>
+        <span class="mx-2">/</span>
+        <span class="text-text-dark">{d.title}</span>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section pt-0">
+    <div class="container">
+      <div class="grid gap-10 lg:grid-cols-2">
+        <!-- 主图 + 图集 -->
+        <div>
+          <div
+            class="flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl border border-border bg-white p-8 [filter:drop-shadow(0_10px_18px_rgba(254,96,25,0.12))]"
+          >
+            <img
+              src={d.featuredImage}
+              alt={d.title}
+              width="600"
+              height="600"
+              class="h-full w-full object-contain"
+            />
+          </div>
+          {
+            d.gallery.length > 0 && (
+              <div class="mt-4 grid grid-cols-4 gap-3">
+                {d.gallery.map((g) => (
+                  <div class="flex aspect-square items-center justify-center overflow-hidden rounded-lg border border-border bg-white p-2">
+                    <img src={g} alt={d.title} loading="lazy" width="300" height="300" class="h-full w-full object-contain" />
+                  </div>
+                ))}
+              </div>
+            )
+          }
+        </div>
+
+        <!-- 信息栏 -->
+        <div>
+          <h1 class="mb-3 text-3xl font-bold text-text-dark">{d.title}</h1>
+          <div class="mb-5 flex flex-wrap gap-2">
+            {
+              d.series && (
+                <span class="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                  {d.series} Series
+                </span>
+              )
+            }
+            <span class="rounded-full bg-body px-3 py-1 text-xs text-text">{categoryLabel}</span>
+            {
+              d.region.map((r) => (
+                <span class="rounded-full bg-body px-3 py-1 text-xs text-text">{r}</span>
+              ))
+            }
+            {
+              d.protocol.map((p) => (
+                <span class="rounded-full bg-body px-3 py-1 text-xs text-text">{p}</span>
+              ))
+            }
+          </div>
+
+          {
+            d.summary && (
+              <p class="mb-6 text-base leading-relaxed text-text">{d.summary}</p>
+            )
+          }
+
+          {
+            d.features.length > 0 && (
+              <div class="mb-6">
+                <h2 class="mb-3 text-lg font-semibold text-text-dark">Key Features</h2>
+                <ul class="space-y-2">
+                  {d.features.map((f) => (
+                    <li class="flex items-start text-sm text-text">
+                      <svg class="mr-2 mt-0.5 h-4 w-4 shrink-0 text-primary" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd" />
+                      </svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
+
+          {
+            d.specs.length > 0 && (
+              <div class="mb-6">
+                <h2 class="mb-3 text-lg font-semibold text-text-dark">Specifications</h2>
+                <dl class="grid grid-cols-1 gap-x-8 sm:grid-cols-2">
+                  {d.specs.map((s) => (
+                    <div class="flex justify-between border-b border-border py-2 text-sm">
+                      <dt class="text-text">{s.name}</dt>
+                      <dd class="font-medium text-text-dark">{s.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            )
+          }
+
+          {
+            d.oemOptions.length > 0 && (
+              <div class="mb-8">
+                <h2 class="mb-3 text-lg font-semibold text-text-dark">OEM & ODM Options</h2>
+                <div class="flex flex-wrap gap-2">
+                  {d.oemOptions.map((o) => (
+                    <span class="rounded-lg border border-border bg-white px-3 py-1.5 text-xs text-text">
+                      {o}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+
+          {
+            d.inquiryCta && (
+              <div class="flex flex-wrap gap-4">
+                <a
+                  href="/contact/"
+                  class="inline-flex items-center rounded-full bg-gradient-to-r from-primary to-primary-dark px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+                >
+                  Request a Quote
+                </a>
+                <a
+                  href="/products/"
+                  class="inline-flex items-center rounded-full border border-border bg-white px-8 py-3 text-sm font-semibold text-text-dark transition hover:border-primary hover:text-primary"
+                >
+                  Browse All Products
+                </a>
+              </div>
+            )
+          }
+        </div>
+      </div>
+
+      <!-- 正文（产品描述） -->
+      <div class="prose-content mx-auto mt-14 max-w-3xl">
+        {
+          product.body ? (
+            <Content />
+          ) : (
+            <div class="space-y-4 text-base leading-relaxed text-text">
+              <p>
+                {d.title} is part of the Switchlivo {categoryLabel} line, engineered
+                in-house for smart home, smart hotel and smart lighting projects
+                worldwide.
+              </p>
+              <p>
+                As an OEM & ODM manufacturer integrating R&D, production and sales,
+                Switchlivo supports deep customization — logo, housing, UI, packaging
+                and protocol stack — with factory-direct pricing and stable supply
+                for brand owners, distributors and engineering contractors.
+              </p>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>
