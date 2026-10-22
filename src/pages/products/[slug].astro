@@ -7,6 +7,7 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import { render } from "astro:content";
 import { PRODUCT_CATEGORIES } from "@/lib/productsTaxonomy";
 import { modelFromSlug } from "@/lib/productModel";
+import { cdnImage } from "@/lib/cdnImage";
 import config from "@/config/config.json";
 
 export async function getStaticPaths() {
@@ -62,7 +63,7 @@ const jsonLd = {
   name: d.title,
   sku: model,
   mpn: model,
-  image: [d.featuredImage, ...(d.gallery ?? [])],
+  image: [cdnImage(d.featuredImage), ...(d.gallery ?? []).map(cdnImage)],
   description: metaDescription,
   category: categoryLabel,
   url: canonical,
@@ -94,7 +95,7 @@ const jsonLd = {
   title={d.title}
   meta_title={d.meta_title ?? `${d.title} | Switchlivo OEM/ODM`}
   description={metaDescription}
-  image={d.featuredImage}
+  image={cdnImage(d.featuredImage)}
   canonical={canonical}
 >
   <script
@@ -125,7 +126,7 @@ const jsonLd = {
           >
             <img
               data-main-image
-              src={d.featuredImage}
+              src={cdnImage(d.featuredImage)}
               alt={d.title}
               width="600"
               height="600"
@@ -139,11 +140,11 @@ const jsonLd = {
                   <button
                     type="button"
                     data-gallery-thumb
-                    data-src={g}
+                    data-src={cdnImage(g)}
                     class={`gallery-thumb flex aspect-square items-center justify-center overflow-hidden rounded-lg border bg-white p-2 ${i === 0 ? "is-active" : ""}`}
                     aria-label={`View image ${i + 1}`}
                   >
-                    <img src={g} alt="" loading="lazy" width="300" height="300" class="h-full w-full object-contain" />
+                    <img src={cdnImage(g)} alt="" loading="lazy" width="300" height="300" class="h-full w-full object-contain" />
                   </button>
                 ))}
               </div>

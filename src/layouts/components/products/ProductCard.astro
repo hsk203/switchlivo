@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { modelFromSlug } from "@/lib/productModel";
+import { cdnImage } from "@/lib/cdnImage";
 
 interface Props {
   product: CollectionEntry<"products">;
@@ -25,7 +26,7 @@ const model = modelFromSlug(product.id);
   <a href={url} class="product-item block">
     <div class="img relative mb-4 flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg bg-body">
       <img
-        src={d.featuredImage}
+        src={cdnImage(d.featuredImage)}
         alt={d.title}
         loading="lazy"
         width="600"
