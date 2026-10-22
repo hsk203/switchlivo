@@ -14,7 +14,8 @@
    Astro component scope can never beat the !important .container above.
    Same layer + higher specificity = the only reliable way to widen it. */
 .container.eco-wide,
-.platform-strip .container {
+.platform-strip .container,
+.container.pro-wide {
   max-width: 1360px !important;
 }
 

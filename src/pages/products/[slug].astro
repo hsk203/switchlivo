@@ -121,9 +121,10 @@ const jsonLd = {
         <!-- 主图 + 图集 -->
         <div>
           <div
-            class="flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl border border-border bg-white p-8 [filter:drop-shadow(0_10px_18px_rgba(254,96,25,0.12))]"
+            class="flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl border border-border bg-white p-8"
           >
             <img
+              data-main-image
               src={d.featuredImage}
               alt={d.title}
               width="600"
@@ -134,10 +135,16 @@ const jsonLd = {
           {
             d.gallery.length > 0 && (
               <div class="mt-4 grid grid-cols-4 gap-3">
-                {d.gallery.map((g) => (
-                  <div class="flex aspect-square items-center justify-center overflow-hidden rounded-lg border border-border bg-white p-2">
-                    <img src={g} alt={d.title} loading="lazy" width="300" height="300" class="h-full w-full object-contain" />
-                  </div>
+                {[d.featuredImage, ...d.gallery].map((g, i) => (
+                  <button
+                    type="button"
+                    data-gallery-thumb
+                    data-src={g}
+                    class={`gallery-thumb flex aspect-square items-center justify-center overflow-hidden rounded-lg border bg-white p-2 ${i === 0 ? "is-active" : ""}`}
+                    aria-label={`View image ${i + 1}`}
+                  >
+                    <img src={g} alt="" loading="lazy" width="300" height="300" class="h-full w-full object-contain" />
+                  </button>
                 ))}
               </div>
             )
@@ -290,3 +297,45 @@ const jsonLd = {
 
   <Cta />
 </Base>
+
+<style>
+  /* 图集缩略图：默认灰框，选中橙色描边 */
+  .gallery-thumb {
+    border-color: var(--color-border, #e5e7eb);
+    cursor: pointer;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  .gallery-thumb:hover {
+    border-color: #f0a58a;
+  }
+  .gallery-thumb.is-active {
+    border-color: #fe6019;
+    box-shadow: 0 0 0 1px #fe6019;
+  }
+</style>
+
+<script>
+  function initProductGallery() {
+    const main = document.querySelector<HTMLImageElement>("[data-main-image]");
+    if (!main) return;
+    const thumbs = Array.from(
+      document.querySelectorAll<HTMLButtonElement>("[data-gallery-thumb]")
+    );
+    if (!thumbs.length) return;
+    thumbs.forEach((btn) => {
+      if (btn.dataset.galleryBound) return;
+      btn.dataset.galleryBound = "1";
+      btn.addEventListener("click", () => {
+        const src = btn.dataset.src;
+        if (!src) return;
+        main.src = src;
+        thumbs.forEach((b) => b.classList.toggle("is-active", b === btn));
+      });
+    });
+  }
+  // 兼容 ClientRouter 客户端导航：进页/切页都重新初始化
+  document.addEventListener("astro:page-load", initProductGallery);
+  initProductGallery();
+</script>

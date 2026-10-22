@@ -10,7 +10,6 @@ const d = product.data;
 const url = `/products/${product.id}/`;
 const regions = d.region.join(",");
 const protocols = d.protocol.join(",");
-const series = d.series ?? "";
 const model = modelFromSlug(product.id);
 ---
 
@@ -24,22 +23,14 @@ const model = modelFromSlug(product.id);
   data-model={model}
 >
   <a href={url} class="product-item block">
-    <!-- bonke: .tag 角标位 -->
     <div class="img relative mb-4 flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg bg-body">
-      {
-        series && (
-          <div class="tag absolute left-3 top-3 z-10 rounded-full bg-text-dark/85 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-white shadow-sm backdrop-blur-sm">
-            {series}
-          </div>
-        )
-      }
       <img
         src={d.featuredImage}
         alt={d.title}
         loading="lazy"
         width="600"
         height="600"
-        class="h-full w-full object-contain p-3 transition duration-500 group-hover:scale-105 [filter:drop-shadow(0_10px_18px_rgba(254,96,25,0.18))]"
+        class="h-full w-full object-contain p-3 transition duration-500 group-hover:scale-105"
       />
     </div>
 
@@ -69,19 +60,5 @@ const model = modelFromSlug(product.id);
         ))
       }
     </div>
-
-    <span class="inline-flex items-center text-sm font-medium text-primary">
-      Inquire
-      <svg
-        class="ml-1 h-4 w-4"
-        viewBox="0 0 20 20"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        aria-hidden="true"
-      >
-        <path d="M4 10h12M11 5l5 5-5 5" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </span>
   </a>
 </article>
