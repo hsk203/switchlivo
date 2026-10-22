@@ -116,6 +116,17 @@ const protocolCounts = PRODUCT_PROTOCOLS.map((p) => ({
         </label>
       </div>
 
+      <!-- 当前激活的筛选条件摘要（侧栏滚动后仍可见，可单独移除） -->
+      <div
+        data-active-filters
+        class="mb-4 flex-wrap items-center gap-2"
+        style="display:none"
+      >
+        <span class="text-xs font-semibold uppercase tracking-wide text-text"
+          >Active:</span
+        >
+      </div>
+
       <div
         class="product-grid grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
       >
@@ -123,6 +134,13 @@ const protocolCounts = PRODUCT_PROTOCOLS.map((p) => ({
       </div>
       <p data-product-empty class="py-16 text-center text-text" style="display:none">
         No products match your filters.
+        <button
+          type="button"
+          data-filter-clear
+          class="ml-1 font-medium text-primary hover:underline"
+        >
+          Clear all filters
+        </button>
       </p>
     </div>
 
@@ -457,14 +475,25 @@ const protocolCounts = PRODUCT_PROTOCOLS.map((p) => ({
       browser.querySelectorAll<HTMLElement>("[data-filter-group]")
     );
     const state: Record<string, Set<string>> = {};
+    // 组名 -> 显示名；值 -> 按钮上的文字（供摘要栏展示）
+    const GROUP_LABELS: Record<string, string> = {
+      category: "Function",
+      series: "Series",
+      region: "Region",
+      protocol: "Protocol",
+    };
+    const valueLabels: Record<string, Record<string, string>> = {};
 
     groups.forEach((g) => {
       const name = g.getAttribute("data-filter-group")!;
       state[name] = new Set();
+      valueLabels[name] = {};
       g.querySelectorAll<HTMLButtonElement>("[data-filter-value]").forEach(
         (btn) => {
+          const v = btn.getAttribute("data-filter-value")!;
+          valueLabels[name][v] =
+            btn.querySelector<HTMLElement>(".label")?.textContent?.trim() || v;
           btn.addEventListener("click", () => {
-            const v = btn.getAttribute("data-filter-value")!;
             // 单选互斥：同组内只保留一个选中项，重复点击同一项 = 取消
             const wasActive = state[name].has(v);
             state[name].clear();
@@ -484,13 +513,100 @@ const protocolCounts = PRODUCT_PROTOCOLS.map((p) => ({
     const resetBtn = browser.querySelector<HTMLButtonElement>(
       "[data-filter-reset]"
     );
-    resetBtn?.addEventListener("click", () => {
+    function resetAll() {
       Object.values(state).forEach((s) => s.clear());
       browser
         .querySelectorAll(".filter-chip.active")
         .forEach((b) => b.classList.remove("active"));
+      if (searchInput) searchInput.value = "";
+      query = "";
       apply();
-    });
+    }
+    resetBtn?.addEventListener("click", resetAll);
+    browser
+      .querySelectorAll<HTMLButtonElement>("[data-filter-clear]")
+      .forEach((b) => b.addEventListener("click", resetAll));
+
+    // 激活筛选摘要栏：侧栏滚出视野也能看到当前条件，并可单独移除
+    const activeBar = browser.querySelector<HTMLElement>(
+      "[data-active-filters]"
+    );
+    function renderActiveBar() {
+      if (!activeBar) return;
+      activeBar
+        .querySelectorAll("[data-af-chip]")
+        .forEach((n) => n.remove());
+      activeBar
+        .querySelectorAll("[data-af-clear]")
+        .forEach((n) => n.remove());
+      let any = false;
+      for (const [name, set] of Object.entries(state)) {
+        for (const v of set) {
+          any = true;
+          const chip = document.createElement("span");
+          chip.setAttribute("data-af-chip", "");
+          chip.className =
+            "inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary";
+          const label = valueLabels[name]?.[v] || v;
+          chip.append(
+            document.createTextNode(`${GROUP_LABELS[name] || name}: ${label}`)
+          );
+          const x = document.createElement("button");
+          x.type = "button";
+          x.textContent = "×";
+          x.setAttribute("aria-label", "Remove filter");
+          x.className =
+            "ml-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full text-[13px] leading-none hover:bg-primary/20";
+          x.addEventListener("click", () => {
+            state[name].delete(v);
+            const g = groups.find(
+              (gr) => gr.getAttribute("data-filter-group") === name
+            );
+            g?.querySelectorAll<HTMLElement>(".filter-chip.active").forEach(
+              (b) => {
+                if (b.getAttribute("data-filter-value") === v)
+                  b.classList.remove("active");
+              }
+            );
+            apply();
+          });
+          chip.appendChild(x);
+          activeBar.appendChild(chip);
+        }
+      }
+      if (query) {
+        any = true;
+        const chip = document.createElement("span");
+        chip.setAttribute("data-af-chip", "");
+        chip.className =
+          "inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary";
+        chip.append(document.createTextNode(`Search: ${query}`));
+        const x = document.createElement("button");
+        x.type = "button";
+        x.textContent = "×";
+        x.setAttribute("aria-label", "Clear search");
+        x.className =
+          "ml-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full text-[13px] leading-none hover:bg-primary/20";
+        x.addEventListener("click", () => {
+          if (searchInput) searchInput.value = "";
+          query = "";
+          apply();
+        });
+        chip.appendChild(x);
+        activeBar.appendChild(chip);
+      }
+      if (any) {
+        const clear = document.createElement("button");
+        clear.type = "button";
+        clear.setAttribute("data-af-clear", "");
+        clear.textContent = "Clear all";
+        clear.className =
+          "text-xs font-medium text-primary hover:underline";
+        clear.addEventListener("click", resetAll);
+        activeBar.appendChild(clear);
+      }
+      activeBar.style.display = any ? "flex" : "none";
+    }
 
     function match(card: HTMLElement): boolean {
       for (const [name, set] of Object.entries(state)) {
@@ -539,6 +655,7 @@ const protocolCounts = PRODUCT_PROTOCOLS.map((p) => ({
       if (empty) empty.style.display = visible === 0 ? "" : "none";
       const counter = browser.querySelector<HTMLElement>("[data-result-count]");
       if (counter) counter.textContent = String(visible);
+      renderActiveBar();
     }
 
     // 排序（客户端重排网格子节点）
