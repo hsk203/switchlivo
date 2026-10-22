@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "D60"
 summary: "D6 Hotel Key Card Switch with 40A Wide-Voltage Power Control from the D60 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/d6-hotel-key-card-switch.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

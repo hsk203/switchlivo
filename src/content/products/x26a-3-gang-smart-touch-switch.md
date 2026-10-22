@@ -9,7 +9,7 @@ region: []
 protocol: ["BLE Mesh"]
 series: "X26"
 summary: "X26A 3 Gang Smart Touch Switch from the X26 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x26a-3-gang-smart-touch-switch.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

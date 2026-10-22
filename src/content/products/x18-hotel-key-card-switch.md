@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X18"
 summary: "X18 Hotel Key Card Switch with 40A Aluminum Power Control from the X18 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x18-hotel-key-card-switch.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

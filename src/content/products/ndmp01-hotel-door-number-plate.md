@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "NDMP"
 summary: "NDMP01 Hotel Door Number Plate with Custom High-Voltage Door Sign from the NDMP Series - a Switchlivo Hotel Signage built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/ndmp01-hotel-door-number-plate.webp"
 gallery: []
 features:
   - "Doorbell + DND / Cleanup / Makeup status display"

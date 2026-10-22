@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X30"
 summary: "X30 X31 X39 IR Power Switch 40A Smart Switch For Split Air Conditioner from the X30 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x30-x31-x39-ir-power-switch-40a-smart-switch-for-split-air-conditioner.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

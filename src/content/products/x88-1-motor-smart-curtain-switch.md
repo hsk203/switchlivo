@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X8"
 summary: "X88 1 Motor Smart Curtain Switch from the X8 Series - a Switchlivo Curtain built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x88-1-motor-smart-curtain-switch.webp"
 gallery: []
 features:
   - "Tubular and track motor options"

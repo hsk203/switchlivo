@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "NDMP"
 summary: "NDMP02 Hotel Door Number Plate for Low-Voltage RCU Integration from the NDMP Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/ndmp02-hotel-door-number-plate.webp"
 gallery: []
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"

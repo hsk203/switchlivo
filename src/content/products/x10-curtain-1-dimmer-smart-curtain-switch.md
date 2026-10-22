@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X10"
 summary: "X10 Curtain 1 Dimmer Smart Curtain Switch from the X10 Series - a Switchlivo Curtain built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x10-curtain-1-dimmer-smart-curtain-switch.webp"
 gallery: []
 features:
   - "Tubular and track motor options"

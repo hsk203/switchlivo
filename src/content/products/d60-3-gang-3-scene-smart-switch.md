@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "D60"
 summary: "D60 3 Gang 3 Scene Smart Switch from the D60 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/d60-3-gang-3-scene-smart-switch.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

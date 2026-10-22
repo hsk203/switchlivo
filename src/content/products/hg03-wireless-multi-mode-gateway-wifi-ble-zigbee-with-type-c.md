@@ -9,7 +9,7 @@ region: []
 protocol: ["Zigbee", "WiFi", "BLE Mesh"]
 series: "HG"
 summary: "HG03 Wireless Multi-Mode Gateway Wifi Ble Zigbee with Type C from the HG Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/hg03-wireless-multi-mode-gateway-wifi-ble-zigbee-with-type-c.webp"
 gallery: []
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"

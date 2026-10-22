@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "NSH"
 summary: "NSH02 Hotel Motion Sensor 5.8GHz Dry Contact Radar from the NSH Series - a Switchlivo Sensor built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/nsh02-hotel-motion-sensor-5-8ghz-dry-contact-radar.webp"
 gallery: []
 features:
   - "5.8GHz radar / PIR sensing options"

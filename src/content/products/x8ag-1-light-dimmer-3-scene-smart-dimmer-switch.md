@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X8"
 summary: "X8AG 1 Light Dimmer 3 Scene Smart Dimmer Switch from the X8 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x8ag-1-light-dimmer-3-scene-smart-dimmer-switch.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

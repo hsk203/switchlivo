@@ -9,7 +9,7 @@ region: []
 protocol: ["Zigbee", "Matter"]
 series: "THP"
 summary: "THP10-Z-X Smart Wired Gateway from the THP Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/thp10-z-x-smart-wired-gateway.webp"
 gallery: []
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"

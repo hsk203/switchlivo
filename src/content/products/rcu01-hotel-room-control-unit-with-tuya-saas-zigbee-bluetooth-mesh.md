@@ -9,7 +9,7 @@ region: []
 protocol: ["Tuya", "Zigbee", "BLE Mesh"]
 series: "RCU"
 summary: "RCU01 Hotel Room Control Unit with Tuya SaaS Zigbee/Bluetooth Mesh from the RCU Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/rcu01-hotel-room-control-unit-with-tuya-saas-zigbee-bluetooth-mesh.webp"
 gallery: []
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"

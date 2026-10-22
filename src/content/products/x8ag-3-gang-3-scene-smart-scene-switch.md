@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X8"
 summary: "X8AG 3 Gang 3 Scene Smart Scene Switch from the X8 Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x8ag-3-gang-3-scene-smart-scene-switch.webp"
 gallery: []
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"

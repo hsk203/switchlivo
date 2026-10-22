@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X18"
 summary: "X18L 4 Gang DIM CCT Aluminum Smart Dimmer Switch (Work with Smart Light) from the X18 Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x18l-4-gang-dim-cct-aluminum-smart-dimmer-switch.webp"
 gallery: []
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"

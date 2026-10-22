@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X18"
 summary: "X18L 2 Gang 2 Scene Aluminum Smart Switch from the X18 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x18l-2-gang-2-scene-aluminum-smart-switch.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

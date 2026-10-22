@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "NDMP"
 summary: "NDMP03 Hotel Door Number Plate with Smart Room Status and Doorbell Display from the NDMP Series - a Switchlivo Hotel Signage built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/ndmp03-hotel-door-number-plate-with-smart-room-status-and-doorbell-display.webp"
 gallery: []
 features:
   - "Doorbell + DND / Cleanup / Makeup status display"

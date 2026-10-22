@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X30"
 summary: "X39UAG Hotel Key Card Switch with 40A Anti-Glare Glass Design from the X30 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x39uag-hotel-key-card-switch-with-40a-anti-glare-glass-design.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

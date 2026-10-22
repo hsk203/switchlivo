@@ -9,7 +9,7 @@ region: []
 protocol: ["BLE Mesh"]
 series: "X18"
 summary: "X18L Aluminum Smart Double Global Sockets USB Type C from the X18 Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x18l-aluminum-smart-double-global-sockets-usb-type-c.webp"
 gallery: []
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"

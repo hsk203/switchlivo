@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X10"
 summary: "X10 Smart Thermostat Knob Switch from the X10 Series - a Switchlivo Thermostat built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x10-smart-thermostat-knob-switch.webp"
 gallery: []
 features:
   - "FCU / VRF / water-heating / electric-heating variants"

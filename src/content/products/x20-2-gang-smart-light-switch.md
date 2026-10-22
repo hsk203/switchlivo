@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X20"
 summary: "X20 2 Gang Smart Light Switch from the X20 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x20-2-gang-smart-light-switch.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

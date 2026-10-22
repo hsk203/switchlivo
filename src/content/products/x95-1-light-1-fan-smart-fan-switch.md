@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X9"
 summary: "X95 1 Light+1 Fan Smart Fan Switch from the X9 Series - a Switchlivo Fan built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x95-1-light-1-fan-smart-fan-switch.webp"
 gallery: []
 features:
   - "Multi-step fan speed control"

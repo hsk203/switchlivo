@@ -9,7 +9,7 @@ region: []
 protocol: ["BLE Mesh"]
 series: "X30"
 summary: "X31U Display 1234 Gang Compound Smart Light Switch from the X30 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x31u-display-1234-gang-compound-smart-light-switch.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

@@ -9,7 +9,7 @@ region: ["UK-GCC Type"]
 protocol: []
 series: "X10"
 summary: "X10 Smart 13A UK Socket from the X10 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x10-smart-13a-uk-socket.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

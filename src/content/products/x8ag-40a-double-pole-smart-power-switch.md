@@ -9,7 +9,7 @@ region: []
 protocol: ["BLE Mesh"]
 series: "X8"
 summary: "X8AG 40A Double Pole Smart Power Switch from the X8 Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x8ag-40a-double-pole-smart-power-switch.webp"
 gallery: []
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"

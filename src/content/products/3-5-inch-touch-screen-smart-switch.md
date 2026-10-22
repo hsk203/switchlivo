@@ -8,7 +8,7 @@ category_label: "Light Switch"
 region: []
 protocol: []
 summary: "Switchlivo Light Switch engineered for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/3-5-inch-touch-screen-smart-switch.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

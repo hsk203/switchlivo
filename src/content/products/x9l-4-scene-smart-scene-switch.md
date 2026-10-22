@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X9"
 summary: "X9L 4 Scene Smart Scene Switch from the X9 Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x9l-4-scene-smart-scene-switch.webp"
 gallery: []
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"

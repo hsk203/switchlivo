@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X20"
 summary: "X20 6 Scene Smart Scene Switch from the X20 Series - a Switchlivo Modular built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x20-6-scene-smart-scene-switch.webp"
 gallery: []
 features:
   - "4 / 6 / 8 way modular snap-together frames"

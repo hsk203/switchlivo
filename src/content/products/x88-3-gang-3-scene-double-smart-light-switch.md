@@ -9,7 +9,7 @@ region: []
 protocol: ["BLE Mesh"]
 series: "X8"
 summary: "X88 3 Gang 3 Scene Double Smart Light Switch from the X8 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x88-3-gang-3-scene-double-smart-light-switch.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

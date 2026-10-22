@@ -9,7 +9,7 @@ region: ["India Type"]
 protocol: []
 series: "Modular"
 summary: "4 Module Smart Switch Board from the Modular Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/4-module-smart-switch-board.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

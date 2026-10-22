@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X8"
 summary: "X85 3 Gang 3 Scene Smart Light Switch from the X8 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x85-3-gang-3-scene-smart-light-switch.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

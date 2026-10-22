@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "NSH"
 summary: "NSH01 Hotel Motion Sensor 5.8GHz Ceiling Relay Control from the NSH Series - a Switchlivo Sensor built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/nsh01-hotel-motion-sensor.webp"
 gallery: []
 features:
   - "5.8GHz radar / PIR sensing options"

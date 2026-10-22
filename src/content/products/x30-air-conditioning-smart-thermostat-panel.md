@@ -9,7 +9,7 @@ region: []
 protocol: ["BLE Mesh"]
 series: "X30"
 summary: "X30 Air Conditioning Smart Thermostat Panel from the X30 Series - a Switchlivo Thermostat built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x30-air-conditioning-smart-thermostat-panel.webp"
 gallery: []
 features:
   - "FCU / VRF / water-heating / electric-heating variants"

@@ -9,7 +9,7 @@ region: []
 protocol: ["Tuya"]
 series: "N8CR"
 summary: "N8CR Intercom Outdoor Station 8″ from the N8CR Series - a Switchlivo Intercom built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/n8cr-intercom-outdoor-station-8.webp"
 gallery: []
 features:
   - "HD video indoor monitors and outdoor stations"

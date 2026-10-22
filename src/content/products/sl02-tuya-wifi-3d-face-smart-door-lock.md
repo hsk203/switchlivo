@@ -9,7 +9,7 @@ region: []
 protocol: ["Tuya", "WiFi"]
 series: "SL"
 summary: "SL02 Tuya WiFi 3D Face Smart Door Lock from the SL Series - a Switchlivo Smart Lock built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/sl02-tuya-wifi-3d-face-smart-door-lock.webp"
 gallery: []
 features:
   - "3D face, fingerprint, card, PIN and app unlock"

@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "NPOE"
 summary: "NPOE82 POE Switch from the NPOE Series - a Switchlivo Intercom built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/npoe82-poe-switch.webp"
 gallery: []
 features:
   - "HD video indoor monitors and outdoor stations"

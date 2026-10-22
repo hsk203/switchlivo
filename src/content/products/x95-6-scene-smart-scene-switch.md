@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X9"
 summary: "X95 6 Scene Smart Scene Switch from the X9 Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x95-6-scene-smart-scene-switch.webp"
 gallery: []
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"

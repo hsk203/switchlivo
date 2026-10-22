@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X8"
 summary: "X88 1 Fan Dimmer 1 Gang 2 Scene Smart Fan Switch from the X8 Series - a Switchlivo Dimming built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x88-1-fan-dimmer-1-gang-2-scene-smart-fan-switch.webp"
 gallery: []
 features:
   - "Leading-edge and trailing-edge dimming"

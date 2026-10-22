@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X20"
 summary: "X20 2 Light Group 3 Scene Work With Smart Light Dimmer CCT Smart Dimmer Switch from the X20 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x20-2-light-group-3-scene-work-with-smart-light-dimmer-cct-smart-dimmer-switch.webp"
 gallery: []
 features:
   - "Tempered-glass / aluminum panel options"

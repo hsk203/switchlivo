@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X20"
 summary: "X20 Air Conditioning Knob Smart Thermostat from the X20 Series - a Switchlivo Thermostat built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x20-air-conditioning-knob-smart-thermostat.webp"
 gallery: []
 features:
   - "FCU / VRF / water-heating / electric-heating variants"

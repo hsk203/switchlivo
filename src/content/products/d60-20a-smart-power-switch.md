@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "D60"
 summary: "D60 20A Smart Power Switch from the D60 Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/d60-20a-smart-power-switch.webp"
 gallery: []
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"

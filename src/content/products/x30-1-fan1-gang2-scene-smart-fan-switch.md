@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X30"
 summary: "X30 1 Fan+1 Gang+2 Scene Smart Fan Switch from the X30 Series - a Switchlivo Fan built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x30-1-fan1-gang2-scene-smart-fan-switch.webp"
 gallery: []
 features:
   - "Multi-step fan speed control"

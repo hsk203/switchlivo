@@ -9,7 +9,7 @@ region: []
 protocol: ["BLE Mesh"]
 series: "HG"
 summary: "HG02 Dual-channel Bluetooth Gateway Pro for Reliable BLE Connectivity from the HG Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/hg02-dual-channel-bluetooth-gateway-pro-for-reliable-ble-connectivity.webp"
 gallery: []
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"

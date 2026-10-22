@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "X10"
 summary: "X10 1 Scene Smart Scene Switch from the X10 Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/x10-1-scene-smart-scene-switch.webp"
 gallery: []
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"

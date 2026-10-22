@@ -9,7 +9,7 @@ region: []
 protocol: ["Tuya"]
 series: "7Pro"
 summary: "7Pro 7″ Smart Home Control Panel （AI Flagship Control Panel） from the 7Pro Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/7pro-7-smart-home-control-panel.webp"
 gallery: []
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"

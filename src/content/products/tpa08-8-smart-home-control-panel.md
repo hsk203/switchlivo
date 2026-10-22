@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "TP"
 summary: "TPA08 8″ Smart Home Control Panel from the TP Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/tpa08-8-smart-home-control-panel.webp"
 gallery: []
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"

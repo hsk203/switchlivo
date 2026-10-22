@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "NH"
 summary: "NH02 Smart Thermostat Knob For Heating (Water, Electric, Boiler Systems) from the NH Series - a Switchlivo Thermostat built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/nh02-smart-thermostat-knob-for-heating-water-electric-boiler-systems.webp"
 gallery: []
 features:
   - "FCU / VRF / water-heating / electric-heating variants"

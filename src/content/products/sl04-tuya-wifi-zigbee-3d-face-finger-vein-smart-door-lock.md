@@ -9,7 +9,7 @@ region: []
 protocol: ["Tuya", "Zigbee", "WiFi"]
 series: "SL"
 summary: "SL04 Tuya Wifi Zigbee 3D Face Finger Vein Smart Door Lock from the SL Series - a Switchlivo Smart Lock built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/sl04-tuya-wifi-zigbee-3d-face-finger-vein-smart-door-lock.webp"
 gallery: []
 features:
   - "3D face, fingerprint, card, PIN and app unlock"

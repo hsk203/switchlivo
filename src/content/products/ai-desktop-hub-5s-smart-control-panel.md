@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "AI"
 summary: "AI Desktop Hub 5S Smart Control Panel from the AI Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/ai-desktop-hub-5s-smart-control-panel.webp"
 gallery: []
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"

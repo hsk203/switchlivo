@@ -9,7 +9,7 @@ region: []
 protocol: []
 series: "NM7S"
 summary: "NM7S Intercom Indoor Monitor 10.1″ from the NM7S Series - a Switchlivo Intercom built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
-featuredImage: "/images/products/placeholder.svg"
+featuredImage: "https://cdn.switchlivo.com/products/nm7s-intercom-indoor-monitor-10-1.webp"
 gallery: []
 features:
   - "HD video indoor monitors and outdoor stations"
