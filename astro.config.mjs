@@ -58,17 +58,7 @@ export default defineConfig({
     sitemap(),
     AutoImport({
       imports: [
-        "@/shortcodes/Button",
-        "@/shortcodes/Accordion",
-        "@/shortcodes/Notice",
-        "@/shortcodes/Video",
-        "@/shortcodes/Youtube",
         "@/shortcodes/Blockquote",
-        "@/shortcodes/Badge",
-        "@/shortcodes/ContentBlock",
-        "@/shortcodes/Changelog",
-        "@/shortcodes/Tab",
-        "@/shortcodes/Tabs",
       ],
     }),
     mdx(),
