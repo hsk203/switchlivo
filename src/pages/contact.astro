@@ -125,6 +125,14 @@ const prefillReason = (q.get("reason") || "").trim();
                   </p>
                 )
               }
+              <p
+                data-product-hint
+                class="mt-2 hidden text-xs text-text"
+              >
+                Inquiring about{" "}
+                <span class="font-medium text-text-dark" data-product-hint-text
+                ></span>
+              </p>
             </div>
             <div class="form-group mb-5">
               <label class="form-label" for="reason">Reason / Purpose</label>
@@ -197,6 +205,32 @@ const prefillReason = (q.get("reason") || "").trim();
             src="https://challenges.cloudflare.com/turnstile/v0/api.js"
             async
             defer></script>
+          <script is:inline>
+            (function () {
+              // 静态站：查询参数在运行时才可用，客户端预填（产品详情页跳转过来时带型号）
+              function prefillFromQuery() {
+                var q = new URLSearchParams(window.location.search);
+                var p = (q.get("product") || "").trim();
+                if (!p) return;
+                var t = (q.get("title") || "").trim();
+                var input = document.getElementById("product");
+                if (input && !input.value) input.value = p;
+                var sel = document.getElementById("reason");
+                if (sel && q.get("reason") === "product-inquiry")
+                  sel.value = "product-inquiry";
+                var hint = document.querySelector("[data-product-hint]");
+                if (hint) hint.classList.remove("hidden");
+                var hintText = document.querySelector("[data-product-hint-text]");
+                if (hintText && !hintText.textContent)
+                  hintText.textContent = t || p;
+              }
+              prefillFromQuery();
+              document.addEventListener(
+                "astro:page-load",
+                prefillFromQuery
+              );
+            })();
+          </script>
           <script is:inline>
             (function () {
               var form = document.getElementById("inquiry-form");
