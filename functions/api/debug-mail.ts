@@ -29,7 +29,7 @@ export async function onRequestPost(context: {
       },
       body: JSON.stringify({
         sender: { name: "Switchlivo", email: "info@switchlivo.com" },
-        to: [{ email: "517519203@qq.com" }],
+        to: [{ email: "info@switchlivo.com" }],
         replyTo: { email: "info@switchlivo.com" },
         subject: "Switchlivo 发信链路诊断测试",
         htmlContent:
