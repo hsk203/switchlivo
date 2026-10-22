@@ -3,6 +3,7 @@ import Base from "@/layouts/Base.astro";
 import Shape from "@/components/Shape.astro";
 import PageHeader from "@/components/PageHeader.astro";
 import ProductBrowser from "@/layouts/components/products/ProductBrowser.astro";
+import ProductBreadcrumb from "@/layouts/components/products/ProductBreadcrumb.astro";
 import Cta from "@/layouts/partials/Cta.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 
@@ -25,6 +26,7 @@ const pageData = {
   <Shape />
   <section class="page-hero pt-16">
     <div class="container">
+      <ProductBreadcrumb items={[{ label: "Home", href: "/" }, { label: "Products" }]} />
       <PageHeader page_data={pageData} />
     </div>
   </section>

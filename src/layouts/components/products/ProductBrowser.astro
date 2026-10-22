@@ -18,10 +18,35 @@ const waLink = `https://wa.me/${wa.number}?text=${encodeURIComponent(
   wa.message
 )}`;
 const activeCategory = PRODUCT_CATEGORIES.find((c) => c.slug === lockedCategory);
+
 // 系列筛选维度：动态取当前产品集里出现过的系列（数据驱动，自动与 md 同步）
 const seriesList = [
   ...new Set(products.map((p) => p.data.series).filter(Boolean)),
 ].sort();
+
+const total = products.length;
+
+// 每个筛选项在当前产品集内的命中数（bonke 侧栏无计数，这里补上以便判断哪些维度是空的）
+const categoryCounts = PRODUCT_CATEGORIES.map((c) => ({
+  value: c.slug,
+  label: c.label,
+  count: products.filter((p) => p.data.category === c.slug).length,
+}));
+const seriesCounts = seriesList.map((s) => ({
+  value: s,
+  label: s,
+  count: products.filter((p) => p.data.series === s).length,
+}));
+const regionCounts = PRODUCT_REGIONS.map((r) => ({
+  value: r,
+  label: r,
+  count: products.filter((p) => p.data.region.includes(r)).length,
+}));
+const protocolCounts = PRODUCT_PROTOCOLS.map((p) => ({
+  value: p,
+  label: p,
+  count: products.filter((x) => x.data.protocol.includes(p)).length,
+}));
 ---
 
 <div class="product-browser" data-product-browser>
@@ -30,6 +55,28 @@ const seriesList = [
   >
     <!-- 中间：产品网格 -->
     <div class="product-main">
+      <div
+        class="mb-5 flex flex-wrap items-center justify-between gap-3 border-b border-border pb-3"
+      >
+        <p class="text-sm text-text">
+          Showing <span class="font-semibold text-text-dark" data-result-count
+            >{total}</span
+          > / {total} products
+        </p>
+        <label class="flex items-center gap-2 text-sm text-text">
+          <span class="whitespace-nowrap">Sort</span>
+          <select
+            data-product-sort
+            class="rounded-lg border border-border bg-white px-3 py-1.5 text-sm text-text-dark outline-none transition focus:border-primary"
+          >
+            <option value="default">Default</option>
+            <option value="model">Model A-Z</option>
+            <option value="title">Title A-Z</option>
+            <option value="series">Series</option>
+          </select>
+        </label>
+      </div>
+
       <div
         class="product-grid grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
       >
@@ -40,153 +87,236 @@ const seriesList = [
       </p>
     </div>
 
-    <!-- 右侧：筛选侧栏（参考 bonke，左栏移到右栏） -->
+    <!-- 右侧：筛选侧栏（bonke .pro-sidemenu 结构，左栏移到右栏） -->
     <aside class="product-sidebar lg:sticky lg:top-24 lg:self-start">
-      <div class="rounded-xl border border-border bg-white p-5 shadow-sm">
-        <div class="mb-4 flex items-center justify-between border-b border-border pb-3">
-          <span class="flex items-center text-base font-semibold text-text-dark">
-            <svg class="mr-2 h-4 w-4 text-primary" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+      <div
+        class="pro-sidemenu overflow-hidden rounded-xl border border-border bg-white shadow-sm"
+      >
+        <div
+          class="pro-sidemenu-top flex items-center justify-between border-b border-border px-5 py-4"
+        >
+          <span class="title flex items-center text-base font-semibold text-text-dark">
+            <svg
+              class="mr-2 h-4 w-4 text-primary"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 5h14M3 10h14M3 15h14"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"></path>
             </svg>
             Filter
           </span>
           <button
             type="button"
             data-filter-reset
-            class="text-xs font-medium text-primary hover:underline"
+            class="reset-btn text-xs font-medium text-primary hover:underline"
           >
             Reset
           </button>
         </div>
 
-        {
-          lockedCategory ? (
-            <div class="mb-4 rounded-lg bg-body p-3 text-sm text-text-dark">
-              Category: <span class="font-medium text-primary">{activeCategory?.label}</span>
-            </div>
-          ) : (
-            <div class="filter-group mb-4" data-filter-group="category">
-              <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-text">
-                Function
-              </p>
-              <div class="flex flex-col gap-1.5">
-                {PRODUCT_CATEGORIES.map((c) => (
-                  <button
-                    type="button"
-                    data-filter-value={c.slug}
-                    class="filter-chip text-left"
-                  >
-                    {c.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )
-        }
+        <div
+          class="pro-sidemenu-scroller max-h-[calc(100vh-11rem)] overflow-y-auto px-3 py-4"
+        >
+          <div class="pro-sidemenu-list space-y-5">
+            {
+              lockedCategory ? (
+                <div class="rounded-lg bg-body px-3 py-2.5 text-sm text-text-dark">
+                  Category:{" "}
+                  <span class="font-medium text-primary">
+                    {activeCategory?.label}
+                  </span>{" "}
+                  <span class="text-text">({total})</span>
+                </div>
+              ) : (
+                <div class="filter-group" data-filter-group="category">
+                  <p class="group-title mb-1.5 px-2 text-xs font-semibold uppercase tracking-wide text-text">
+                    Function
+                  </p>
+                  <ul>
+                    {categoryCounts.map((c) => (
+                      <li>
+                        <div class="menu-sub">
+                          <button
+                            type="button"
+                            data-filter-value={c.value}
+                            class:list={["filter-chip", { "is-empty": c.count === 0 }]}
+                            disabled={c.count === 0}
+                          >
+                            <span class="label">{c.label}</span>
+                            <span class="count">{c.count}</span>
+                          </button>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
 
-        {
-          seriesList.length > 0 && (
-            <div class="filter-group mb-4" data-filter-group="series">
-              <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-text">
-                Series
+            {
+              seriesCounts.length > 0 && (
+                <div class="filter-group" data-filter-group="series">
+                  <p class="group-title mb-1.5 px-2 text-xs font-semibold uppercase tracking-wide text-text">
+                    Series
+                  </p>
+                  <ul>
+                    {seriesCounts.map((s) => (
+                      <li>
+                        <div class="menu-sub">
+                          <button
+                            type="button"
+                            data-filter-value={s.value}
+                            class:list={["filter-chip", { "is-empty": s.count === 0 }]}
+                            disabled={s.count === 0}
+                          >
+                            <span class="label">{s.label}</span>
+                            <span class="count">{s.count}</span>
+                          </button>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
+
+            <div class="filter-group" data-filter-group="region">
+              <p class="group-title mb-1.5 px-2 text-xs font-semibold uppercase tracking-wide text-text">
+                Region
               </p>
-              <div class="flex flex-wrap gap-1.5">
+              <ul>
                 {
-                  seriesList.map((s) => (
-                    <button type="button" data-filter-value={s} class="filter-chip">
-                      {s}
-                    </button>
+                  regionCounts.map((r) => (
+                    <li>
+                      <div class="menu-sub">
+                        <button
+                          type="button"
+                          data-filter-value={r.value}
+                          class:list={["filter-chip", { "is-empty": r.count === 0 }]}
+                          disabled={r.count === 0}
+                        >
+                          <span class="label">{r.label}</span>
+                          <span class="count">{r.count}</span>
+                        </button>
+                      </div>
+                    </li>
                   ))
                 }
-              </div>
+              </ul>
             </div>
-          )
-        }
 
-        <div class="filter-group mb-4" data-filter-group="region">
-          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-text">
-            Region
-          </p>
-          <div class="flex flex-wrap gap-1.5">
-            {
-              PRODUCT_REGIONS.map((r) => (
-                <button type="button" data-filter-value={r} class="filter-chip">
-                  {r}
-                </button>
-              ))
-            }
-          </div>
-        </div>
-
-        <div class="filter-group" data-filter-group="protocol">
-          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-text">
-            Protocol
-          </p>
-          <div class="flex flex-wrap gap-1.5">
-            {
-              PRODUCT_PROTOCOLS.map((p) => (
-                <button type="button" data-filter-value={p} class="filter-chip">
-                  {p}
-                </button>
-              ))
-            }
+            <div class="filter-group" data-filter-group="protocol">
+              <p class="group-title mb-1.5 px-2 text-xs font-semibold uppercase tracking-wide text-text">
+                Protocol
+              </p>
+              <ul>
+                {
+                  protocolCounts.map((p) => (
+                    <li>
+                      <div class="menu-sub">
+                        <button
+                          type="button"
+                          data-filter-value={p.value}
+                          class:list={["filter-chip", { "is-empty": p.count === 0 }]}
+                          disabled={p.count === 0}
+                        >
+                          <span class="label">{p.label}</span>
+                          <span class="count">{p.count}</span>
+                        </button>
+                      </div>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </aside>
   </div>
 
-  <!-- 右侧悬浮栏（对应 bonke .right-bar） -->
-  <div
-    class="product-quickbar fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col gap-3 md:flex"
-  >
+  <!-- 右侧悬浮栏（bonke .right-bar：滚动 >100px 滑出，图标 + 文字） -->
+  <div class="right-bar product-quickbar" data-quickbar>
     <a
       href={waLink}
       target="_blank"
       rel="noopener"
       title="Chat on WhatsApp"
-      class="flex h-11 w-11 items-center justify-center rounded-full bg-primary text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+      class="quick-item bg-primary text-white"
     >
-      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5 0-1 .2-3.4-.7-2.7-1-4.4-3.7-4.5-3.9-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-1.9.9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.4.5c-.2.2-.3.4-.1.6.2.2.9 1.4 1.9 2.3 1.3 1.1 2.4 1.5 2.6 1.6.2.1.3.1.4-.1l.8-1c.2-.3.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.2.1.9-.1 1.5z"></path>
+      <svg
+        class="h-5 w-5"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5 0-1 .2-3.4-.7-2.7-1-4.4-3.7-4.5-3.9-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-1.9.9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.4.5c-.2.2-.3.4-.1.6.2.2.9 1.4 1.9 2.3 1.3 1.1 2.4 1.5 2.6 1.6.2.1.3.1.4-.1l.8-1c.2-.3.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.2.1.9-.1 1.5z"
+        ></path>
       </svg>
+      <span>WhatsApp</span>
     </a>
-    <a
-      href="/contact"
-      title="Inquiry"
-      class="flex h-11 w-11 items-center justify-center rounded-full bg-text-dark text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
-    >
-      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <a href="/contact/" title="Inquiry" class="quick-item bg-text-dark text-white">
+      <svg
+        class="h-5 w-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
         <path d="M4 6h16v12H4z" stroke-linejoin="round"></path>
         <path d="M4 7l8 6 8-6" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
+      <span>Inquiry</span>
     </a>
     <button
       type="button"
       data-back-top
       title="Back to top"
-      class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-text-dark shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+      class="quick-item border border-border bg-white text-text-dark"
     >
-      <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <path d="M10 16V5M6 9l4-4 4 4" stroke-linecap="round" stroke-linejoin="round"></path>
+      <svg
+        class="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <path d="M10 16V5M6 9l4-4 4 4" stroke-linecap="round" stroke-linejoin="round"
+        ></path>
       </svg>
+      <span>Top</span>
     </button>
   </div>
 </div>
 
 <style is:global>
+  /* bonke 风格：侧栏筛选项为整行条目，右侧带命中数 */
   .filter-chip {
-    border: 1px solid #ebebeb;
-    border-radius: 9999px;
-    padding: 0.3rem 0.75rem;
-    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    font-size: 0.82rem;
     color: #222;
     background: #fff;
-    transition: all 0.2s ease;
+    transition: all 0.18s ease;
     cursor: pointer;
+    text-align: left;
   }
   .filter-chip:hover {
-    border-color: #fe6019;
+    background: #fff5ef;
     color: #fe6019;
   }
   .filter-chip.active {
@@ -194,6 +324,68 @@ const seriesList = [
     border-color: #fe6019;
     color: #fff;
   }
+  .filter-chip .count {
+    font-size: 0.68rem;
+    color: #9a9a9a;
+    font-variant-numeric: tabular-nums;
+  }
+  .filter-chip.active .count {
+    color: #ffe0cd;
+  }
+  .filter-chip.is-empty {
+    opacity: 0.38;
+    cursor: not-allowed;
+  }
+  .filter-chip.is-empty:hover {
+    background: #fff;
+    color: #222;
+  }
+
+  /* bonke .right-bar：滚动 100px 后滑出，图标 + 文字 */
+  .product-quickbar {
+    position: fixed;
+    right: 0.75rem;
+    top: 50%;
+    z-index: 40;
+    display: none;
+    flex-direction: column;
+    gap: 0.6rem;
+    transform: translate(1.5rem, -50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+  }
+  .product-quickbar.on {
+    transform: translate(0, -50%);
+    opacity: 1;
+    visibility: visible;
+  }
+  .quick-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    width: 58px;
+    padding: 8px 4px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .quick-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+  }
+  .quick-item span {
+    font-size: 10px;
+    line-height: 1.1;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .product-quickbar {
+      display: flex;
+    }
+  }
+
   /* 滚动揭示：仅在 JS 启用时隐藏，保证无 JS / SEO 可见 */
   html.js .product-card.reveal {
     opacity: 0;
@@ -218,6 +410,7 @@ const seriesList = [
 
   const browser = document.querySelector<HTMLElement>("[data-product-browser]");
   if (browser) {
+    const grid = browser.querySelector<HTMLElement>(".product-grid");
     const cards = Array.from(
       browser.querySelectorAll<HTMLElement>(".product-card")
     );
@@ -279,7 +472,35 @@ const seriesList = [
       });
       const empty = browser.querySelector<HTMLElement>("[data-product-empty]");
       if (empty) empty.style.display = visible === 0 ? "" : "none";
+      const counter = browser.querySelector<HTMLElement>("[data-result-count]");
+      if (counter) counter.textContent = String(visible);
     }
+
+    // 排序（客户端重排网格子节点）
+    const sortSel = browser.querySelector<HTMLSelectElement>(
+      "[data-product-sort]"
+    );
+    sortSel?.addEventListener("change", () => {
+      const mode = sortSel.value;
+      if (!grid) return;
+      const items = cards.slice();
+      if (mode === "model") {
+        items.sort((a, b) =>
+          (a.dataset.model || "").localeCompare(b.dataset.model || "")
+        );
+      } else if (mode === "title") {
+        items.sort((a, b) =>
+          (a.dataset.title || "").localeCompare(b.dataset.title || "")
+        );
+      } else if (mode === "series") {
+        items.sort(
+          (a, b) =>
+            (a.dataset.series || "").localeCompare(b.dataset.series || "") ||
+            (a.dataset.title || "").localeCompare(b.dataset.title || "")
+        );
+      }
+      items.forEach((el) => grid.appendChild(el));
+    });
 
     // 滚动揭示（复刻 bonke wow.js fade-in-up，零 jQuery）
     const io = new IntersectionObserver(
@@ -296,6 +517,14 @@ const seriesList = [
     browser
       .querySelectorAll<HTMLElement>(".product-card.reveal")
       .forEach((el) => io.observe(el));
+
+    // 右侧悬浮栏：滚动 >100px 滑出（bonke .right-bar .on）
+    const quickbar = browser.querySelector<HTMLElement>("[data-quickbar]");
+    const onScroll = () => {
+      quickbar?.classList.toggle("on", window.scrollY > 100);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
 
     const backTop = browser.querySelector<HTMLButtonElement>("[data-back-top]");
     backTop?.addEventListener("click", () =>

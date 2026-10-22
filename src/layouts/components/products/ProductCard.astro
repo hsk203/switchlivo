@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { modelFromSlug } from "@/lib/productModel";
 
 interface Props {
   product: CollectionEntry<"products">;
@@ -9,8 +10,8 @@ const d = product.data;
 const url = `/products/${product.id}/`;
 const regions = d.region.join(",");
 const protocols = d.protocol.join(",");
-const summary = d.summary ?? "";
 const series = d.series ?? "";
+const model = modelFromSlug(product.id);
 ---
 
 <article
@@ -19,9 +20,19 @@ const series = d.series ?? "";
   data-region={regions}
   data-protocol={protocols}
   data-series={series}
+  data-title={d.title}
+  data-model={model}
 >
-  <a href={url} class="block">
-    <div class="mb-4 flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg bg-body">
+  <a href={url} class="product-item block">
+    <!-- bonke: .tag 角标位 -->
+    <div class="img relative mb-4 flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg bg-body">
+      {
+        series && (
+          <div class="tag absolute left-3 top-3 z-10 rounded-full bg-text-dark/85 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-white shadow-sm backdrop-blur-sm">
+            {series}
+          </div>
+        )
+      }
       <img
         src={d.featuredImage}
         alt={d.title}
@@ -31,20 +42,18 @@ const series = d.series ?? "";
         class="h-full w-full object-contain p-3 transition duration-500 group-hover:scale-105 [filter:drop-shadow(0_10px_18px_rgba(254,96,25,0.18))]"
       />
     </div>
-    <h3 class="mb-2 text-lg font-semibold text-text-dark">{d.title}</h3>
-    {
-      summary && (
-        <p class="mb-3 line-clamp-2 text-sm text-text">{summary}</p>
-      )
-    }
-    <div class="mb-3 flex flex-wrap gap-1.5">
-      {
-        series && (
-          <span class="rounded-full bg-text-dark/5 px-2 py-0.5 text-xs font-medium text-text-dark">
-            {series} Series
-          </span>
-        )
-      }
+
+    <!-- bonke: .info = 标题 + 型号 -->
+    <div class="info">
+      <h3
+        class="title mb-1 line-clamp-2 text-base font-semibold text-text-dark transition group-hover:text-primary"
+      >
+        {d.title}
+      </h3>
+      <p class="model text-sm font-medium tracking-wide text-text">{model}</p>
+    </div>
+
+    <div class="mb-3 mt-3 flex min-h-[26px] flex-wrap gap-1.5">
       {
         d.region.map((r) => (
           <span class="rounded-full bg-body px-2 py-0.5 text-xs text-text">
@@ -60,6 +69,7 @@ const series = d.series ?? "";
         ))
       }
     </div>
+
     <span class="inline-flex items-center text-sm font-medium text-primary">
       Inquire
       <svg
