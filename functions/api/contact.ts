@@ -12,7 +12,10 @@
 // Brevo 免费档：300 封/天；switchlivo.com 域名验证后可发任意收件人，询盘量绰绰有余。
 // Brevo 的 DNS 验证记录加在 brevo 子域上，不动根域 MX/SPF，不影响 Zoho 收发信。
 // 需要的环境变量：BREVO_API_KEY（API Key，在 Brevo 后台 SMTP & API → API Keys 创建，形如 xkeysib-...）。
-// 发件 sender 必须是 Brevo 里已验证的域名（switchlivo.com），否则 API 返回 401/400。
+// ⚠️ 发件 sender 除了域名验证，**具体地址还必须在 Brevo → Senders 里单独验证过**
+//    （实测：只做域名验证不够，未验证的地址每次投递都被 Brevo 以 "sender ... is not valid" 拒绝，
+//    API 仍返回 201 但 Logs 里出现 Error 事件，收件人永远收不到）。本站发件人 = info@switchlivo.com，
+//    客户回复走 replyTo（客户的邮箱），故 info@ 收到的也是可直回的询盘。
 // [部署 2026-10-21] 已接入 BREVO_API_KEY（Pages 生产环境变量），本提交触发全新部署以加载该变量。
 
 export async function onRequestPost(context: {
@@ -79,7 +82,7 @@ export async function onRequestPost(context: {
         accept: "application/json",
       },
       body: JSON.stringify({
-        sender: { name: "Switchlivo", email: "noreply@switchlivo.com" },
+        sender: { name: "Switchlivo", email: "info@switchlivo.com" },
         to: [{ email: "info@switchlivo.com" }],
         replyTo: { email: email },
         subject: `新询盘：来自 ${name}`,

@@ -28,7 +28,7 @@ export async function onRequestPost(context: {
         accept: "application/json",
       },
       body: JSON.stringify({
-        sender: { name: "Switchlivo", email: "noreply@switchlivo.com" },
+        sender: { name: "Switchlivo", email: "info@switchlivo.com" },
         to: [{ email: "info@switchlivo.com" }],
         replyTo: { email: "info@switchlivo.com" },
         subject: "Switchlivo 发信链路诊断测试",
