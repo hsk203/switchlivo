@@ -19,6 +19,13 @@ const fontEntries = Object.entries(theme.fonts.font_family).filter(
 
 const { title, meta_title, description, image, noindex, canonical } =
   Astro.props;
+
+// 分享图：相对路径拼 base_url，绝对 URL（如 R2 CDN）原样使用
+const imageUrl = image
+  ? /^https?:\/\//.test(image)
+    ? image
+    : `${config.site.base_url}${image}`
+  : `${config.site.base_url}${config.metadata.meta_image}`;
 ---
 
 <!doctype html>
@@ -124,20 +131,10 @@ const { title, meta_title, description, image, noindex, canonical } =
     />
 
     <!-- og-image -->
-    <meta
-      property="og:image"
-      content={`${config.site.base_url}${
-        image ? image : config.metadata.meta_image
-      }`}
-    />
+    <meta property="og:image" content={imageUrl} />
 
     <!-- twitter-image -->
-    <meta
-      name="twitter:image"
-      content={`${config.site.base_url}${
-        image ? image : config.metadata.meta_image
-      }`}
-    />
+    <meta name="twitter:image" content={imageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>

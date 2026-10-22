@@ -6,6 +6,7 @@ import ProductBrowser from "@/layouts/components/products/ProductBrowser.astro";
 import ProductBreadcrumb from "@/layouts/components/products/ProductBreadcrumb.astro";
 import Cta from "@/layouts/partials/Cta.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
+import config from "@/config/config.json";
 
 const products = await getSinglePage("products");
 
@@ -22,6 +23,7 @@ const pageData = {
   title="Products"
   meta_title="Switchlivo Product Center — Smart Home & Hotel OEM/ODM"
   description="Switchlivo product center: smart switches, curtains, dimming, fans, power and All-In-One panels for OEM/ODM. Filter by function, region and protocol."
+  canonical={`${config.site.base_url}/products/`}
 >
   <Shape />
   <section class="page-hero pt-16">

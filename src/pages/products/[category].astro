@@ -7,6 +7,7 @@ import ProductBreadcrumb from "@/layouts/components/products/ProductBreadcrumb.a
 import Cta from "@/layouts/partials/Cta.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { PRODUCT_CATEGORIES, PRODUCT_CATEGORY_INTRO } from "@/lib/productsTaxonomy";
+import config from "@/config/config.json";
 
 export async function getStaticPaths() {
   const products = await getSinglePage("products");
@@ -38,6 +39,7 @@ const pageData = {
   title={category.label}
   meta_title={`Switchlivo ${category.label} — OEM/ODM Smart Home Products`}
   description={intro}
+  canonical={`${config.site.base_url}/products/${category.slug}/`}
 >
   <Shape />
   <section class="page-hero pt-16">

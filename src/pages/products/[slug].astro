@@ -2,18 +2,41 @@
 import Base from "@/layouts/Base.astro";
 import Shape from "@/components/Shape.astro";
 import Cta from "@/layouts/partials/Cta.astro";
+import ProductCard from "@/layouts/components/products/ProductCard.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { render } from "astro:content";
 import { PRODUCT_CATEGORIES } from "@/lib/productsTaxonomy";
+import { modelFromSlug } from "@/lib/productModel";
+import config from "@/config/config.json";
 
 export async function getStaticPaths() {
   const products = await getSinglePage("products");
-  return products.map((p) => ({ params: { slug: p.id }, props: { product: p } }));
+  return products.map((p) => {
+    const series = p.data.series;
+    const related = products
+      .filter((x) => x.id !== p.id)
+      .map((x) => {
+        let score = 0;
+        if (series && x.data.series === series) score += 3;
+        if (x.data.category === p.data.category) score += 1;
+        return { x, score };
+      })
+      .filter((r) => r.score > 0)
+      .sort(
+        (a, b) =>
+          b.score - a.score ||
+          (a.x.data.title || "").localeCompare(b.x.data.title || "")
+      )
+      .slice(0, 4)
+      .map((r) => r.x);
+    return { params: { slug: p.id }, props: { product: p, related } };
+  });
 }
 
-const { product } = Astro.props;
+const { product, related } = Astro.props;
 const { Content } = await render(product);
 const d = product.data;
+const model = modelFromSlug(product.id);
 const categoryLabel =
   PRODUCT_CATEGORIES.find((c) => c.slug === d.category)?.label ?? d.category;
 
@@ -26,13 +49,59 @@ const pageData = {
   page_title: d.page_title ?? d.title,
   content: d.summary ?? "",
 };
+
+const canonical = `${config.site.base_url}/products/${product.id}/`;
+const inquiryLink = `/contact/?product=${encodeURIComponent(
+  model
+)}&title=${encodeURIComponent(d.title)}&reason=product-inquiry`;
+
+// Product 结构化数据（Google 商品富结果 / 实体识别）
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: d.title,
+  sku: model,
+  mpn: model,
+  image: [d.featuredImage, ...(d.gallery ?? [])],
+  description: metaDescription,
+  category: categoryLabel,
+  url: canonical,
+  brand: { "@type": "Brand", name: "Switchlivo" },
+  manufacturer: {
+    "@type": "Organization",
+    name: "Switchlivo",
+    url: config.site.base_url,
+  },
+  additionalProperty: [
+    ...(d.series
+      ? [{ "@type": "PropertyValue", name: "Series", value: d.series }]
+      : []),
+    ...(d.region ?? []).map((r) => ({
+      "@type": "PropertyValue",
+      name: "Region",
+      value: r,
+    })),
+    ...(d.protocol ?? []).map((p) => ({
+      "@type": "PropertyValue",
+      name: "Protocol",
+      value: p,
+    })),
+  ],
+};
 ---
 
 <Base
   title={d.title}
   meta_title={d.meta_title ?? `${d.title} | Switchlivo OEM/ODM`}
   description={metaDescription}
+  image={d.featuredImage}
+  canonical={canonical}
 >
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(jsonLd)}
+  />
   <Shape />
   <section class="page-hero pt-16">
     <div class="container">
@@ -77,7 +146,10 @@ const pageData = {
 
         <!-- 信息栏 -->
         <div>
-          <h1 class="mb-3 text-3xl font-bold text-text-dark">{d.title}</h1>
+          <h1 class="mb-2 text-3xl font-bold text-text-dark">{d.title}</h1>
+          <p class="mb-4 text-sm font-medium tracking-wide text-text">
+            Model: <span class="text-text-dark">{model}</span>
+          </p>
           <div class="mb-5 flex flex-wrap gap-2">
             {
               d.series && (
@@ -157,12 +229,12 @@ const pageData = {
           {
             d.inquiryCta && (
               <div class="flex flex-wrap gap-4">
-                <a
-                  href="/contact/"
-                  class="inline-flex items-center rounded-full bg-gradient-to-r from-primary to-primary-dark px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
-                >
-                  Request a Quote
-                </a>
+            <a
+              href={inquiryLink}
+              class="inline-flex items-center rounded-full bg-gradient-to-r from-primary to-primary-dark px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+            >
+              Request a Quote
+            </a>
                 <a
                   href="/products/"
                   class="inline-flex items-center rounded-full border border-border bg-white px-8 py-3 text-sm font-semibold text-text-dark transition hover:border-primary hover:text-primary"
@@ -174,6 +246,22 @@ const pageData = {
           }
         </div>
       </div>
+
+      <!-- 相关产品（同系列优先） -->
+      {
+        related.length > 0 && (
+          <div class="mt-16 border-t border-border pt-10">
+            <h2 class="mb-6 text-xl font-bold text-text-dark">
+              Related {d.series ? `${d.series} Series ` : ""}Products
+            </h2>
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {related.map((r) => (
+                <ProductCard product={r} />
+              ))}
+            </div>
+          </div>
+        )
+      }
 
       <!-- 正文（产品描述） -->
       <div class="prose-content mx-auto mt-14 max-w-3xl">

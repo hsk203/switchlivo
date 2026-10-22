@@ -50,6 +50,24 @@ const protocolCounts = PRODUCT_PROTOCOLS.map((p) => ({
 ---
 
 <div class="product-browser" data-product-browser>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: activeCategory
+        ? `Switchlivo ${activeCategory.label} products`
+        : "Switchlivo Product Catalog",
+      numberOfItems: total,
+      itemListElement: products.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `${config.site.base_url}/products/${p.id}/`,
+        name: p.data.title,
+      })),
+    })}
+  />
   <div
     class="product-layout flex flex-col gap-8 lg:grid lg:grid-cols-[1fr_300px] lg:gap-10"
   >
@@ -58,9 +76,30 @@ const protocolCounts = PRODUCT_PROTOCOLS.map((p) => ({
       <div
         class="mb-5 flex flex-wrap items-center justify-between gap-3 border-b border-border pb-3"
       >
+        <div class="relative min-w-[220px] flex-1 sm:max-w-xs">
+          <svg
+            class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text"
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <circle cx="9" cy="9" r="6"></circle>
+            <path d="M13.5 13.5L17 17" stroke-linecap="round"></path>
+          </svg>
+          <input
+            type="search"
+            data-product-search
+            placeholder="Search model or product…"
+            aria-label="Search model or product"
+            class="w-full rounded-lg border border-border bg-white py-1.5 pl-9 pr-3 text-sm text-text-dark outline-none transition placeholder:text-text/60 focus:border-primary"
+          />
+        </div>
         <p class="text-sm text-text">
-          Showing <span class="font-semibold text-text-dark" data-result-count
-            >{total}</span
+          Showing <span
+            class="font-semibold text-text-dark"
+            data-result-count>{total}</span
           > / {total} products
         </p>
         <label class="flex items-center gap-2 text-sm text-text">
@@ -463,10 +502,33 @@ const protocolCounts = PRODUCT_PROTOCOLS.map((p) => ({
       return true;
     }
 
+    // 搜索：型号 / 标题 / 系列 关键词（与筛选条件取交集）
+    const searchInput = browser.querySelector<HTMLInputElement>(
+      "[data-product-search]"
+    );
+    let query = "";
+    searchInput?.addEventListener("input", () => {
+      query = searchInput.value.trim().toLowerCase();
+      apply();
+    });
+
+    function matchQuery(card: HTMLElement): boolean {
+      if (!query) return true;
+      const hay = [
+        card.getAttribute("data-model") || "",
+        card.getAttribute("data-title") || "",
+        card.getAttribute("data-series") || "",
+        card.getAttribute("data-category") || "",
+      ]
+        .join(" ")
+        .toLowerCase();
+      return hay.includes(query);
+    }
+
     function apply() {
       let visible = 0;
       cards.forEach((c) => {
-        const show = match(c);
+        const show = match(c) && matchQuery(c);
         c.style.display = show ? "" : "none";
         if (show) visible++;
       });

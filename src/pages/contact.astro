@@ -16,6 +16,12 @@ const page_data = {
   ...contact,
   content: entry.body,
 };
+
+// 从产品详情页跳转过来时带上型号/标题，用于预填询盘
+const q = Astro.url.searchParams;
+const prefillModel = (q.get("product") || "").trim();
+const prefillTitle = (q.get("title") || "").trim();
+const prefillReason = (q.get("reason") || "").trim();
 ---
 
 <Base
@@ -100,10 +106,38 @@ const page_data = {
               />
             </div>
             <div class="form-group mb-5">
+              <label class="form-label" for="product">Product of Interest</label>
+              <input
+                class="form-control"
+                type="text"
+                id="product"
+                name="product"
+                value={prefillModel}
+                placeholder="Model or product name (optional)"
+              />
+              {
+                prefillModel && (
+                  <p class="mt-2 text-xs text-text">
+                    Inquiring about{" "}
+                    <span class="font-medium text-text-dark">
+                      {prefillTitle || prefillModel}
+                    </span>
+                  </p>
+                )
+              }
+            </div>
+            <div class="form-group mb-5">
               <label class="form-label" for="reason">Reason / Purpose</label>
               <select name="reason" id="reason" class="form-select" required>
-                <option value="">Select reason / purpose</option>
-                <option value="product-inquiry">Product Inquiry</option>
+                <option value="" selected={prefillReason !== "product-inquiry"}>
+                  Select reason / purpose
+                </option>
+                <option
+                  value="product-inquiry"
+                  selected={prefillReason === "product-inquiry"}
+                >
+                  Product Inquiry
+                </option>
                 <option value="oem-odm">OEM &amp; ODM Cooperation</option>
                 <option value="distributor">Become a Distributor</option>
                 <option value="technical-support">Technical Support</option>
@@ -189,6 +223,7 @@ const page_data = {
                   company: val("company"),
                   email: val("email"),
                   country: val("country"),
+                  product: val("product"),
                   reason: val("reason"),
                   message: val("message"),
                   renderedAt: rendered ? rendered.value : "0",

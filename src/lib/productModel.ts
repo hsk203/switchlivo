@@ -26,6 +26,15 @@ export function modelFromSlug(slug: string): string {
     if (STOP.has(p)) break;
     kept.push(p);
   }
-  const final = kept.length ? kept : parts.slice(0, 1);
-  return final.join("-").toUpperCase();
+  if (kept.length === 0) kept.push(parts[0]);
+  // 纯数字（如 "4-module-..."）没有型号信息量，向后补一个含字母的词元
+  if (!/[a-z]/i.test(kept.join(""))) {
+    for (const p of parts.slice(kept.length, kept.length + 3)) {
+      if (/[a-z]/i.test(p)) {
+        kept.push(p);
+        break;
+      }
+    }
+  }
+  return kept.join("-").toUpperCase();
 }

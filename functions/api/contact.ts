@@ -18,6 +18,16 @@
 //    客户回复走 replyTo（客户的邮箱），故 info@ 收到的也是可直回的询盘。
 // [部署 2026-10-21] 已接入 BREVO_API_KEY（Pages 生产环境变量），本提交触发全新部署以加载该变量。
 
+// 表单字段一律转义后再进邮件正文，防止 HTML 注入
+function esc(s: string): string {
+  return String(s ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export async function onRequestPost(context: {
   request: Request;
   env: Record<string, string>;
@@ -26,6 +36,10 @@ export async function onRequestPost(context: {
   try {
     const body = (await request.json()) as Record<string, string>;
     const { name, email, message } = body;
+    const company = (body.company || "").trim();
+    const country = (body.country || "").trim();
+    const product = (body.product || "").trim();
+    const reason = (body.reason || "").trim();
     // 前端 Turnstile widget 注入的字段名是 cf-turnstile-response（与前端保持一致）
     const turnstileToken = body["cf-turnstile-response"];
     const TURNSTILE_SECRET = env.TURNSTILE_SECRET;
@@ -85,13 +99,25 @@ export async function onRequestPost(context: {
         sender: { name: "Switchlivo", email: "info@switchlivo.com" },
         to: [{ email: "info@switchlivo.com" }],
         replyTo: { email: email },
-        subject: `新询盘：来自 ${name}`,
+        subject: `新询盘：来自 ${name}${product ? ` · ${product}` : ""}`,
         htmlContent:
-          `<p><strong>客户姓名：</strong>${name}</p>` +
-          `<p><strong>客户邮箱：</strong>${email}</p>` +
+          `<p><strong>客户姓名：</strong>${esc(name)}</p>` +
+          `<p><strong>客户邮箱：</strong>${esc(email)}</p>` +
+          (company ? `<p><strong>公司：</strong>${esc(company)}</p>` : "") +
+          (country ? `<p><strong>国家/地区：</strong>${esc(country)}</p>` : "") +
+          (product
+            ? `<p><strong>询价产品：</strong>${esc(product)}</p>`
+            : "") +
+          (reason ? `<p><strong>询价类型：</strong>${esc(reason)}</p>` : "") +
           `<p><strong>留言内容：</strong></p>` +
-          `<p>${message}</p>`,
-        textContent: `客户姓名：${name}\n客户邮箱：${email}\n留言：${message}`,
+          `<p>${esc(message)}</p>`,
+        textContent:
+          `客户姓名：${name}\n客户邮箱：${email}\n` +
+          (company ? `公司：${company}\n` : "") +
+          (country ? `国家/地区：${country}\n` : "") +
+          (product ? `询价产品：${product}\n` : "") +
+          (reason ? `询价类型：${reason}\n` : "") +
+          `留言：${message}`,
       }),
     });
     const mailResult = await mailRes.json().catch(() => ({}));
