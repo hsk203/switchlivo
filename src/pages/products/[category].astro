@@ -1,0 +1,53 @@
+---
+import Base from "@/layouts/Base.astro";
+import Shape from "@/components/Shape.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import ProductBrowser from "@/layouts/components/products/ProductBrowser.astro";
+import Cta from "@/layouts/partials/Cta.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { PRODUCT_CATEGORIES, PRODUCT_CATEGORY_INTRO } from "@/lib/productsTaxonomy";
+
+export async function getStaticPaths() {
+  const products = await getSinglePage("products");
+  const present = PRODUCT_CATEGORIES.filter((c) =>
+    products.some((p) => p.data.category === c.slug)
+  );
+  return present.map((c) => ({
+    params: { category: c.slug },
+    props: { category: c },
+  }));
+}
+
+const { category } = Astro.props;
+const all = await getSinglePage("products");
+const products = all.filter((p) => p.data.category === category.slug);
+
+const intro =
+  PRODUCT_CATEGORY_INTRO[category.slug] ||
+  `Explore Switchlivo ${category.label} products — engineered for OEM & ODM customization.`;
+
+const pageData = {
+  title: category.label,
+  page_title: `${category.label} <br/> OEM & ODM Solutions`,
+  content: intro,
+};
+---
+
+<Base
+  title={category.label}
+  meta_title={`Switchlivo ${category.label} — OEM/ODM Smart Home Products`}
+  description={intro}
+>
+  <Shape />
+  <section class="page-hero pt-16">
+    <div class="container">
+      <PageHeader page_data={pageData} />
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <ProductBrowser products={products} lockedCategory={category.slug} />
+    </div>
+  </section>
+  <Cta />
+</Base>

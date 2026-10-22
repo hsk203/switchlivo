@@ -182,10 +182,37 @@ const contactCollection = defineCollection({
   }),
 });
 
+// Product collection schema
+const productsCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/products" }),
+  schema: z.object({
+    title: z.string(),
+    page_title: z.string().optional(),
+    meta_title: z.string().optional(),
+    description: z.string().optional(),
+    category: z.string(),
+    category_label: z.string().optional(),
+    region: z.array(z.string()).default([]),
+    protocol: z.array(z.string()).default([]),
+    series: z.string().optional(),
+    summary: z.string().optional(),
+    featuredImage: z.string(),
+    gallery: z.array(z.string()).default([]),
+    features: z.array(z.string()).default([]),
+    specs: z
+      .array(z.object({ name: z.string(), value: z.string() }))
+      .default([]),
+    oemOptions: z.array(z.string()).default([]),
+    inquiryCta: z.boolean().default(true),
+    draft: z.boolean().optional(),
+  }),
+});
+
 // Export collections
 export const collections = {
   homepage: homepageCollection,
   about: aboutCollection,
   blog: blogCollection,
   contact: contactCollection,
+  products: productsCollection,
 };

@@ -1,0 +1,68 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  product: CollectionEntry<"products">;
+}
+const { product } = Astro.props;
+const d = product.data;
+const url = `/products/${product.id}/`;
+const regions = d.region.join(",");
+const protocols = d.protocol.join(",");
+const summary = d.summary ?? "";
+---
+
+<article
+  class="product-card reveal group rounded-xl border border-border bg-white p-4 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+  data-category={d.category}
+  data-region={regions}
+  data-protocol={protocols}
+>
+  <a href={url} class="block">
+    <div class="mb-4 flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg bg-body">
+      <img
+        src={d.featuredImage}
+        alt={d.title}
+        loading="lazy"
+        width="600"
+        height="600"
+        class="h-full w-full object-contain p-3 transition duration-500 group-hover:scale-105 [filter:drop-shadow(0_10px_18px_rgba(254,96,25,0.18))]"
+      />
+    </div>
+    <h3 class="mb-2 text-lg font-semibold text-text-dark">{d.title}</h3>
+    {
+      summary && (
+        <p class="mb-3 line-clamp-2 text-sm text-text">{summary}</p>
+      )
+    }
+    <div class="mb-3 flex flex-wrap gap-1.5">
+      {
+        d.region.map((r) => (
+          <span class="rounded-full bg-body px-2 py-0.5 text-xs text-text">
+            {r}
+          </span>
+        ))
+      }
+      {
+        d.protocol.map((p) => (
+          <span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+            {p}
+          </span>
+        ))
+      }
+    </div>
+    <span class="inline-flex items-center text-sm font-medium text-primary">
+      Inquire
+      <svg
+        class="ml-1 h-4 w-4"
+        viewBox="0 0 20 20"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <path d="M4 10h12M11 5l5 5-5 5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </span>
+  </a>
+</article>

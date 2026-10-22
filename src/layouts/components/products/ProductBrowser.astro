@@ -1,0 +1,282 @@
+---
+import type { CollectionEntry } from "astro:content";
+import config from "@/config/config.json";
+import {
+  PRODUCT_CATEGORIES,
+  PRODUCT_REGIONS,
+  PRODUCT_PROTOCOLS,
+} from "@/lib/productsTaxonomy";
+import ProductCard from "./ProductCard.astro";
+
+interface Props {
+  products: CollectionEntry<"products">[];
+  lockedCategory?: string;
+}
+const { products, lockedCategory } = Astro.props;
+const wa = config.params.whatsapp;
+const waLink = `https://wa.me/${wa.number}?text=${encodeURIComponent(
+  wa.message
+)}`;
+const activeCategory = PRODUCT_CATEGORIES.find((c) => c.slug === lockedCategory);
+---
+
+<div class="product-browser" data-product-browser>
+  <div
+    class="product-layout flex flex-col gap-8 lg:grid lg:grid-cols-[1fr_300px] lg:gap-10"
+  >
+    <!-- 中间：产品网格 -->
+    <div class="product-main">
+      <div
+        class="product-grid grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {products.map((p) => <ProductCard product={p} />)}
+      </div>
+      <p data-product-empty class="py-16 text-center text-text" style="display:none">
+        No products match your filters.
+      </p>
+    </div>
+
+    <!-- 右侧：筛选侧栏（参考 bonke，左栏移到右栏） -->
+    <aside class="product-sidebar lg:sticky lg:top-24 lg:self-start">
+      <div class="rounded-xl border border-border bg-white p-5 shadow-sm">
+        <div class="mb-4 flex items-center justify-between border-b border-border pb-3">
+          <span class="flex items-center text-base font-semibold text-text-dark">
+            <svg class="mr-2 h-4 w-4 text-primary" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+            </svg>
+            Filter
+          </span>
+          <button
+            type="button"
+            data-filter-reset
+            class="text-xs font-medium text-primary hover:underline"
+          >
+            Reset
+          </button>
+        </div>
+
+        {
+          lockedCategory ? (
+            <div class="mb-4 rounded-lg bg-body p-3 text-sm text-text-dark">
+              Category: <span class="font-medium text-primary">{activeCategory?.label}</span>
+            </div>
+          ) : (
+            <div class="filter-group mb-4" data-filter-group="category">
+              <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-text">
+                Function
+              </p>
+              <div class="flex flex-col gap-1.5">
+                {PRODUCT_CATEGORIES.map((c) => (
+                  <button
+                    type="button"
+                    data-filter-value={c.slug}
+                    class="filter-chip text-left"
+                  >
+                    {c.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )
+        }
+
+        <div class="filter-group mb-4" data-filter-group="region">
+          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-text">
+            Region
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            {
+              PRODUCT_REGIONS.map((r) => (
+                <button type="button" data-filter-value={r} class="filter-chip">
+                  {r}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="filter-group" data-filter-group="protocol">
+          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-text">
+            Protocol
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            {
+              PRODUCT_PROTOCOLS.map((p) => (
+                <button type="button" data-filter-value={p} class="filter-chip">
+                  {p}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 右侧悬浮栏（对应 bonke .right-bar） -->
+  <div
+    class="product-quickbar fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col gap-3 md:flex"
+  >
+    <a
+      href={waLink}
+      target="_blank"
+      rel="noopener"
+      title="Chat on WhatsApp"
+      class="flex h-11 w-11 items-center justify-center rounded-full bg-primary text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+    >
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5 0-1 .2-3.4-.7-2.7-1-4.4-3.7-4.5-3.9-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-1.9.9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.4.5c-.2.2-.3.4-.1.6.2.2.9 1.4 1.9 2.3 1.3 1.1 2.4 1.5 2.6 1.6.2.1.3.1.4-.1l.8-1c.2-.3.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.2.1.9-.1 1.5z"></path>
+      </svg>
+    </a>
+    <a
+      href="/contact"
+      title="Inquiry"
+      class="flex h-11 w-11 items-center justify-center rounded-full bg-text-dark text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+    >
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M4 6h16v12H4z" stroke-linejoin="round"></path>
+        <path d="M4 7l8 6 8-6" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </a>
+    <button
+      type="button"
+      data-back-top
+      title="Back to top"
+      class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-text-dark shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+    >
+      <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M10 16V5M6 9l4-4 4 4" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<style is:global>
+  .filter-chip {
+    border: 1px solid #ebebeb;
+    border-radius: 9999px;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.8rem;
+    color: #222;
+    background: #fff;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  .filter-chip:hover {
+    border-color: #fe6019;
+    color: #fe6019;
+  }
+  .filter-chip.active {
+    background: #fe6019;
+    border-color: #fe6019;
+    color: #fff;
+  }
+  /* 滚动揭示：仅在 JS 启用时隐藏，保证无 JS / SEO 可见 */
+  html.js .product-card.reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  html.js .product-card.reveal.reveal-in {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html.js .product-card.reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  document.documentElement.classList.add("js");
+
+  const browser = document.querySelector<HTMLElement>("[data-product-browser]");
+  if (browser) {
+    const cards = Array.from(
+      browser.querySelectorAll<HTMLElement>(".product-card")
+    );
+    const groups = Array.from(
+      browser.querySelectorAll<HTMLElement>("[data-filter-group]")
+    );
+    const state: Record<string, Set<string>> = {};
+
+    groups.forEach((g) => {
+      const name = g.getAttribute("data-filter-group")!;
+      state[name] = new Set();
+      g.querySelectorAll<HTMLButtonElement>("[data-filter-value]").forEach(
+        (btn) => {
+          btn.addEventListener("click", () => {
+            const v = btn.getAttribute("data-filter-value")!;
+            if (state[name].has(v)) {
+              state[name].delete(v);
+              btn.classList.remove("active");
+            } else {
+              state[name].add(v);
+              btn.classList.add("active");
+            }
+            apply();
+          });
+        }
+      );
+    });
+
+    const resetBtn = browser.querySelector<HTMLButtonElement>(
+      "[data-filter-reset]"
+    );
+    resetBtn?.addEventListener("click", () => {
+      Object.values(state).forEach((s) => s.clear());
+      browser
+        .querySelectorAll(".filter-chip.active")
+        .forEach((b) => b.classList.remove("active"));
+      apply();
+    });
+
+    function match(card: HTMLElement): boolean {
+      for (const [name, set] of Object.entries(state)) {
+        if (set.size === 0) continue;
+        const attr = card.getAttribute("data-" + name) || "";
+        const vals = attr
+          .split(",")
+          .map((s) => s.trim())
+          .filter(Boolean);
+        if (!Array.from(set).some((v) => vals.includes(v))) return false;
+      }
+      return true;
+    }
+
+    function apply() {
+      let visible = 0;
+      cards.forEach((c) => {
+        const show = match(c);
+        c.style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+      const empty = browser.querySelector<HTMLElement>("[data-product-empty]");
+      if (empty) empty.style.display = visible === 0 ? "" : "none";
+    }
+
+    // 滚动揭示（复刻 bonke wow.js fade-in-up，零 jQuery）
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("reveal-in");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+    browser
+      .querySelectorAll<HTMLElement>(".product-card.reveal")
+      .forEach((el) => io.observe(el));
+
+    const backTop = browser.querySelector<HTMLButtonElement>("[data-back-top]");
+    backTop?.addEventListener("click", () =>
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    );
+  }
+</script>

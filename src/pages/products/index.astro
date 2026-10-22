@@ -1,0 +1,37 @@
+---
+import Base from "@/layouts/Base.astro";
+import Shape from "@/components/Shape.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import ProductBrowser from "@/layouts/components/products/ProductBrowser.astro";
+import Cta from "@/layouts/partials/Cta.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+
+const products = await getSinglePage("products");
+
+const pageData = {
+  title: "Products",
+  page_title:
+    "Smart Home & Hotel <br/> OEM / ODM Product Center",
+  content:
+    "Explore Switchlivo's complete smart-home, smart-hotel and smart-lighting ecosystem — switches, curtains, dimming, fans, power and All-In-One panels across Tuya, Zigbee, Matter and more. Filter by function, region and protocol, or talk to our factory directly.",
+};
+---
+
+<Base
+  title="Products"
+  meta_title="Switchlivo Product Center — Smart Home & Hotel OEM/ODM"
+  description="Switchlivo product center: smart switches, curtains, dimming, fans, power and All-In-One panels for OEM/ODM. Filter by function, region and protocol."
+>
+  <Shape />
+  <section class="page-hero pt-16">
+    <div class="container">
+      <PageHeader page_data={pageData} />
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <ProductBrowser products={products} />
+    </div>
+  </section>
+  <Cta />
+</Base>
