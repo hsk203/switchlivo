@@ -10,7 +10,9 @@ protocol: []
 series: "X30"
 summary: "X31U Display 1234 Gang Compound Switch Smart Light Switch from the X30 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x31u-display-1234-gang-compound-switch-smart-light-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x31u-display-1234-gang-compound-switch-smart-light-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/x31u-display-1234-gang-compound-switch-smart-light-switch/2.webp"
 features:
   - "Tempered-glass / aluminum panel options"
   - "Touch or rocker key layouts, 1-4 gang and scene variants"

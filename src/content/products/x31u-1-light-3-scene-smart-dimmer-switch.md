@@ -10,7 +10,9 @@ protocol: []
 series: "X30"
 summary: "X31U 1 Light 3 Scene Smart Dimmer Switch from the X30 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x31u-1-light-3-scene-smart-dimmer-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x31u-1-light-3-scene-smart-dimmer-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/x31u-1-light-3-scene-smart-dimmer-switch/2.webp"
 features:
   - "Tempered-glass / aluminum panel options"
   - "Touch or rocker key layouts, 1-4 gang and scene variants"

@@ -10,7 +10,9 @@ protocol: []
 series: "X18"
 summary: "X18L 3 Gang 4 Scene Aluminum Smart Switch from the X18 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x18l-3-gang-4-scene-aluminum-smart-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x18l-3-gang-4-scene-aluminum-smart-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/x18l-3-gang-4-scene-aluminum-smart-switch/2.webp"
 features:
   - "Tempered-glass / aluminum panel options"
   - "Touch or rocker key layouts, 1-4 gang and scene variants"

@@ -10,7 +10,8 @@ protocol: []
 series: "X8"
 summary: "X83 1 Light Dimmer 1 Gang 2 Scene Smart Dimmer Switch from the X8 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x83-1-light-dimmer-1-gang-2-scene-smart-dimmer-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x83-1-light-dimmer-1-gang-2-scene-smart-dimmer-switch/1.webp"
 features:
   - "Tempered-glass / aluminum panel options"
   - "Touch or rocker key layouts, 1-4 gang and scene variants"

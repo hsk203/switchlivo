@@ -9,7 +9,10 @@ region: []
 protocol: []
 summary: "Switchlivo Light Switch engineered for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/3-5-inch-touch-screen-smart-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/3-5-inch-touch-screen-smart-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/3-5-inch-touch-screen-smart-switch/2.webp"
+  - "https://cdn.switchlivo.com/products/3-5-inch-touch-screen-smart-switch/3.webp"
 features:
   - "Tempered-glass / aluminum panel options"
   - "Touch or rocker key layouts, 1-4 gang and scene variants"

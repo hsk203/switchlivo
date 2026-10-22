@@ -10,7 +10,8 @@ protocol: []
 series: "TP"
 summary: "TPA10 10.1″ Smart Home Control Panel from the TP Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/tpa10-10-1-smart-home-control-panel.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/tpa10-10-1-smart-home-control-panel/1.webp"
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"
   - "Local scene execution even when offline"

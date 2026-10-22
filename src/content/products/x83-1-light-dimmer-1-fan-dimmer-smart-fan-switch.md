@@ -10,7 +10,8 @@ protocol: []
 series: "X8"
 summary: "X83 1 Light Dimmer 1 Fan Dimmer Smart Fan Switch from the X8 Series - a Switchlivo Dimming built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x83-1-light-dimmer-1-fan-dimmer-smart-fan-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x83-1-light-dimmer-1-fan-dimmer-smart-fan-switch/1.webp"
 features:
   - "Leading-edge and trailing-edge dimming"
   - "Flicker-free, low-noise dimming curves"

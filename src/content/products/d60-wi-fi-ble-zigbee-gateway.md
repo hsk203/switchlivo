@@ -10,7 +10,9 @@ protocol: ["Zigbee", "BLE Mesh"]
 series: "D60"
 summary: "D60 Wi-Fi Ble Zigbee Gateway from the D60 Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/d60-wi-fi-ble-zigbee-gateway.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/d60-wi-fi-ble-zigbee-gateway/1.webp"
+  - "https://cdn.switchlivo.com/products/d60-wi-fi-ble-zigbee-gateway/2.webp"
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"
   - "Built-in surge protection and child shutters"

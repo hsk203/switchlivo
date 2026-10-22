@@ -10,7 +10,9 @@ protocol: []
 series: "X30"
 summary: "X39UAG 2 Light Group DIM CCT 3 Scene Smart Dimmer Switch from the X30 Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x39uag-2-light-group-dim-cct-3-scene-smart-dimmer-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x39uag-2-light-group-dim-cct-3-scene-smart-dimmer-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/x39uag-2-light-group-dim-cct-3-scene-smart-dimmer-switch/2.webp"
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"
   - "Built-in surge protection and child shutters"

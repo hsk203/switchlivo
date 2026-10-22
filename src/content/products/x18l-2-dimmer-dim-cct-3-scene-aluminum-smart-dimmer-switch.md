@@ -10,7 +10,9 @@ protocol: []
 series: "X18"
 summary: "X18L 2 Dimmer DIM CCT 3 Scene Aluminum Smart Dimmer Switch (Work with Smart Light) from the X18 Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x18l-2-dimmer-dim-cct-3-scene-aluminum-smart-dimmer-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x18l-2-dimmer-dim-cct-3-scene-aluminum-smart-dimmer-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/x18l-2-dimmer-dim-cct-3-scene-aluminum-smart-dimmer-switch/2.webp"
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"
   - "Built-in surge protection and child shutters"

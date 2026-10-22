@@ -10,7 +10,9 @@ protocol: []
 series: "X30"
 summary: "X39UAG 1 Fan 1 Light Smart Fan Switch from the X30 Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x39uag-1-fan-1-light-smart-fan-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x39uag-1-fan-1-light-smart-fan-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/x39uag-1-fan-1-light-smart-fan-switch/2.webp"
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"
   - "Built-in surge protection and child shutters"

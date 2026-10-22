@@ -10,7 +10,9 @@ protocol: []
 series: "X18"
 summary: "X18L 2 Curtain 4 Scene Smart Curtain Switch (Work with Non Smart Motor) from the X18 Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x18l-2-curtain-4-scene-smart-curtain-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x18l-2-curtain-4-scene-smart-curtain-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/x18l-2-curtain-4-scene-smart-curtain-switch/2.webp"
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"
   - "Built-in surge protection and child shutters"

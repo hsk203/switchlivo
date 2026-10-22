@@ -10,7 +10,10 @@ protocol: []
 series: "X8"
 summary: "X8AG 1 Fan Dimmer 1 Gang 2 Scene Smart Fan Switch from the X8 Series - a Switchlivo Dimming built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x8ag-1-fan-dimmer-1-gang-2-scene-smart-fan-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x8ag-1-fan-dimmer-1-gang-2-scene-smart-fan-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/x8ag-1-fan-dimmer-1-gang-2-scene-smart-fan-switch/2.webp"
+  - "https://cdn.switchlivo.com/products/x8ag-1-fan-dimmer-1-gang-2-scene-smart-fan-switch/3.webp"
 features:
   - "Leading-edge and trailing-edge dimming"
   - "Flicker-free, low-noise dimming curves"

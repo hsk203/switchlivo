@@ -10,7 +10,10 @@ protocol: []
 series: "NC"
 summary: "NC01 Smart Modular Curtain Motor from the NC Series - a Switchlivo Curtain built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/nc01-smart-modular-curtain-motor.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/nc01-smart-modular-curtain-motor/1.webp"
+  - "https://cdn.switchlivo.com/products/nc01-smart-modular-curtain-motor/2.webp"
+  - "https://cdn.switchlivo.com/products/nc01-smart-modular-curtain-motor/3.webp"
 features:
   - "Tubular and track motor options"
   - "Quiet drive with soft start/stop"

@@ -10,7 +10,9 @@ protocol: []
 series: "X30"
 summary: "X31U 1 Fan 1 Light 2 Scene Smart Fan Switch from the X30 Series - a Switchlivo Fan built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x31u-1-fan-1-light-2-scene-smart-fan-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x31u-1-fan-1-light-2-scene-smart-fan-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/x31u-1-fan-1-light-2-scene-smart-fan-switch/2.webp"
 features:
   - "Multi-step fan speed control"
   - "Fan + light combo versions"

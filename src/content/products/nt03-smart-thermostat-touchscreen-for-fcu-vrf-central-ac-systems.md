@@ -10,7 +10,10 @@ protocol: []
 series: "NT"
 summary: "NT03 Smart Thermostat Touchscreen For FCU & VRF Central AC Systems from the NT Series - a Switchlivo Thermostat built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/nt03-smart-thermostat-touchscreen-for-fcu-vrf-central-ac-systems.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/nt03-smart-thermostat-touchscreen-for-fcu-vrf-central-ac-systems/1.webp"
+  - "https://cdn.switchlivo.com/products/nt03-smart-thermostat-touchscreen-for-fcu-vrf-central-ac-systems/2.webp"
+  - "https://cdn.switchlivo.com/products/nt03-smart-thermostat-touchscreen-for-fcu-vrf-central-ac-systems/3.webp"
 features:
   - "FCU / VRF / water-heating / electric-heating variants"
   - "Knob or touchscreen interaction styles"

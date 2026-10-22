@@ -10,7 +10,9 @@ protocol: []
 series: "X18"
 summary: "X18L Aluminum UK 13A Smart Dimmer Switch And Smart Socket from the X18 Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x18l-aluminum-uk-13a-smart-dimmer-switch-and-smart-socket.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x18l-aluminum-uk-13a-smart-dimmer-switch-and-smart-socket/1.webp"
+  - "https://cdn.switchlivo.com/products/x18l-aluminum-uk-13a-smart-dimmer-switch-and-smart-socket/2.webp"
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"
   - "Built-in surge protection and child shutters"

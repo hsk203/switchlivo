@@ -10,7 +10,9 @@ protocol: []
 series: "D60"
 summary: "D60 1 Motor Smart Curtain Switch from the D60 Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/d60-1-motor-smart-curtain-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/d60-1-motor-smart-curtain-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/d60-1-motor-smart-curtain-switch/2.webp"
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"
   - "Built-in surge protection and child shutters"

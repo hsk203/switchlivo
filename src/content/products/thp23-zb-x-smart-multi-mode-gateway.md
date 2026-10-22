@@ -10,7 +10,8 @@ protocol: []
 series: "THP"
 summary: "THP23-ZB-X Smart Multi-mode Gateway from the THP Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/thp23-zb-x-smart-multi-mode-gateway.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/thp23-zb-x-smart-multi-mode-gateway/1.webp"
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"
   - "Local scene execution even when offline"

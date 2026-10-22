@@ -9,7 +9,10 @@ region: []
 protocol: ["Tuya"]
 summary: "Switchlivo Intercom engineered for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/ndbc-intercom-video-doorbell.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/ndbc-intercom-video-doorbell/1.webp"
+  - "https://cdn.switchlivo.com/products/ndbc-intercom-video-doorbell/2.webp"
+  - "https://cdn.switchlivo.com/products/ndbc-intercom-video-doorbell/3.webp"
 features:
   - "HD video indoor monitors and outdoor stations"
   - "Door-lock and gate release integration"

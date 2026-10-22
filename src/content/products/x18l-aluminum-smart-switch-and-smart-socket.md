@@ -10,7 +10,9 @@ protocol: []
 series: "X18"
 summary: "X18L Aluminum Smart Switch And Smart Socket from the X18 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x18l-aluminum-smart-switch-and-smart-socket.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x18l-aluminum-smart-switch-and-smart-socket/1.webp"
+  - "https://cdn.switchlivo.com/products/x18l-aluminum-smart-switch-and-smart-socket/2.webp"
 features:
   - "Tempered-glass / aluminum panel options"
   - "Touch or rocker key layouts, 1-4 gang and scene variants"

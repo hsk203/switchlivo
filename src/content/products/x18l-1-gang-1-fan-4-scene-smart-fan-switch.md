@@ -10,7 +10,9 @@ protocol: []
 series: "X18"
 summary: "X18L 1 Gang 1 Fan 4 Scene Smart Fan Switch from the X18 Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x18l-1-gang-1-fan-4-scene-smart-fan-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x18l-1-gang-1-fan-4-scene-smart-fan-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/x18l-1-gang-1-fan-4-scene-smart-fan-switch/2.webp"
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"
   - "Built-in surge protection and child shutters"

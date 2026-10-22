@@ -10,7 +10,9 @@ protocol: []
 series: "X30"
 summary: "X31U Knob Smart Thermostat from the X30 Series - a Switchlivo Thermostat built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x31u-knob-smart-thermostat.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x31u-knob-smart-thermostat/1.webp"
+  - "https://cdn.switchlivo.com/products/x31u-knob-smart-thermostat/2.webp"
 features:
   - "FCU / VRF / water-heating / electric-heating variants"
   - "Knob or touchscreen interaction styles"

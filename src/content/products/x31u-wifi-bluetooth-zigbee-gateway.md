@@ -10,7 +10,9 @@ protocol: ["Zigbee", "WiFi", "BLE Mesh"]
 series: "X30"
 summary: "X31U Wifi Bluetooth Zigbee Gateway from the X30 Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x31u-wifi-bluetooth-zigbee-gateway.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x31u-wifi-bluetooth-zigbee-gateway/1.webp"
+  - "https://cdn.switchlivo.com/products/x31u-wifi-bluetooth-zigbee-gateway/2.webp"
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"
   - "Local scene execution even when offline"

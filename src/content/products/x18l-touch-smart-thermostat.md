@@ -10,7 +10,9 @@ protocol: []
 series: "X18"
 summary: "X18L Touch Smart Thermostat​ from the X18 Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x18l-touch-smart-thermostat.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x18l-touch-smart-thermostat/1.webp"
+  - "https://cdn.switchlivo.com/products/x18l-touch-smart-thermostat/2.webp"
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"
   - "Built-in surge protection and child shutters"

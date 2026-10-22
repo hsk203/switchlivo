@@ -10,7 +10,10 @@ protocol: ["Tuya"]
 series: "N5CR"
 summary: "N5CR Intercom Outdoor Station 5″ from the N5CR Series - a Switchlivo Intercom built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/n5cr-intercom-outdoor-station-5.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/n5cr-intercom-outdoor-station-5/1.webp"
+  - "https://cdn.switchlivo.com/products/n5cr-intercom-outdoor-station-5/2.webp"
+  - "https://cdn.switchlivo.com/products/n5cr-intercom-outdoor-station-5/3.webp"
 features:
   - "HD video indoor monitors and outdoor stations"
   - "Door-lock and gate release integration"

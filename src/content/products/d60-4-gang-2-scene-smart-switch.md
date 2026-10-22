@@ -10,7 +10,8 @@ protocol: []
 series: "D60"
 summary: "D60 4 Gang 2 Scene Smart Switch from the D60 Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/d60-4-gang-2-scene-smart-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/d60-4-gang-2-scene-smart-switch/1.webp"
 features:
   - "Tempered-glass / aluminum panel options"
   - "Touch or rocker key layouts, 1-4 gang and scene variants"

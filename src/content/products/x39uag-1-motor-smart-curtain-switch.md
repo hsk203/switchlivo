@@ -10,7 +10,9 @@ protocol: []
 series: "X30"
 summary: "X39UAG 1 Motor Smart Curtain Switch from the X30 Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x39uag-1-motor-smart-curtain-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x39uag-1-motor-smart-curtain-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/x39uag-1-motor-smart-curtain-switch/2.webp"
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"
   - "Built-in surge protection and child shutters"

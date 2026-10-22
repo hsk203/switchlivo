@@ -10,7 +10,10 @@ protocol: []
 series: "NH"
 summary: "NH04 Smart Thermostat Touchscreen For Heating (Water, Electric, Boiler Systems) from the NH Series - a Switchlivo Thermostat built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/nh04-smart-thermostat-touchscreen-for-heating-water-electric-boiler-systems.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/nh04-smart-thermostat-touchscreen-for-heating-water-electric-boiler-systems/1.webp"
+  - "https://cdn.switchlivo.com/products/nh04-smart-thermostat-touchscreen-for-heating-water-electric-boiler-systems/2.webp"
+  - "https://cdn.switchlivo.com/products/nh04-smart-thermostat-touchscreen-for-heating-water-electric-boiler-systems/3.webp"
 features:
   - "FCU / VRF / water-heating / electric-heating variants"
   - "Knob or touchscreen interaction styles"

@@ -10,7 +10,9 @@ protocol: ["Tuya", "Zigbee"]
 series: "Modular"
 summary: "6 Modular Electric Switch（10-Key + Zigbee & Ble Gateway） from the Modular Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/6-modular-electric-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/6-modular-electric-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/6-modular-electric-switch/2.webp"
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"
   - "Local scene execution even when offline"

@@ -10,7 +10,9 @@ protocol: ["Tuya", "Zigbee"]
 series: "Modular"
 summary: "8 Modular Switches（10-Key + 2/3 Pin Universal Sockets  + 1xUSB + 1x20W Type-C） from the Modular Series - a Switchlivo Power & Socket built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/8-modular-switches.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/8-modular-switches/1.webp"
+  - "https://cdn.switchlivo.com/products/8-modular-switches/2.webp"
 features:
   - "Region-specific socket standards (India / UK-GCC / EU / US-AU)"
   - "Built-in surge protection and child shutters"

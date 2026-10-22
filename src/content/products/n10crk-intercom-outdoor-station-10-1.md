@@ -10,7 +10,8 @@ protocol: ["Tuya"]
 series: "N10CRK"
 summary: "N10CRK Intercom Outdoor Station 10.1″ from the N10CRK Series - a Switchlivo Intercom built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/n10crk-intercom-outdoor-station-10-1.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/n10crk-intercom-outdoor-station-10-1/1.webp"
 features:
   - "HD video indoor monitors and outdoor stations"
   - "Door-lock and gate release integration"

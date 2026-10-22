@@ -10,7 +10,11 @@ protocol: []
 series: "Modular"
 summary: "8 Module Smart Switch Board from the Modular Series - a Switchlivo Light Switch built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/8-module-smart-switch-board.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/8-module-smart-switch-board/1.webp"
+  - "https://cdn.switchlivo.com/products/8-module-smart-switch-board/2.webp"
+  - "https://cdn.switchlivo.com/products/8-module-smart-switch-board/3.webp"
+  - "https://cdn.switchlivo.com/products/8-module-smart-switch-board/4.webp"
 features:
   - "Tempered-glass / aluminum panel options"
   - "Touch or rocker key layouts, 1-4 gang and scene variants"

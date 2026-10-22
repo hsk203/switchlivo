@@ -10,7 +10,9 @@ protocol: []
 series: "X30"
 summary: "X31U 2 Motor Smart Curtain Switch from the X30 Series - a Switchlivo Curtain built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x31u-2-motor-smart-curtain-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x31u-2-motor-smart-curtain-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/x31u-2-motor-smart-curtain-switch/2.webp"
 features:
   - "Tubular and track motor options"
   - "Quiet drive with soft start/stop"

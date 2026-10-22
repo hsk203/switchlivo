@@ -10,7 +10,8 @@ protocol: ["Zigbee"]
 series: "TP"
 summary: "TPP01 4″ Smart Home Control Panel from the TP Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/tpp01-4-smart-home-control-panel.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/tpp01-4-smart-home-control-panel/1.webp"
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"
   - "Local scene execution even when offline"

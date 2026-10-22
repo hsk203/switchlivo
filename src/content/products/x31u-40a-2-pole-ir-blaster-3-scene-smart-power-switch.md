@@ -10,7 +10,9 @@ protocol: []
 series: "X30"
 summary: "X31U 40A 2 Pole IR Blaster 3 Scene Smart Power Switch from the X30 Series - a Switchlivo Gateway & Control built for smart home, smart hotel and smart lighting projects, fully customizable for OEM & ODM."
 featuredImage: "https://cdn.switchlivo.com/products/x31u-40a-2-pole-ir-blaster-3-scene-smart-power-switch.webp"
-gallery: []
+gallery:
+  - "https://cdn.switchlivo.com/products/x31u-40a-2-pole-ir-blaster-3-scene-smart-power-switch/1.webp"
+  - "https://cdn.switchlivo.com/products/x31u-40a-2-pole-ir-blaster-3-scene-smart-power-switch/2.webp"
 features:
   - "Multi-mode wireless stacks (WiFi / Zigbee / BLE Mesh)"
   - "Local scene execution even when offline"
