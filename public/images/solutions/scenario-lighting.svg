@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Smart lighting scenario">
+  <defs>
+    <linearGradient id="lt-panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FFF3E9"/>
+    </linearGradient>
+    <radialGradient id="lt-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFD8A8" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#FFD8A8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="0" y="0" width="800" height="600" rx="28" fill="url(#lt-panel)"/>
+  <rect x="14" y="14" width="772" height="572" rx="20" fill="none" stroke="#F1D9C4" stroke-width="2"/>
+
+  <!-- floor -->
+  <rect x="0" y="470" width="800" height="130" fill="#F4E6D8"/>
+  <line x1="0" y1="470" x2="800" y2="470" stroke="#E7D2BD" stroke-width="2"/>
+
+  <!-- ceiling light fixtures with glow -->
+  <g>
+    <circle cx="200" cy="150" r="120" fill="url(#lt-glow)"/>
+    <circle cx="200" cy="150" r="26" fill="#FFB347"/>
+    <circle cx="200" cy="150" r="11" fill="#FE6019"/>
+  </g>
+  <g>
+    <circle cx="430" cy="120" r="130" fill="url(#lt-glow)"/>
+    <circle cx="430" cy="120" r="30" fill="#FFB347"/>
+    <circle cx="430" cy="120" r="13" fill="#FE6019"/>
+  </g>
+  <g>
+    <circle cx="640" cy="160" r="110" fill="url(#lt-glow)"/>
+    <circle cx="640" cy="160" r="24" fill="#FFB347"/>
+    <circle cx="640" cy="160" r="10" fill="#FE6019"/>
+  </g>
+
+  <!-- wall dimmer switch -->
+  <rect x="110" y="340" width="60" height="80" rx="10" fill="#FFB347"/>
+  <circle cx="140" cy="372" r="16" fill="#FFFFFF"/>
+  <circle cx="140" cy="372" r="7" fill="#FE6019"/>
+
+  <!-- scene control panel -->
+  <rect x="620" y="330" width="120" height="110" rx="12" fill="#2A333F"/>
+  <rect x="636" y="348" width="88" height="20" rx="6" fill="#FE6019" opacity="0.85"/>
+  <rect x="636" y="378" width="60" height="14" rx="5" fill="#FFB347" opacity="0.85"/>
+  <rect x="636" y="400" width="74" height="14" rx="5" fill="#3D4A5B"/>
+
+  <!-- hub node -->
+  <g>
+    <circle cx="400" cy="400" r="46" fill="none" stroke="#1FA8A0" stroke-width="3" stroke-dasharray="6 7"/>
+    <rect x="370" y="370" width="60" height="60" rx="15" fill="#1FA8A0"/>
+    <circle cx="400" cy="400" r="14" fill="#FFFFFF"/>
+  </g>
+  <path d="M200 176 V400 H354" fill="none" stroke="#1FA8A0" stroke-width="2.5" stroke-dasharray="5 6" opacity="0.7"/>
+  <path d="M430 150 V400 H430" fill="none" stroke="#1FA8A0" stroke-width="2.5" stroke-dasharray="5 6" opacity="0.7"/>
+  <path d="M640 184 V400 H460" fill="none" stroke="#1FA8A0" stroke-width="2.5" stroke-dasharray="5 6" opacity="0.7"/>
+  <path d="M140 420 H400" fill="none" stroke="#1FA8A0" stroke-width="2.5" stroke-dasharray="5 6" opacity="0.7"/>
+  <path d="M620 400 H460" fill="none" stroke="#1FA8A0" stroke-width="2.5" stroke-dasharray="5 6" opacity="0.7"/>
+</svg>

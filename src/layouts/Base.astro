@@ -26,6 +26,10 @@ const imageUrl = image
     ? image
     : `${config.site.base_url}${image}`
   : `${config.site.base_url}${config.metadata.meta_image}`;
+
+// 规范链接：默认按 base_url + 当前路径生成，支持页面用 canonical prop 覆盖
+const canonicalUrl =
+  canonical || `${config.site.base_url}${Astro.url.pathname}`;
 ---
 
 <!doctype html>
@@ -75,7 +79,11 @@ const imageUrl = image
     </title>
 
     <!-- canonical url -->
-    {canonical && <link rel="canonical" href={canonical} item-prop="url" />}
+    {
+      !noindex && (
+        <link rel="canonical" href={canonicalUrl} item-prop="url" />
+      )
+    }
 
     <!-- noindex robots -->
     {noindex && <meta name="robots" content="noindex,nofollow" />}

@@ -1,0 +1,480 @@
+---
+// Solutions section — homepage block (English, generic, no real client names)
+const industries = [
+  {
+    name: "Smart Hotel",
+    desc: "Guest-room automation, energy-saving scenes, and centralized management for hotels and serviced apartments.",
+    icon: "M3 21h18M5 21V7l7-4 7 4v14M9 9h0M15 9h0M9 13h0M15 13h0",
+  },
+  {
+    name: "Smart Residence",
+    desc: "Whole-home comfort, security, and convenience — lighting, climate, access, and scenes in one ecosystem.",
+    icon: "M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6",
+  },
+  {
+    name: "Smart Office",
+    desc: "Productivity-first spaces: meeting-room control, scheduled lighting, and climate tuned to occupancy.",
+    icon: "M3 21V8l9-5 9 5v13M7 21v-6h10v6M7 11h10",
+  },
+  {
+    name: "Smart Building",
+    desc: "Unified building management — metering, safety, and automation across commercial and public facilities.",
+    icon: "M4 21V3h16v18M4 21h16M8 7h0M8 11h0M8 15h0M16 7h0M16 11h0M16 15h0",
+  },
+  {
+    name: "Smart Lighting",
+    desc: "Architectural, landscape, and retail lighting — dimming, scene presets, and circadian scheduling.",
+    icon: "M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10c1 1 1 2 1 3h6c0-1 0-2 1-3a6 6 0 0 0-4-10z",
+  },
+];
+
+const scenarios = [
+  {
+    key: "entry",
+    eyebrow: "Smart Entryway",
+    title: "A Safer, Brighter Welcome at the Door",
+    desc: "Automate the first moment of arrival. Welcome lighting, smart locks, and motion-triggered scenes turn an ordinary doorway into a secure, inviting gateway.",
+    points: ["Smart lock & access", "Motion-triggered lighting", "Arrival & away scenes"],
+  },
+  {
+    key: "living",
+    eyebrow: "Smart Living Room",
+    title: "One Tap for the Perfect Ambiance",
+    desc: "Connect lighting, climate, and entertainment into scenes you control by app, voice, or wall switch. Movie, party, or relax — your living room responds instantly.",
+    points: ["Scene presets", "Voice & app control", "Connected AV & climate"],
+  },
+  {
+    key: "bedroom",
+    eyebrow: "Smart Bedroom",
+    title: "Rest Easier, Automatically",
+    desc: "Sleep-friendly lighting, scheduled curtains, and a thermostat that learns your rhythm — plus quiet night-time safety from sensors and smart access.",
+    points: ["Circadian lighting", "Curtain & climate automation", "Night-time safety"],
+  },
+  {
+    key: "lighting",
+    eyebrow: "Smart Lighting",
+    title: "Lighting That Thinks for the Whole Home",
+    desc: "Whole-home dimming, scene presets, and scheduling that follows the day. Cut energy use while keeping every room perfectly lit.",
+    points: ["Whole-home dimming", "Scene scheduling", "Energy insight"],
+  },
+];
+
+const capabilities = [
+  {
+    name: "Lighting Control",
+    desc: "Dimmers, switches, and scene panels for precise, app-managed illumination.",
+    icon: "M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10c1 1 1 2 1 3h6c0-1 0-2 1-3a6 6 0 0 0-4-10z",
+  },
+  {
+    name: "Gateway & Connectivity",
+    desc: "Multi-protocol hubs bridging Zigbee, Wi-Fi, BLE, and Matter devices.",
+    icon: "M5 12a7 7 0 0 1 14 0M8.5 12a3.5 3.5 0 0 1 7 0M12 12h0M2 12h0M22 12h0",
+  },
+  {
+    name: "Security & Access",
+    desc: "Smart locks, sensors, and cameras that keep spaces protected and monitored.",
+    icon: "M6 11h12v9H6zM9 11V8a3 3 0 0 1 6 0v3M12 15v2",
+  },
+  {
+    name: "Energy Management",
+    desc: "Metering and scheduling that reduce consumption without sacrificing comfort.",
+    icon: "M13 2L4 14h7l-1 8 9-12h-7z",
+  },
+  {
+    name: "Climate Control",
+    desc: "Thermostats, fans, and motorized curtains tuned to time and occupancy.",
+    icon: "M12 3v18M12 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4z",
+  },
+  {
+    name: "Sensing & Automation",
+    desc: "Motion, occupancy, and environmental sensors that run scenes automatically.",
+    icon: "M12 3a4 4 0 0 0-4 4v1a4 4 0 0 0-1 8h10a4 4 0 0 0-1-8V7a4 4 0 0 0-4-4zM9 21h6",
+  },
+];
+---
+
+<section class="sol">
+  <!-- HERO -->
+  <div class="sol-hero">
+    <div class="sol-hero-pattern" aria-hidden="true"></div>
+    <div class="container">
+      <div class="sol-hero-inner" data-reveal>
+        <span class="sol-eyebrow">Solutions</span>
+        <h2 class="sol-hero-title">Smart Solutions for Every Connected Space</h2>
+        <p class="sol-hero-sub">
+          From smart homes to smart hotels and commercial buildings, Switchlivo
+          delivers a complete, customizable ecosystem — engineered, manufactured,
+          and supported as your OEM &amp; ODM partner.
+        </p>
+        <div class="sol-hero-cta">
+          <a href="/products" class="btn btn-primary">Explore Products</a>
+          <a href="/contact" class="btn btn-ghost">Ask For Catalog</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INDUSTRY VERTICALS -->
+  <div class="container">
+    <div class="sol-head" data-reveal>
+      <span class="sol-eyebrow sol-eyebrow--center">By Industry</span>
+      <h3 class="sol-h3">Solutions Built for Every Segment</h3>
+      <p class="sol-lead">
+        One platform, adapted to the needs of hotels, residences, offices,
+        buildings, and lighting projects.
+      </p>
+    </div>
+    <div class="sol-grid sol-grid-3">
+      {
+        industries.map((it) => (
+          <div class="sol-card" data-reveal>
+            <span class="sol-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d={it.icon} />
+              </svg>
+            </span>
+            <h4 class="sol-card-title">{it.name}</h4>
+            <p class="sol-card-desc">{it.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- SCENARIO BLOCKS -->
+  <div class="container">
+    <div class="sol-head" data-reveal>
+      <span class="sol-eyebrow sol-eyebrow--center">Scenarios</span>
+      <h3 class="sol-h3">Real Spaces, Intelligently Connected</h3>
+      <p class="sol-lead">
+        See how Switchlivo brings comfort, security, and efficiency to the rooms
+        people use every day.
+      </p>
+    </div>
+
+    <div class="sol-scenarios">
+      {
+        scenarios.map((s, i) => (
+          <div class:list={["sol-scenario", i % 2 === 1 && "sol-scenario--reverse"]} data-reveal>
+            <div class="sol-scenario-media">
+              <img
+                src={`/images/solutions/scenario-${s.key}.svg`}
+                alt={s.eyebrow}
+                width="800"
+                height="600"
+                loading="lazy"
+              />
+            </div>
+            <div class="sol-scenario-text">
+              <span class="sol-eyebrow">{s.eyebrow}</span>
+              <h4 class="sol-scenario-title">{s.title}</h4>
+              <p class="sol-scenario-desc">{s.desc}</p>
+              <ul class="sol-points">
+                {s.points.map((p) => (
+                  <li>{p}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- CAPABILITY SUBSYSTEMS -->
+  <div class="container">
+    <div class="sol-head" data-reveal>
+      <span class="sol-eyebrow sol-eyebrow--center">Capabilities</span>
+      <h3 class="sol-h3">A Complete Subsystem Stack</h3>
+      <p class="sol-lead">
+        Every solution is composed from interoperable subsystems — so you can
+        specify exactly what each project needs.
+      </p>
+    </div>
+    <div class="sol-grid sol-grid-3">
+      {
+        capabilities.map((c) => (
+          <div class="sol-card" data-reveal>
+            <span class="sol-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d={c.icon} />
+              </svg>
+            </span>
+            <h4 class="sol-card-title">{c.name}</h4>
+            <p class="sol-card-desc">{c.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* HERO */
+  .sol-hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a202c 0%, #2a1d12 55%, #3a1f0c 100%);
+    color: #fff;
+    padding: 5rem 0 5.5rem;
+  }
+  .sol-hero-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 78% 22%, rgba(254, 96, 25, 0.28), transparent 42%),
+      radial-gradient(circle at 12% 88%, rgba(255, 179, 71, 0.16), transparent 45%);
+    pointer-events: none;
+  }
+  .sol-hero-inner {
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .sol-eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #ffb347;
+    margin-bottom: 0.9rem;
+  }
+  .sol-eyebrow--center {
+    display: block;
+  }
+  .sol-hero-title {
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.12;
+    margin-bottom: 1.2rem;
+  }
+  .sol-hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.82);
+    margin-bottom: 2rem;
+  }
+  .sol-hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.7rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.98rem;
+    transition: all 0.25s ease;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: linear-gradient(90deg, #fe6019, #ff8a3d);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(254, 96, 25, 0.4);
+  }
+  .btn-ghost {
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+  }
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #fff;
+  }
+
+  /* HEADINGS */
+  .sol-head {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 2.8rem;
+    padding-top: 4.5rem;
+  }
+  .sol-h3 {
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 800;
+    color: #222;
+    margin-bottom: 0.8rem;
+  }
+  .sol-lead {
+    color: #888;
+    font-size: 1.02rem;
+    line-height: 1.7;
+  }
+
+  /* GRID + CARDS */
+  .sol-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .sol-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .sol-card {
+    background: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 18px;
+    padding: 2rem 1.6rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .sol-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(26, 32, 44, 0.1);
+    border-color: rgba(254, 96, 25, 0.4);
+  }
+  .sol-card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(254, 96, 25, 0.1);
+    color: #fe6019;
+    margin-bottom: 1.1rem;
+  }
+  .sol-card-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+  .sol-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 0.5rem;
+  }
+  .sol-card-desc {
+    color: #777;
+    font-size: 0.96rem;
+    line-height: 1.65;
+  }
+
+  /* SCENARIOS */
+  .sol-scenarios {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .sol-scenario {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2.5rem;
+  }
+  .sol-scenario--reverse .sol-scenario-media {
+    order: 2;
+  }
+  .sol-scenario-media {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(26, 32, 44, 0.1);
+    background: #fff;
+  }
+  .sol-scenario-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .sol-scenario-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #222;
+    margin: 0.6rem 0 0.9rem;
+  }
+  .sol-scenario-desc {
+    color: #777;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.1rem;
+  }
+  .sol-points {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .sol-points li {
+    position: relative;
+    padding-left: 1.6rem;
+    color: #444;
+    font-size: 0.98rem;
+  }
+  .sol-points li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.45em;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #fe6019;
+  }
+
+  /* REVEAL */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 900px) {
+    .sol-grid-3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .sol-scenario {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .sol-scenario--reverse .sol-scenario-media {
+      order: 0;
+    }
+  }
+  @media (max-width: 560px) {
+    .sol-grid-3 {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const els = document.querySelectorAll(".sol [data-reveal]");
+    if (!els.length) return;
+    if (!("IntersectionObserver" in window)) {
+      els.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    els.forEach((el) => io.observe(el));
+  });
+</script>

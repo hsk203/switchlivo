@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Smart bedroom scenario">
+  <defs>
+    <linearGradient id="bd-panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FFF3E9"/>
+    </linearGradient>
+    <radialGradient id="bd-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFD8A8" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#FFD8A8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="0" y="0" width="800" height="600" rx="28" fill="url(#bd-panel)"/>
+  <rect x="14" y="14" width="772" height="572" rx="20" fill="none" stroke="#F1D9C4" stroke-width="2"/>
+
+  <!-- floor -->
+  <rect x="0" y="470" width="800" height="130" fill="#F4E6D8"/>
+  <line x1="0" y1="470" x2="800" y2="470" stroke="#E7D2BD" stroke-width="2"/>
+
+  <!-- bedside lamp glow -->
+  <circle cx="150" cy="360" r="120" fill="url(#bd-glow)"/>
+
+  <!-- bed -->
+  <rect x="240" y="380" width="380" height="90" rx="16" fill="#34404F"/>
+  <rect x="240" y="330" width="380" height="60" rx="14" fill="#3D4A5B"/>
+  <rect x="250" y="300" width="120" height="60" rx="14" fill="#4A576A"/>
+  <rect x="540" y="300" width="70" height="60" rx="14" fill="#4A576A"/>
+
+  <!-- bedside table + lamp -->
+  <rect x="120" y="400" width="80" height="70" rx="8" fill="#2A333F"/>
+  <rect x="148" y="330" width="8" height="70" fill="#9AA3AE"/>
+  <path d="M128 330 h48 l-10 -34 h-28 Z" fill="#FFB347"/>
+  <circle cx="152" cy="330" r="6" fill="#FE6019"/>
+
+  <!-- curtain -->
+  <rect x="610" y="120" width="120" height="240" rx="6" fill="#EAF3F2"/>
+  <path d="M610 120 q24 120 0 240" fill="#FE6019" opacity="0.16"/>
+  <path d="M670 120 q24 120 0 240" fill="#FE6019" opacity="0.16"/>
+  <path d="M730 120 q24 120 0 240" fill="#FE6019" opacity="0.16"/>
+
+  <!-- thermostat -->
+  <circle cx="660" cy="400" r="30" fill="#FFFFFF" stroke="#FE6019" stroke-width="4"/>
+  <text x="660" y="408" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#FE6019" text-anchor="middle">22°</text>
+
+  <!-- hub node -->
+  <g>
+    <circle cx="430" cy="160" r="42" fill="none" stroke="#1FA8A0" stroke-width="3" stroke-dasharray="6 7"/>
+    <rect x="402" y="132" width="56" height="56" rx="14" fill="#1FA8A0"/>
+    <circle cx="430" cy="160" r="13" fill="#FFFFFF"/>
+  </g>
+  <path d="M430 216 V300 H430" fill="none" stroke="#1FA8A0" stroke-width="2.5" stroke-dasharray="5 6" opacity="0.7"/>
+  <path d="M430 216 V400 H660" fill="none" stroke="#1FA8A0" stroke-width="2.5" stroke-dasharray="5 6" opacity="0.7"/>
+  <path d="M152 330 H300 V160 H472" fill="none" stroke="#1FA8A0" stroke-width="2.5" stroke-dasharray="5 6" opacity="0.7"/>
+</svg>

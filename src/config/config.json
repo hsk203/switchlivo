@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "Switchlivo",
-    "base_url": "https://switchlivo.pages.dev",
+    "base_url": "https://switchlivo.com",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
