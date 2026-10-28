@@ -4,7 +4,6 @@ import Banner from "@/layouts/components/Banner.astro";
 import SolutionPlatform from "@/layouts/components/SolutionPlatform.astro";
 import Ecosystem from "@/layouts/components/Ecosystem.astro";
 import KeyFeatures from "@/layouts/components/KeyFeatures.astro";
-import Solutions from "@/layouts/components/Solutions.astro";
 import Service from "@/layouts/components/Service.astro";
 import Testimonial from "@/layouts/components/Testimonial.astro";
 import Cta from "@/layouts/partials/Cta.astro";
@@ -25,7 +24,6 @@ const { banner, key_features, service, testimonial } = homepage.data;
   <SolutionPlatform />
   <Ecosystem />
   <KeyFeatures key_features={key_features} />
-  <Solutions />
   <Service service={service} />
   <Testimonial testimonial={testimonial} />
   <Cta />
