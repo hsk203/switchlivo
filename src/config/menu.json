@@ -5,6 +5,10 @@
       "url": "/products"
     },
     {
+      "name": "Solutions",
+      "url": "/#solutions"
+    },
+    {
       "name": "About",
       "url": "/about"
     },
