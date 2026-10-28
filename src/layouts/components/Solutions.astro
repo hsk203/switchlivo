@@ -1,5 +1,117 @@
 ---
 // Solutions section — homepage block (English, generic, no real client names)
+// Structure references a typical whole-home solutions page:
+// Hero -> Subsystem grid -> Interaction tiers -> Room scenarios -> Industry verticals
+
+const subsystems = [
+  {
+    name: "Smart Lighting",
+    desc: "Dimmers, switches, and scene panels for precise, app-managed illumination.",
+    icon: "M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10c1 1 1 2 1 3h6c0-1 0-2 1-3a6 6 0 0 0-4-10z",
+  },
+  {
+    name: "Security & Access",
+    desc: "Smart locks, sensors, and cameras that keep spaces protected and monitored.",
+    icon: "M6 11h12v9H6zM9 11V8a3 3 0 0 1 6 0v3M12 15v2",
+  },
+  {
+    name: "Climate Control",
+    desc: "Thermostats, fans, and motorized curtains tuned to time and occupancy.",
+    icon: "M12 3v18M12 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4z",
+  },
+  {
+    name: "Energy Management",
+    desc: "Metering and scheduling that reduce consumption without sacrificing comfort.",
+    icon: "M13 2L4 14h7l-1 8 9-12h-7z",
+  },
+  {
+    name: "Sensing & Automation",
+    desc: "Motion, occupancy, and environmental sensors that run scenes automatically.",
+    icon: "M12 3a4 4 0 0 0-4 4v1a4 4 0 0 0-1 8h10a4 4 0 0 0-1-8V7a4 4 0 0 0-4-4zM9 21h6",
+  },
+  {
+    name: "Gateway & Connectivity",
+    desc: "Multi-protocol hubs bridging Zigbee, Wi-Fi, BLE, and Matter devices.",
+    icon: "M5 12a7 7 0 0 1 14 0M8.5 12a3.5 3.5 0 0 1 7 0M12 12h0M2 12h0M22 12h0",
+  },
+  {
+    name: "Smart Intercom",
+    desc: "Intercom and communication terminals for seamless in-home and entry control.",
+    icon: "M3 11a13 13 0 0 1 18 0M3 11l2-3 2 3M21 11l-2-3-2 3M8 14a5 5 0 0 1 8 0",
+  },
+  {
+    name: "Central Management",
+    desc: "Hotel and building platforms unifying every subsystem in one console.",
+    icon: "M4 21V3h16v18M4 21h16M8 7h0M8 11h0M8 15h0M16 7h0M16 11h0M16 15h0",
+  },
+];
+
+const interactions = [
+  {
+    tier: "Near",
+    name: "Local Control",
+    desc: "Panel and switch control at the wall — one-tap scenes for wake, sleep, away, and guest modes.",
+    icon: "M4 7h16M4 12h16M4 17h10",
+  },
+  {
+    tier: "Mid",
+    name: "Voice & Scene",
+    desc: "Voice assistants and scene panels deliver hands-free, whole-home control from across the room.",
+    icon: "M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3",
+  },
+  {
+    tier: "Far",
+    name: "App & Remote",
+    desc: "Manage devices, receive alerts, and check status from anywhere via the smartphone app and cloud.",
+    icon: "M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM11 18h2",
+  },
+];
+
+const scenarios = [
+  {
+    key: "entry",
+    eyebrow: "Smart Entryway",
+    title: "A Safer, Brighter Welcome at the Door",
+    desc: "Automate the first moment of arrival. Welcome lighting, smart locks, and motion-triggered scenes turn an ordinary doorway into a secure, inviting gateway.",
+    points: ["Smart lock & access", "Motion-triggered lighting", "Arrival & away scenes", "Visitor intercom"],
+  },
+  {
+    key: "living",
+    eyebrow: "Smart Living Room",
+    title: "One Tap for the Perfect Ambiance",
+    desc: "Connect lighting, climate, and entertainment into scenes you control by app, voice, or wall switch — movie, party, or relax, your living room responds instantly.",
+    points: ["Scene presets", "Voice & app control", "Connected AV & climate", "Energy-aware automation"],
+  },
+  {
+    key: "kitchen",
+    eyebrow: "Smart Kitchen",
+    title: "Cook Smarter, Safer, Hands-Free",
+    desc: "Voice interaction, water-leak detection, and smart ventilation keep the kitchen efficient and safe, with connected appliances that follow your routines.",
+    points: ["Voice interaction", "Water-leak detection", "Smart ventilation", "Connected appliances"],
+  },
+  {
+    key: "dining",
+    eyebrow: "Smart Dining",
+    title: "Set the Mood for Every Meal",
+    desc: "Ambient lighting scenes, background music, and air-quality monitoring create an elegant, comfortable dining environment at the touch of a button.",
+    points: ["Ambient lighting scenes", "Background music", "Air quality monitoring", "Comfort climate"],
+  },
+  {
+    key: "bedroom",
+    eyebrow: "Smart Bedroom",
+    title: "Rest Easier, Automatically",
+    desc: "Sleep-friendly lighting, scheduled curtains, and a thermostat that learns your rhythm — plus quiet night-time safety from sensors and smart access.",
+    points: ["Circadian lighting", "Curtain & climate automation", "Night-time safety", "Sleep routines"],
+  },
+  {
+    key: "bathroom",
+    eyebrow: "Smart Bathroom",
+    title: "A Spa-Grade Start to the Day",
+    desc: "Voice control, leak protection, and smart ventilation deliver a healthier, safer bathing experience — from the mirror to the tub.",
+    points: ["Voice control", "Safety & leak protection", "Smart ventilation", "Healthy environment"],
+  },
+];
+
 const industries = [
   {
     name: "Smart Hotel",
@@ -27,70 +139,6 @@ const industries = [
     icon: "M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10c1 1 1 2 1 3h6c0-1 0-2 1-3a6 6 0 0 0-4-10z",
   },
 ];
-
-const scenarios = [
-  {
-    key: "entry",
-    eyebrow: "Smart Entryway",
-    title: "A Safer, Brighter Welcome at the Door",
-    desc: "Automate the first moment of arrival. Welcome lighting, smart locks, and motion-triggered scenes turn an ordinary doorway into a secure, inviting gateway.",
-    points: ["Smart lock & access", "Motion-triggered lighting", "Arrival & away scenes"],
-  },
-  {
-    key: "living",
-    eyebrow: "Smart Living Room",
-    title: "One Tap for the Perfect Ambiance",
-    desc: "Connect lighting, climate, and entertainment into scenes you control by app, voice, or wall switch. Movie, party, or relax — your living room responds instantly.",
-    points: ["Scene presets", "Voice & app control", "Connected AV & climate"],
-  },
-  {
-    key: "bedroom",
-    eyebrow: "Smart Bedroom",
-    title: "Rest Easier, Automatically",
-    desc: "Sleep-friendly lighting, scheduled curtains, and a thermostat that learns your rhythm — plus quiet night-time safety from sensors and smart access.",
-    points: ["Circadian lighting", "Curtain & climate automation", "Night-time safety"],
-  },
-  {
-    key: "lighting",
-    eyebrow: "Smart Lighting",
-    title: "Lighting That Thinks for the Whole Home",
-    desc: "Whole-home dimming, scene presets, and scheduling that follows the day. Cut energy use while keeping every room perfectly lit.",
-    points: ["Whole-home dimming", "Scene scheduling", "Energy insight"],
-  },
-];
-
-const capabilities = [
-  {
-    name: "Lighting Control",
-    desc: "Dimmers, switches, and scene panels for precise, app-managed illumination.",
-    icon: "M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10c1 1 1 2 1 3h6c0-1 0-2 1-3a6 6 0 0 0-4-10z",
-  },
-  {
-    name: "Gateway & Connectivity",
-    desc: "Multi-protocol hubs bridging Zigbee, Wi-Fi, BLE, and Matter devices.",
-    icon: "M5 12a7 7 0 0 1 14 0M8.5 12a3.5 3.5 0 0 1 7 0M12 12h0M2 12h0M22 12h0",
-  },
-  {
-    name: "Security & Access",
-    desc: "Smart locks, sensors, and cameras that keep spaces protected and monitored.",
-    icon: "M6 11h12v9H6zM9 11V8a3 3 0 0 1 6 0v3M12 15v2",
-  },
-  {
-    name: "Energy Management",
-    desc: "Metering and scheduling that reduce consumption without sacrificing comfort.",
-    icon: "M13 2L4 14h7l-1 8 9-12h-7z",
-  },
-  {
-    name: "Climate Control",
-    desc: "Thermostats, fans, and motorized curtains tuned to time and occupancy.",
-    icon: "M12 3v18M12 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4z",
-  },
-  {
-    name: "Sensing & Automation",
-    desc: "Motion, occupancy, and environmental sensors that run scenes automatically.",
-    icon: "M12 3a4 4 0 0 0-4 4v1a4 4 0 0 0-1 8h10a4 4 0 0 0-1-8V7a4 4 0 0 0-4-4zM9 21h6",
-  },
-];
 ---
 
 <section class="sol" id="solutions">
@@ -114,38 +162,68 @@ const capabilities = [
     </div>
   </div>
 
-  <!-- INDUSTRY VERTICALS -->
+  <!-- SUBSYSTEM GRID -->
   <div class="container">
     <div class="sol-head" data-reveal>
-      <span class="sol-eyebrow sol-eyebrow--center">By Industry</span>
-      <h3 class="sol-h3">Solutions Built for Every Segment</h3>
+      <span class="sol-eyebrow sol-eyebrow--center">Subsystems</span>
+      <h3 class="sol-h3">Subsystems That Power Every Space</h3>
       <p class="sol-lead">
-        One platform, adapted to the needs of hotels, residences, offices,
-        buildings, and lighting projects.
+        Every solution is composed from interoperable subsystems — specify exactly
+        what each project needs.
       </p>
     </div>
-    <div class="sol-grid sol-grid-3">
+    <div class="sol-grid sol-grid-4">
       {
-        industries.map((it) => (
+        subsystems.map((c) => (
           <div class="sol-card" data-reveal>
             <span class="sol-card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d={it.icon} />
+                <path d={c.icon} />
               </svg>
             </span>
-            <h4 class="sol-card-title">{it.name}</h4>
-            <p class="sol-card-desc">{it.desc}</p>
+            <h4 class="sol-card-title">{c.name}</h4>
+            <p class="sol-card-desc">{c.desc}</p>
           </div>
         ))
       }
     </div>
   </div>
 
-  <!-- SCENARIO BLOCKS -->
+  <!-- INTERACTION TIERS -->
+  <div class="sol-interaction-wrap">
+    <div class="container">
+      <div class="sol-head" data-reveal>
+        <span class="sol-eyebrow sol-eyebrow--center">Interaction</span>
+        <h3 class="sol-h3">Control Your Way — Near, Mid, and Far</h3>
+        <p class="sol-lead">
+          One ecosystem, three interaction ranges: local at the wall, voice across
+          the room, and remote from anywhere.
+        </p>
+      </div>
+      <div class="sol-interaction">
+        {
+          interactions.map((t) => (
+            <div class="sol-tier" data-reveal>
+              <span class="sol-tier-badge">{t.tier}</span>
+              <span class="sol-card-icon sol-card-icon--lg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d={t.icon} />
+                </svg>
+              </span>
+              <h4 class="sol-card-title">{t.name}</h4>
+              <p class="sol-card-desc">{t.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- ROOM SCENARIOS -->
   <div class="container">
     <div class="sol-head" data-reveal>
       <span class="sol-eyebrow sol-eyebrow--center">Scenarios</span>
-      <h3 class="sol-h3">Real Spaces, Intelligently Connected</h3>
+      <h3 class="sol-h3">Whole-Home Scenarios, Room by Room</h3>
       <p class="sol-lead">
         See how Switchlivo brings comfort, security, and efficiency to the rooms
         people use every day.
@@ -181,27 +259,27 @@ const capabilities = [
     </div>
   </div>
 
-  <!-- CAPABILITY SUBSYSTEMS -->
+  <!-- INDUSTRY VERTICALS -->
   <div class="container">
     <div class="sol-head" data-reveal>
-      <span class="sol-eyebrow sol-eyebrow--center">Capabilities</span>
-      <h3 class="sol-h3">A Complete Subsystem Stack</h3>
+      <span class="sol-eyebrow sol-eyebrow--center">By Industry</span>
+      <h3 class="sol-h3">Solutions Built for Every Segment</h3>
       <p class="sol-lead">
-        Every solution is composed from interoperable subsystems — so you can
-        specify exactly what each project needs.
+        One platform, adapted to the needs of hotels, residences, offices,
+        buildings, and lighting projects.
       </p>
     </div>
     <div class="sol-grid sol-grid-3">
       {
-        capabilities.map((c) => (
+        industries.map((it) => (
           <div class="sol-card" data-reveal>
             <span class="sol-card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d={c.icon} />
+                <path d={it.icon} />
               </svg>
             </span>
-            <h4 class="sol-card-title">{c.name}</h4>
-            <p class="sol-card-desc">{c.desc}</p>
+            <h4 class="sol-card-title">{it.name}</h4>
+            <p class="sol-card-desc">{it.desc}</p>
           </div>
         ))
       }
@@ -319,6 +397,9 @@ const capabilities = [
   .sol-grid-3 {
     grid-template-columns: repeat(3, 1fr);
   }
+  .sol-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
   .sol-card {
     background: #fff;
     border: 1px solid #ebebeb;
@@ -346,6 +427,15 @@ const capabilities = [
     width: 26px;
     height: 26px;
   }
+  .sol-card-icon--lg {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.3rem;
+  }
+  .sol-card-icon--lg svg {
+    width: 30px;
+    height: 30px;
+  }
   .sol-card-title {
     font-size: 1.2rem;
     font-weight: 700;
@@ -356,6 +446,46 @@ const capabilities = [
     color: #777;
     font-size: 0.96rem;
     line-height: 1.65;
+  }
+
+  /* INTERACTION TIERS */
+  .sol-interaction-wrap {
+    margin-top: 4.5rem;
+    background: #faf7f3;
+    padding: 1rem 0 4.5rem;
+  }
+  .sol-interaction {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .sol-tier {
+    background: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 18px;
+    padding: 2.2rem 1.8rem;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .sol-tier:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(26, 32, 44, 0.1);
+  }
+  .sol-tier-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fe6019;
+    background: rgba(254, 96, 25, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    margin-bottom: 1.2rem;
+  }
+  .sol-tier .sol-card-icon {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* SCENARIOS */
@@ -400,15 +530,15 @@ const capabilities = [
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem 1.2rem;
   }
   .sol-points li {
     position: relative;
     padding-left: 1.6rem;
     color: #444;
-    font-size: 0.98rem;
+    font-size: 0.96rem;
   }
   .sol-points li::before {
     content: "";
@@ -432,9 +562,17 @@ const capabilities = [
     transform: none;
   }
 
+  @media (max-width: 1024px) {
+    .sol-grid-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
   @media (max-width: 900px) {
     .sol-grid-3 {
       grid-template-columns: repeat(2, 1fr);
+    }
+    .sol-interaction {
+      grid-template-columns: 1fr;
     }
     .sol-scenario {
       grid-template-columns: 1fr;
@@ -445,7 +583,11 @@ const capabilities = [
     }
   }
   @media (max-width: 560px) {
-    .sol-grid-3 {
+    .sol-grid-3,
+    .sol-grid-4 {
+      grid-template-columns: 1fr;
+    }
+    .sol-points {
       grid-template-columns: 1fr;
     }
   }
