@@ -9,146 +9,66 @@ const phonePretty = "+852 6419 0941";
 const whatsappUrl = `https://wa.me/${whatsapp.number}?text=${encodeURIComponent(whatsapp.message)}`;
 ---
 
-<footer class="ft">
-  <div class="ft-accent"></div>
+<footer class="footer bg-light">
   <div class="container">
-    <!-- Top: brand promise + direct action -->
-    <div class="ft-top">
-      <div>
-        <h2 class="ft-top-title">Need a panel list for your project?</h2>
-        <p class="ft-top-sub">Tell us the room types and quantities — we will reply with matching panels, branding options and a project quote.</p>
+    <div class="gx-5 row pb-10 pt-[52px]">
+      <div class="col-12 mt-12 md:col-6 lg:col-3">
+        <Logo />
+        <p class="mt-6">
+          {footer_description}
+        </p>
+        <p class="mt-4 text-sm">Saudi Arabia · UAE · Southeast Asia</p>
       </div>
-      <div class="ft-top-actions">
-        <a class="ft-btn ft-btn-primary" href="/contact">Request a Quote</a>
-        <a class="ft-btn ft-btn-whatsapp" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
-      </div>
-    </div>
-
-    <div class="ft-steps">
-      <div class="ft-step"><span class="ft-num">01</span><div><strong>Share room types</strong><span>Rooms, quantities, wall-box type</span></div></div>
-      <div class="ft-step"><span class="ft-num">02</span><div><strong>Get panel list &amp; quote</strong><span>Matching panels, branding, pricing</span></div></div>
-      <div class="ft-step"><span class="ft-num">03</span><div><strong>Approve a sample</strong><span>Test one panel before bulk</span></div></div>
-      <div class="ft-step"><span class="ft-num">04</span><div><strong>Bulk &amp; project support</strong><span>Scene presets, room-type lists</span></div></div>
-    </div>
-
-    <div class="ft-grid">
-      <!-- Brand -->
-      <div class="ft-brand">
-        <div class="ft-brandrow">
-          <span class="ft-panelmark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-          <div class="ft-logo"><Logo /></div>
-        </div>
-        <p class="ft-desc">{footer_description}</p>
-        <div class="ft-chips">
-          <span>CE-ready</span><span>FCC-ready</span><span>RoHS-ready</span>
-        </div>
-        <p class="ft-markets">Serving distributors &amp; projects in Saudi Arabia · UAE · Southeast Asia</p>
-        <p class="ft-specs">Protocols: WiFi · Zigbee · Matter · Tuya · KNX · BLE Mesh</p>
-        <p class="ft-specs">Wall-box types: UK-GCC · EU · India · US-AU</p>
-        <p class="ft-note">Certification support varies by model and market — confirm the exact model before ordering.</p>
-      </div>
-
-      <!-- Solutions -->
-      <div>
-        <h6 class="ft-h">Solutions</h6>
-        <ul class="ft-links">
-          <li><a href="/solutions">Whole-Home Solutions</a></li>
-          <li><a href="/solutions">Smart Hotel Solutions</a></li>
-          <li><a href="/solutions">Office Solutions</a></li>
-          <li><a href="/products">Product Catalog</a></li>
+      <div class="col-12 mt-12 md:col-6 lg:col-3">
+        <h6>Solutions</h6>
+        <ul>
+          <li class="mb-4">
+            <a class="hover:text-primary hover:underline" href="/solutions">Whole-Home Solutions</a>
+          </li>
+          <li class="mb-4">
+            <a class="hover:text-primary hover:underline" href="/solutions">Smart Hotel Solutions</a>
+          </li>
+          <li>
+            <a class="hover:text-primary hover:underline" href="/products">Product Catalog</a>
+          </li>
         </ul>
       </div>
-
-      <!-- Company -->
-      <div>
-        <h6 class="ft-h">Company</h6>
-        <ul class="ft-links">
+      <div class="col-12 mt-12 md:col-6 lg:col-3">
+        <h6>Quick Links</h6>
+        <ul>
           {
-            footer.map((item) => (
-              <li><a href={item.url}>{item.name}</a></li>
+            footer.map((item, i) => (
+              <li class={footer.length - 1 === i ? "mb-0" : "mb-4"}>
+                <a class="hover:text-primary hover:underline" href={item.url}>
+                  {item.name}
+                </a>
+              </li>
             ))
           }
-          <li><a href="/blog">Blog</a></li>
+          <li class="mt-4">
+            <a class="hover:text-primary hover:underline" href="/blog">Blog</a>
+          </li>
         </ul>
       </div>
-
-      <!-- Contact -->
-      <div>
-        <h6 class="ft-h">Contact</h6>
-        <ul class="ft-contact">
-          <li>
-            <span class="ft-label">Email</span>
-            <a href={`mailto:${email}`}>{email}</a>
+      <div class="col-12 mt-12 md:col-6 lg:col-3">
+        <h6>Contact</h6>
+        <ul>
+          <li class="mb-2">
+            <a class="hover:text-primary" href={`mailto:${email}`}>{email}</a>
+          </li>
+          <li class="mb-2">
+            <a class="hover:text-primary hover:underline" href={`tel:${phone}`}>{phonePretty}</a>
           </li>
           <li>
-            <span class="ft-label">Phone / WhatsApp</span>
-            <a href={`tel:${phone}`}>{phonePretty}</a>
-          </li>
-          <li>
-            <span class="ft-label">Hong Kong contact</span>
-            <span class="ft-muted">For catalog and project pricing, email works best.</span>
+            <a class="hover:text-primary hover:underline" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
           </li>
         </ul>
       </div>
     </div>
-
-    <div class="ft-bottom">
-      <p>Copyright © {year} Switchlivo. All rights reserved.</p>
-      <p class="ft-bottom-right">Smart switch panels for home, hotel &amp; office.</p>
-      <a class="ft-top-link" href="#main-content">Back to top ↑</a>
+  </div>
+  <div class="container max-w-[1440px]">
+    <div class="footer-copyright mx-auto border-t border-border pb-10 pt-7 text-center">
+      <p class="content text-text">Copyright © {year} Switchlivo. All rights reserved.</p>
     </div>
   </div>
 </footer>
-
-<style>
-  .ft { background: #0e1216; color: rgba(255,255,255,0.78); margin-top: 0; }
-  .ft-accent { height: 4px; background: #fe6019; }
-  .ft-top { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; padding: 48px 0 36px; border-bottom: 1px solid rgba(255,255,255,0.12); }
-  .ft-top-title { color: #fff; font-size: clamp(22px, 3vw, 30px); font-weight: 800; margin: 0 0 8px; line-height: 1.3; }
-  .ft-top-sub { margin: 0; max-width: 560px; line-height: 1.65; font-size: 15px; color: rgba(255,255,255,0.68); }
-  .ft-top-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-  .ft-btn { display: inline-block; padding: 12px 24px; border-radius: 999px; font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; }
-  .ft-btn-primary { background: #fe6019; color: #fff; }
-  .ft-btn-whatsapp { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.35); }
-  .ft-brandrow { display: flex; align-items: center; gap: 12px; }
-  .ft-panelmark { width: 40px; height: 40px; flex: 0 0 auto; background: linear-gradient(145deg, #1d242c, #0b0f13); border: 1px solid rgba(255,255,255,0.22); border-radius: 9px; display: grid; grid-template-columns: 1fr 1fr; gap: 5px; padding: 7px; box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
-  .ft-panelmark i { display: block; background: rgba(255,255,255,0.16); border-radius: 3px; }
-  .ft-panelmark i:first-child { background: #fe6019; }
-  .ft-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 32px 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
-  .ft-step { display: flex; gap: 14px; align-items: flex-start; }
-  .ft-num { color: #fe6019; font-size: 22px; font-weight: 800; line-height: 1; }
-  .ft-step strong { display: block; color: #fff; font-size: 14.5px; margin-bottom: 4px; }
-  .ft-step span:last-child { font-size: 13px; line-height: 1.55; color: rgba(255,255,255,0.55); display: block; }
-  .ft-specs { font-size: 13.5px; line-height: 1.6; color: rgba(255,255,255,0.6); margin: 0 0 6px; }
-  .ft-note { font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.45); margin: 10px 0 0; }
-  .ft-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 40px; padding: 44px 0 36px; }
-  .ft-logo { color: #fff; font-size: 24px; font-weight: 800; }
-  .ft-logo :global(a) { color: #fff; text-decoration: none; }
-  .ft-desc { line-height: 1.7; font-size: 14.5px; margin: 16px 0; max-width: 360px; }
-  .ft-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
-  .ft-chips span { font-size: 12px; font-weight: 700; letter-spacing: 0.04em; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.22); border-radius: 999px; padding: 5px 11px; }
-  .ft-markets { font-size: 13.5px; line-height: 1.6; color: rgba(255,255,255,0.55); margin: 0; }
-  .ft-h { color: #fff; font-size: 15px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 18px; }
-  .ft-links { list-style: none; padding: 0; margin: 0; }
-  .ft-links li { margin-bottom: 12px; }
-  .ft-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 14.5px; }
-  .ft-links a:hover { color: #fe6019; }
-  .ft-contact { list-style: none; padding: 0; margin: 0; }
-  .ft-contact li { margin-bottom: 18px; display: flex; flex-direction: column; gap: 4px; }
-  .ft-contact a { color: #fff; text-decoration: none; font-size: 15px; font-weight: 600; }
-  .ft-label { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
-  .ft-muted { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.6); }
-  .ft-bottom { display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.12); padding: 22px 0 28px; font-size: 13.5px; color: rgba(255,255,255,0.5); }
-  .ft-bottom p { margin: 0; }
-  .ft-top-link { color: rgba(255,255,255,0.7); text-decoration: none; font-weight: 600; }
-  @media (max-width: 900px) {
-    .ft-steps { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 900px) {
-    .ft-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-    .ft-brand { grid-column: 1 / -1; }
-  }
-  @media (max-width: 560px) {
-    .ft-grid { grid-template-columns: 1fr; }
-  }
-</style>
