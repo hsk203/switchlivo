@@ -24,15 +24,28 @@ const whatsappUrl = `https://wa.me/${whatsapp.number}?text=${encodeURIComponent(
       </div>
     </div>
 
+    <div class="ft-steps">
+      <div class="ft-step"><span class="ft-num">01</span><div><strong>Share room types</strong><span>Rooms, quantities, wall-box type</span></div></div>
+      <div class="ft-step"><span class="ft-num">02</span><div><strong>Get panel list &amp; quote</strong><span>Matching panels, branding, pricing</span></div></div>
+      <div class="ft-step"><span class="ft-num">03</span><div><strong>Approve a sample</strong><span>Test one panel before bulk</span></div></div>
+      <div class="ft-step"><span class="ft-num">04</span><div><strong>Bulk &amp; project support</strong><span>Scene presets, room-type lists</span></div></div>
+    </div>
+
     <div class="ft-grid">
       <!-- Brand -->
       <div class="ft-brand">
-        <div class="ft-logo"><Logo /></div>
+        <div class="ft-brandrow">
+          <span class="ft-panelmark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <div class="ft-logo"><Logo /></div>
+        </div>
         <p class="ft-desc">{footer_description}</p>
         <div class="ft-chips">
           <span>CE-ready</span><span>FCC-ready</span><span>RoHS-ready</span>
         </div>
         <p class="ft-markets">Serving distributors &amp; projects in Saudi Arabia · UAE · Southeast Asia</p>
+        <p class="ft-specs">Protocols: WiFi · Zigbee · Matter · Tuya · KNX · BLE Mesh</p>
+        <p class="ft-specs">Wall-box types: UK-GCC · EU · India · US-AU</p>
+        <p class="ft-note">Certification support varies by model and market — confirm the exact model before ordering.</p>
       </div>
 
       <!-- Solutions -->
@@ -97,6 +110,17 @@ const whatsappUrl = `https://wa.me/${whatsapp.number}?text=${encodeURIComponent(
   .ft-btn { display: inline-block; padding: 12px 24px; border-radius: 999px; font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; }
   .ft-btn-primary { background: #fe6019; color: #fff; }
   .ft-btn-whatsapp { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.35); }
+  .ft-brandrow { display: flex; align-items: center; gap: 12px; }
+  .ft-panelmark { width: 40px; height: 40px; flex: 0 0 auto; background: linear-gradient(145deg, #1d242c, #0b0f13); border: 1px solid rgba(255,255,255,0.22); border-radius: 9px; display: grid; grid-template-columns: 1fr 1fr; gap: 5px; padding: 7px; box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
+  .ft-panelmark i { display: block; background: rgba(255,255,255,0.16); border-radius: 3px; }
+  .ft-panelmark i:first-child { background: #fe6019; }
+  .ft-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 32px 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .ft-step { display: flex; gap: 14px; align-items: flex-start; }
+  .ft-num { color: #fe6019; font-size: 22px; font-weight: 800; line-height: 1; }
+  .ft-step strong { display: block; color: #fff; font-size: 14.5px; margin-bottom: 4px; }
+  .ft-step span:last-child { font-size: 13px; line-height: 1.55; color: rgba(255,255,255,0.55); display: block; }
+  .ft-specs { font-size: 13.5px; line-height: 1.6; color: rgba(255,255,255,0.6); margin: 0 0 6px; }
+  .ft-note { font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.45); margin: 10px 0 0; }
   .ft-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 40px; padding: 44px 0 36px; }
   .ft-logo { color: #fff; font-size: 24px; font-weight: 800; }
   .ft-logo :global(a) { color: #fff; text-decoration: none; }
@@ -117,6 +141,9 @@ const whatsappUrl = `https://wa.me/${whatsapp.number}?text=${encodeURIComponent(
   .ft-bottom { display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.12); padding: 22px 0 28px; font-size: 13.5px; color: rgba(255,255,255,0.5); }
   .ft-bottom p { margin: 0; }
   .ft-top-link { color: rgba(255,255,255,0.7); text-decoration: none; font-weight: 600; }
+  @media (max-width: 900px) {
+    .ft-steps { grid-template-columns: 1fr 1fr; }
+  }
   @media (max-width: 900px) {
     .ft-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     .ft-brand { grid-column: 1 / -1; }
