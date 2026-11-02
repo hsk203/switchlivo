@@ -386,9 +386,7 @@ const scenarios = [
   .hy-slide-shade {
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(circle at 50% 46%, rgba(10, 13, 17, 0.12), transparent 58%),
-      linear-gradient(180deg, rgba(10, 13, 17, 0.42), rgba(10, 13, 17, 0.55));
+    background: linear-gradient(180deg, rgba(10, 13, 17, 0.16), rgba(10, 13, 17, 0.3));
   }
   .hy-hero-main {
     position: absolute;
@@ -550,7 +548,9 @@ const scenarios = [
 
   /* ---------- SUBSYSTEMS ---------- */
   .hy-sys {
-    background: #f7f9fa;
+    background:
+      radial-gradient(ellipse 62% 55% at 50% 52%, rgba(254, 96, 25, 0.07), transparent 70%),
+      linear-gradient(180deg, #fbf6f2 0%, #f7ede5 100%);
     padding-bottom: 100px;
   }
   .hy-sys-grid {
@@ -586,6 +586,17 @@ const scenarios = [
     align-items: center;
     justify-content: center;
     min-height: 420px;
+  }
+  .hy-sys-center::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 430px;
+    height: 430px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(254, 96, 25, 0.14) 0%, rgba(254, 96, 25, 0.05) 55%, transparent 72%);
   }
   .hy-sys-center img {
     position: relative;
