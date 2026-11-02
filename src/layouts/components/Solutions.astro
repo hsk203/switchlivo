@@ -1,88 +1,88 @@
 ---
-// Solutions page content — mirrors the structure of a typical whole-home
-// smart-solutions page (hongyan case.html pattern):
-// top consult bar -> pain wall -> hero -> 8 subsystems -> near/mid/far
-// interaction -> 6 room scenarios (tabbed) -> bottom CTA (rendered by page).
+// Solutions page content — visual language faithfully mirrors the hongyan
+// case.html design: full-bleed photo hero slider (huge white title + translucent
+// accent button + arrows), a floating pain-phrase cloud on a dark photo,
+// center-product-with-side-annotations subsystem layout, square-corner
+// interaction cards, and a flush tab bar with full-bleed room scenes.
+// Accent = brand orange #FE6019 (hongyan uses green #009d85).
 import config from "@/config/config.json";
 
 const { email, phone } = config.params;
 const phonePretty = "+852 6419 0941";
 
-const pains = [
-  "Protocols that don't talk to each other",
-  "Long customization lead times",
-  "Inconsistent quality between batches",
-  "No firmware or OTA support after shipment",
-  "Certification gaps blocking market entry",
-  "High MOQs that lock out smaller brands",
-  "After-sales burden falling on your team",
-  "Look-alike panels, uneven performance",
-  "No white-label packaging or ODM service",
-  "Slow, hard-to-reach supplier support",
-  "Unclear roadmap for Matter & new standards",
-  "Energy data you can't act on",
+const slides = [
+  { img: "/images/solutions/photos/hero.jpg" },
+  { img: "/images/solutions/photos/kitchen.jpg" },
+  { img: "/images/solutions/photos/bedroom.jpg" },
 ];
 
-const subsystems = [
+// pain cloud — sizes & opacities alternate like hongyan's s2 phrase wall
+const pains = [
+  { t: "Protocols that don't talk to each other", c: "px" },
+  { t: "Long customization lead times", c: "p1" },
+  { t: "Inconsistent quality between batches", c: "p2" },
+  { t: "No firmware or OTA support after shipment", c: "p4" },
+  { t: "Certification gaps blocking market entry", c: "p1" },
+  { t: "High MOQs that lock out smaller brands", c: "p3" },
+  { t: "After-sales burden falling on your team", c: "p1" },
+  { t: "Look-alike panels, uneven performance", c: "p5" },
+  { t: "No white-label or ODM service", c: "p2" },
+  { t: "Slow, hard-to-reach supplier support", c: "p3" },
+  { t: "Unclear roadmap for Matter & new standards", c: "p6" },
+  { t: "Energy data you can't act on", c: "p1" },
+];
+
+const subsystemsLeft = [
   {
-    name: "Security Monitoring",
-    desc: "Video surveillance with whole-home arming; intrusion and anomaly alerts with one-touch emergency call.",
-    icon: "M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7zM12 12v3M9.5 12h5",
+    h: "Security Monitoring",
+    p: "Video surveillance with whole-home arming; intrusion and anomaly alerts with one-touch emergency call.",
   },
   {
-    name: "Healthy Environment",
-    desc: "Temperature, humidity, PM2.5 and VOC link AC, fresh air, purifiers and floor heating to optimize the indoors.",
-    icon: "M12 21c-4 0-7-2.5-7-6.5C5 10 9 7.5 12 3c3 4.5 7 7 7 11.5 0 4-3 6.5-7 6.5z",
+    h: "Healthy Environment",
+    p: "Temperature, humidity, PM2.5 and VOC link AC, fresh air, purifiers and floor heating to optimize the indoors.",
   },
   {
-    name: "Energy Management",
-    desc: "Household energy monitoring with remote appliance control for a safer, clearer power bill.",
-    icon: "M13 2L4 14h7l-1 8 9-12h-7z",
+    h: "Energy Management",
+    p: "Household energy monitoring with remote appliance control for a safer, clearer power bill.",
   },
   {
-    name: "Smart Lighting",
-    desc: "Remote and voice control, stepless dimming and color tuning, scene management, adaptive brightness.",
-    icon: "M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10c1 1 1 2 1 3h6c0-1 0-2 1-3a6 6 0 0 0-4-10z",
+    h: "Smart Lighting",
+    p: "Remote and voice control, stepless dimming and color tuning, scene management, adaptive brightness.",
+  },
+];
+const subsystemsRight = [
+  {
+    h: "AV & Entertainment",
+    p: "One-touch movie mode: curtains close, lights fade with the TV — a private cinema at home.",
   },
   {
-    name: "AV & Entertainment",
-    desc: "One-touch movie mode: curtains close, lights fade with the TV — a private cinema at home.",
-    icon: "M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM8 21h8M10 9l4 2.5-4 2.5z",
+    h: "Smart Water",
+    p: "Central purification, antibacterial lines, safe drinking and smart leak protection for every scene.",
   },
   {
-    name: "Smart Water",
-    desc: "Central purification, antibacterial lines, safe drinking and smart leak protection for every scene.",
-    icon: "M12 3c3.5 4.5 6 7.5 6 10.5A6 6 0 0 1 6 13.5C6 10.5 8.5 7.5 12 3z",
+    h: "Home Management",
+    p: "Health, energy and environment management systems that quietly lift everyday living.",
   },
   {
-    name: "Home Management",
-    desc: "Health, energy and environment management systems that quietly lift everyday living.",
-    icon: "M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6",
-  },
-  {
-    name: "Central Management Hub",
-    desc: "One integrated smart central control connecting and commanding every subsystem in the home.",
-    icon: "M5 5h14v14H5zM9 9h6M9 12h6M9 15h3",
+    h: "Central Management Hub",
+    p: "One integrated smart central control connecting and commanding every subsystem in the home.",
   },
 ];
 
 const interactions = [
   {
-    tier: "Near",
-    name: "Panel & Switch Control",
-    desc: "Smart panels as the control terminal — keys and touch run whole-home scenes like wake, sleep, host and away, plus single-device control at close range.",
+    h: "Near Interaction",
+    p: "Smart panels as the control terminal — keys and touch run whole-home scenes like wake, sleep, host and away, plus single-device control at close range.",
     icon: "M4 7h16M4 12h16M4 17h10",
   },
   {
-    tier: "Mid",
-    name: "Voice Control",
-    desc: "Voice panels and assistant speakers link into precise mid-range voice control of lights, curtains and appliances across the home.",
+    h: "Mid Interaction",
+    p: "Voice panels and assistant speakers link into precise mid-range voice control of lights, curtains and appliances across the home.",
     icon: "M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3",
   },
   {
-    tier: "Far",
-    name: "App & Remote",
-    desc: "Away from home, manage every system from the phone app — locks, AC, lights — receive alerts, make video calls, and check home status in real time.",
+    h: "Far Interaction",
+    p: "Away from home, manage every system from the phone app — locks, AC, lights — receive alerts, make video calls, and check home status in real time.",
     icon: "M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM11 18h2",
   },
 ];
@@ -92,78 +92,66 @@ const scenarios = [
     key: "entry",
     tab: "Smart Entryway",
     tabIcon: "M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17M4 21h16M15 12h.01",
-    eyebrow: "Smart Home",
-    title: "Walk In, Leave the Stress at the Door",
-    desc: "Smart locks, panels and lighting work as one: lights greet you as the door opens, security arms itself, and guests pass freely — with home services just a tap away. Intelligence starts at the door.",
+    title: "Walk in, leave the stress at the door —\nenjoy the warmth of home.",
     chips: [
-      { label: "Home Mode", text: "Door unlocks, entry lights on, AC pre-cools, fresh air starts" },
-      { label: "Away Mode", text: "One tap switches off lights & appliances and arms security" },
-      { label: "Video Intercom", text: "See and talk to visitors from the panel or your phone" },
-      { label: "Home Services", text: "Cleaning, maintenance and delivery access at the door" },
+      { label: "Home Mode", text: "Smart lock senses the door opening: lights on, security disarmed, fresh air and AC start" },
+      { label: "Away Mode", text: "One tap switches off all lights and appliances, auto-arms security, closes the windows" },
+      { label: "Video Intercom", text: "Central screen connects to the door station — see visitors, talk, and grant access" },
+      { label: "Home Services", text: "Cleaning bookings, maintenance visits and parcel access, all from the entry panel" },
     ],
   },
   {
     key: "kitchen",
     tab: "Smart Kitchen",
     tabIcon: "M4 10h16M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3M3 10v2a5 5 0 0 0 5 5h8a5 5 0 0 0 5-5v-2M9 20h6",
-    eyebrow: "Smart Home",
-    title: "Cook Smarter, Safer, Hands-Free",
-    desc: "A voice panel as the kitchen hub connects indoor and outdoor ecosystems — grocery ordering and ready-meal delivery — while smart water, leak and smoke monitoring remove the hidden risks of cooking.",
+    title: "Hidden risks removed —\ncooking becomes a pleasure.",
     chips: [
-      { label: "Voice Interaction", text: "Control lights, hood and appliances without touching anything" },
-      { label: "Life Services", text: "Fresh grocery ordering and meal delivery via the panel" },
+      { label: "Voice Interaction", text: "Lights, hood and appliances respond without touching anything" },
+      { label: "Life Services", text: "Fresh grocery ordering and ready-meal delivery via the panel" },
       { label: "Smart Water", text: "Purified, monitored water for cooking and drinking" },
-      { label: "Leak & Smoke", text: "Water-leak and smoke detection with instant alerts" },
+      { label: "Leak & Smoke", text: "Water-leak and smoke detection with instant phone alerts" },
     ],
   },
   {
     key: "dining",
     tab: "Smart Dining",
     tabIcon: "M7 3v6a2 2 0 0 0 4 0V3M9 11v10M17 3c-1.5 2-1.5 5 0 7v11",
-    eyebrow: "Smart Home",
-    title: "Set the Mood for Every Meal",
-    desc: "Voice-control lighting and background music to build warm, romantic scenes, while the environment panel tracks air quality and temperature — linking fresh-air and AC to keep every dinner elegant.",
+    title: "Warm, romantic scenes —\nan elegant dinner at home.",
     chips: [
       { label: "Voice Interaction", text: "Scenes change hands-free while you host" },
       { label: "Smart Lighting", text: "Dinner, party and candlelight presets in one tap" },
-      { label: "Comfort Environment", text: "Air quality and climate auto-tuned to the room" },
+      { label: "Comfort Environment", text: "Air quality and climate auto-tuned to the room, linked with fresh air and AC" },
     ],
   },
   {
     key: "living",
     tab: "Smart Living Room",
     tabIcon: "M5 11V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3M4 11a2 2 0 0 1 2 2v2h12v-2a2 2 0 1 1 4 0v5H2v-5a2 2 0 0 1 2-2zM6 20v1M18 20v1",
-    eyebrow: "Smart Home",
-    title: "Immersive Hosting, Cinema Nights",
-    desc: "Voice, touch and phone — immersive multi-mode interaction links lights, appliances, curtains and sensors into hosting and movie scenes, while household energy stays intelligently managed.",
+    title: "Voice, touch and phone —\na living room that responds.",
     chips: [
-      { label: "AI Hosting", text: "Guest scene welcomes visitors with light and climate" },
-      { label: "Cozy AV", text: "Movie mode: curtains close, lights fade with the TV" },
+      { label: "AI Hosting", text: "Guest scene welcomes visitors with light, music and climate" },
+      { label: "Cozy AV", text: "Movie mode: curtains close, lights fade as the TV starts" },
       { label: "Healthy Environment", text: "Air and temperature tuned to the moment" },
-      { label: "Energy Management", text: "Standby power trimmed without losing comfort" },
+      { label: "Energy Management", text: "Standby power trimmed intelligently, comfort untouched" },
     ],
   },
   {
     key: "bedroom",
     tab: "Smart Bedroom",
     tabIcon: "M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 14h18M7 9V6h10v3",
-    eyebrow: "Smart Home",
-    title: "One Tap to Sleep, One Tap to Wake",
-    desc: "Sleep mode closes curtains and lights, arms security and shifts energy to night duty. Morning mode opens the curtains, disarms, and reads the day's weather — a good night built into the walls.",
+    title: "One tap to sleep, one tap to rise —\na good night built into the walls.",
     chips: [
-      { label: "Sleep Management", text: "Lights, curtains and climate settle for the night" },
-      { label: "Healthy Environment", text: "Temperature and air tuned while you sleep" },
-      { label: "Human-centric Lighting", text: "Warm wake-up light instead of a blaring alarm" },
-      { label: "Safety Management", text: "Security stays on guard through the night" },
+      { label: "Sleep Mode", text: "Curtains and lights close, security arms, energy shifts to night duty" },
+      { label: "Morning Mode", text: "Curtains open, security disarms, the day's weather plays softly" },
+      { label: "Human-centric Light", text: "A warm wake-up glow instead of a blaring alarm" },
+      { label: "Safety Management", text: "Security and climate stay on guard through the night" },
     ],
   },
   {
     key: "bathroom",
     tab: "Smart Bathroom",
     tabIcon: "M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2zM6 12V5a2 2 0 0 1 4 0M8 21l-1 1M17 21l1 1",
-    eyebrow: "Smart Home",
-    title: "A Spa-Grade Start to Every Day",
-    desc: "Smart mirror, heated bathing, human sensing and ventilation work together — from personal grooming to total comfort, a brand-new smart bathing experience.",
+    title: "From grooming to comfort —\na brand-new bathing experience.",
     chips: [
       { label: "Voice Control", text: "Lights, mirror and ventilation respond hands-free" },
       { label: "Safety Protection", text: "Leak, humidity and overheating watched around the clock" },
@@ -174,102 +162,111 @@ const scenarios = [
 ];
 ---
 
-<section class="sol" id="solutions">
-  <!-- TOP CONSULT BAR -->
-  <div class="sol-topbar">
-    <div class="container sol-topbar-in">
-      <p>
-        <strong>OEM &amp; ODM Inquiries</strong>
-        <a href={`mailto:${email}`}>{email}</a>
-        <a href={`tel:${phone}`}>{phonePretty}</a>
-      </p>
-      <a class="sol-topbar-cta" href="/contact">Contact Sales →</a>
+<section class="hy" id="solutions">
+  <!-- HERO SLIDER (full-bleed) -->
+  <div class="hy-hero">
+    {
+      slides.map((s, i) => (
+        <div class:list={["hy-slide", i === 0 && "on"]}>
+          <div class="hy-slide-bg" style={`background-image:url('${s.img}')`} />
+          <div class="hy-slide-shade" />
+        </div>
+      ))
+    }
+    <div class="hy-hero-main">
+      <h1 class="hy-hero-title">Whole-Home Smart Solutions</h1>
+      <a href="/contact" class="hy-hero-btn">Customize Now</a>
+    </div>
+    <button class="hy-arrow prev" type="button" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7" /></svg>
+    </button>
+    <button class="hy-arrow next" type="button" aria-label="Next slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7" /></svg>
+    </button>
+    <div class="hy-dots">
+      {slides.map((_, i) => <span class:list={["hy-dot", i === 0 && "on"]} data-dot={i} />)}
     </div>
   </div>
 
-  <!-- PAIN WALL -->
-  <div class="container">
-    <div class="sol-head" data-reveal>
-      <span class="sol-eyebrow sol-eyebrow--center">Pain Points</span>
-      <h3 class="sol-h3">The Smart-Home Challenges We Solve</h3>
-      <p class="sol-lead">
-        If any of these sound familiar, you are exactly who we build for.
-      </p>
-    </div>
-    <ul class="sol-pains">
-      {pains.map((p) => <li>{p}</li>)}
-    </ul>
-  </div>
-
-  <!-- HERO -->
-  <div class="sol-hero">
-    <div class="sol-hero-bg" aria-hidden="true"></div>
-    <div class="sol-hero-shade" aria-hidden="true"></div>
-    <div class="container">
-      <div class="sol-hero-inner" data-reveal>
-        <span class="sol-eyebrow">Smart Solutions</span>
-        <h2 class="sol-hero-title">Whole-Home Smart Solutions</h2>
-        <p class="sol-hero-sub">
-          Smart panels as the control terminal — near, mid and far interaction —
-          connecting security, energy, lighting, environment and entertainment
-          into one ecosystem. Engineered and manufactured as your OEM &amp; ODM
-          partner.
+  <!-- PAIN CLOUD (full-bleed dark photo) -->
+  <div class="hy-pain">
+    <div class="hy-pain-shade" />
+    <div class="hy-wrap">
+      <div class="hy-pain-cloud">
+        {pains.map((p) => <span class:list={["p", p.c]}>{p.t}</span>)}
+      </div>
+      <div class="hy-pain-note">
+        <p>
+          Sound familiar? <a href="/contact">Talk to our OEM &amp; ODM team</a> —
+          {email} · {phonePretty}
         </p>
-        <a href="/contact" class="btn-sol">Customize Your Solution</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBSYSTEMS: center product + side annotations (light) -->
+  <div class="hy-sys">
+    <div class="hy-wrap">
+      <h2 class="hy-tit hy-tit--lg">Eight Systems, One Ecosystem</h2>
+      <p class="hy-tit-sub">
+        Smart panels as the control terminal — every subsystem interoperates,
+        and every piece can be customized for your brand.
+      </p>
+      <div class="hy-sys-grid">
+        <div class="hy-sys-col hy-sys-col--l">
+          {
+            subsystemsLeft.map((it) => (
+              <div class="hy-sys-item">
+                <div class="txt1">
+                  <div class="h">{it.h}</div>
+                  <div class="p">{it.p}</div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div class="hy-sys-center">
+          <span class="hy-ring hy-ring--1" aria-hidden="true" />
+          <span class="hy-ring hy-ring--2" aria-hidden="true" />
+          <img
+            src="https://cdn.switchlivo.com/products/x10-1-gang-smart-light-switch.webp?v=2"
+            alt="Switchlivo smart panel"
+            loading="lazy"
+          />
+        </div>
+        <div class="hy-sys-col hy-sys-col--r">
+          {
+            subsystemsRight.map((it) => (
+              <div class="hy-sys-item">
+                <div class="txt1">
+                  <div class="h">{it.h}</div>
+                  <div class="p">{it.p}</div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- SUBSYSTEM GRID -->
-  <div class="container">
-    <div class="sol-head" data-reveal>
-      <span class="sol-eyebrow sol-eyebrow--center">Subsystems</span>
-      <h3 class="sol-h3">Eight Systems, One Ecosystem</h3>
-      <p class="sol-lead">
-        Every solution is composed from interoperable subsystems — specify
-        exactly what each project needs.
-      </p>
-    </div>
-    <div class="sol-grid">
-      {
-        subsystems.map((c) => (
-          <div class="sol-card" data-reveal>
-            <span class="sol-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d={c.icon} />
-              </svg>
-            </span>
-            <h4 class="sol-card-title">{c.name}</h4>
-            <p class="sol-card-desc">{c.desc}</p>
-          </div>
-        ))
-      }
-    </div>
-  </div>
-
-  <!-- INTERACTION TIERS -->
-  <div class="sol-interaction-wrap">
-    <div class="container">
-      <div class="sol-head" data-reveal>
-        <span class="sol-eyebrow sol-eyebrow--center">Interaction</span>
-        <h3 class="sol-h3">Immersive Multi-Mode Interaction</h3>
-        <p class="sol-lead">
-          One ecosystem, three interaction ranges — local at the wall, voice
-          across the room, remote from anywhere.
-        </p>
-      </div>
-      <div class="sol-interaction">
+  <!-- INTERACTION: square-corner cards, image top / text below -->
+  <div class="hy-inter">
+    <div class="hy-wrap">
+      <h2 class="hy-tit">Immersive Multi-Mode Interaction</h2>
+      <div class="hy-inter-grid">
         {
           interactions.map((t) => (
-            <div class="sol-tier" data-reveal>
-              <span class="sol-tier-badge">{t.tier}</span>
-              <span class="sol-card-icon sol-card-icon--lg">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <div class="hy-inter-card">
+              <div class="pic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
                   <path d={t.icon} />
                 </svg>
-              </span>
-              <h4 class="sol-card-title">{t.name}</h4>
-              <p class="sol-card-desc">{t.desc}</p>
+              </div>
+              <div class="txt">
+                <div class="h">{t.h}</div>
+                <div class="p">{t.p}</div>
+              </div>
             </div>
           ))
         }
@@ -277,28 +274,23 @@ const scenarios = [
     </div>
   </div>
 
-  <!-- ROOM SCENARIOS (TABBED) -->
-  <div class="container">
-    <div class="sol-head" data-reveal>
-      <span class="sol-eyebrow sol-eyebrow--center">Scenarios</span>
-      <h3 class="sol-h3">Whole-Home Scenarios</h3>
-      <p class="sol-lead">
-        From the front door to the bathroom — see how one ecosystem runs every
-        room.
-      </p>
+  <!-- SCENARIOS: flush tab bar + full-bleed scene -->
+  <div class="hy-scn">
+    <div class="hy-wrap">
+      <h2 class="hy-tit">Whole-Home Scenarios</h2>
     </div>
 
-    <div class="sol-tabs" role="tablist" aria-label="Room scenarios">
+    <div class="hy-tabs" role="tablist" aria-label="Room scenarios">
       {
         scenarios.map((s, i) => (
           <button
             type="button"
-            class:list={["sol-tab", i === 0 && "active"]}
+            class:list={["hy-tab", i === 0 && "on"]}
             data-tab={s.key}
             role="tab"
             aria-selected={i === 0 ? "true" : "false"}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <path d={s.tabIcon} />
             </svg>
             <span>{s.tab}</span>
@@ -307,38 +299,48 @@ const scenarios = [
       }
     </div>
 
-    <div class="sol-panels">
+    <div class="hy-panels">
       {
         scenarios.map((s, i) => (
           <article
-            class:list={["sol-panel", i === 0 && "active"]}
+            class:list={["hy-panel", i === 0 && "on"]}
             data-panel={s.key}
             role="tabpanel"
           >
             <div
-              class="sol-panel-bg"
+              class="hy-panel-bg"
               style={`background-image:url('/images/solutions/photos/${s.key}.jpg')`}
               aria-hidden="true"
             />
-            <div class="sol-panel-shade" aria-hidden="true" />
-            <div class="sol-panel-content">
-              <span class="sol-panel-eyebrow">/ {s.eyebrow} /</span>
-              <h4 class="sol-panel-title">{s.title}</h4>
-              <p class="sol-panel-desc">{s.desc}</p>
-              <ul class="sol-chips">
-                {s.chips.map((c) => (
-                  <li>
-                    <span class="chip-tag">{c.label}</span>
-                    <span class="chip-text">{c.text}</span>
-                  </li>
-                ))}
-              </ul>
-              <div class="sol-tier-pills">
-                <span>Essential</span>
-                <span>Pro</span>
+            <div class="hy-panel-shade" aria-hidden="true" />
+            <div class="hy-wrap">
+              <div class="hy-panel-content">
+                <span class="hy-panel-eyebrow">/ Smart Home /</span>
+                <h3 class="hy-panel-title">
+                  {s.title.split("\n").map((line, j) => (
+                    <>
+                      {j > 0 && <br />}
+                      {line}
+                    </>
+                  ))}
+                </h3>
+                <ul class="hy-chips">
+                  {s.chips.map((c) => (
+                    <li>
+                      <span class="tag">{c.label}</span>
+                      <span class="tx">{c.text}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div class="hy-tier-pills">
+                  <span>Essential</span>
+                  <span>Pro</span>
+                </div>
               </div>
             </div>
-            <a class="sol-panel-cta" href="/products">Explore Products →</a>
+            <a class="hy-panel-cta" href="/products">
+              <span class="ic">▶</span> Explore Products
+            </a>
           </article>
         ))
       }
@@ -347,519 +349,582 @@ const scenarios = [
 </section>
 
 <style>
-  /* TOP BAR */
-  .sol-topbar {
-    background: #14181f;
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 0.9rem;
-    padding: 0.65rem 0;
-  }
-  .sol-topbar-in {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  .sol-topbar p {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 1.1rem;
-    flex-wrap: wrap;
-  }
-  .sol-topbar strong {
-    color: #fff;
-    font-weight: 700;
-  }
-  .sol-topbar a {
-    color: rgba(255, 255, 255, 0.85);
-    text-decoration: none;
-  }
-  .sol-topbar a:hover {
-    color: #ffb347;
-  }
-  .sol-topbar-cta {
-    font-weight: 700;
-    color: #ffb347 !important;
-  }
-
-  /* HEADINGS */
-  .sol-head {
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 2.4rem;
-    padding-top: 4.2rem;
-  }
-  .sol-eyebrow {
-    display: inline-block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #fe6019;
-    margin-bottom: 0.9rem;
-  }
-  .sol-eyebrow--center {
-    display: block;
-  }
-  .sol-h3 {
-    font-size: clamp(1.5rem, 3vw, 2.1rem);
-    font-weight: 800;
-    color: #222;
-    margin-bottom: 0.8rem;
-  }
-  .sol-lead {
-    color: #888;
-    font-size: 1.02rem;
-    line-height: 1.7;
-  }
-
-  /* PAIN WALL */
-  .sol-pains {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.9rem;
-  }
-  .sol-pains li {
-    position: relative;
+  .hy {
+    --acc: #fe6019;
+    --acc-soft: rgba(254, 96, 25, 0.85);
     background: #fff;
-    border: 1px solid #ebebeb;
-    border-radius: 12px;
-    padding: 0.85rem 1rem 0.85rem 2.1rem;
-    color: #444;
-    font-size: 0.95rem;
-    line-height: 1.45;
   }
-  .sol-pains li::before {
-    content: "";
-    position: absolute;
-    left: 0.95rem;
-    top: 1.15em;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #fe6019;
+  .hy-wrap {
+    position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 30px;
   }
 
-  /* HERO */
-  .sol-hero {
+  /* ---------- HERO SLIDER ---------- */
+  .hy-hero {
     position: relative;
-    margin-top: 4.2rem;
-    min-height: clamp(460px, 62vh, 640px);
-    display: grid;
-    place-items: center;
+    height: clamp(520px, 74vh, 780px);
     overflow: hidden;
-    color: #fff;
-    text-align: center;
+    background: #101418;
   }
-  .sol-hero-bg {
+  .hy-slide {
     position: absolute;
     inset: 0;
-    background: url("/images/solutions/photos/hero.jpg") center / cover no-repeat;
+    opacity: 0;
+    transition: opacity 0.9s ease;
   }
-  .sol-hero-shade {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 50% 42%, rgba(12, 15, 20, 0.18), transparent 55%),
-      linear-gradient(180deg, rgba(12, 15, 20, 0.55), rgba(12, 15, 20, 0.72));
+  .hy-slide.on {
+    opacity: 1;
   }
-  .sol-hero-inner {
-    position: relative;
-    max-width: 760px;
-    padding: 4.5rem 0;
-  }
-  .sol-hero .sol-eyebrow {
-    color: #ffb347;
-    letter-spacing: 0.22em;
-  }
-  .sol-hero-title {
-    font-size: clamp(2.1rem, 4.6vw, 3.4rem);
-    font-weight: 800;
-    line-height: 1.12;
-    color: #fff;
-    margin-bottom: 1.1rem;
-    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
-  }
-  .sol-hero-sub {
-    font-size: 1.05rem;
-    line-height: 1.75;
-    color: rgba(255, 255, 255, 0.86);
-    max-width: 640px;
-    margin: 0 auto 2.2rem;
-  }
-  .btn-sol {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.85rem 2.1rem;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 1rem;
-    color: #fff;
-    text-decoration: none;
-    background: linear-gradient(90deg, #fe6019, #ff8a3d);
-    box-shadow: 0 10px 30px rgba(254, 96, 25, 0.35);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  .btn-sol:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 16px 40px rgba(254, 96, 25, 0.5);
-    color: #fff;
-  }
-
-  /* GRID + CARDS */
-  .sol-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.4rem;
-  }
-  .sol-card {
-    background: #fff;
-    border: 1px solid #ebebeb;
-    border-radius: 18px;
-    padding: 1.7rem 1.4rem;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-  }
-  .sol-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 40px rgba(26, 32, 44, 0.1);
-    border-color: rgba(254, 96, 25, 0.4);
-  }
-  .sol-card-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 14px;
-    background: rgba(254, 96, 25, 0.1);
-    color: #fe6019;
-    margin-bottom: 1rem;
-  }
-  .sol-card-icon svg {
-    width: 25px;
-    height: 25px;
-  }
-  .sol-card-icon--lg {
-    width: 58px;
-    height: 58px;
-    margin-bottom: 1.2rem;
-  }
-  .sol-card-icon--lg svg {
-    width: 28px;
-    height: 28px;
-  }
-  .sol-card-title {
-    font-size: 1.12rem;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 0.45rem;
-  }
-  .sol-card-desc {
-    color: #777;
-    font-size: 0.94rem;
-    line-height: 1.6;
-  }
-
-  /* INTERACTION TIERS */
-  .sol-interaction-wrap {
-    margin-top: 4.2rem;
-    background: #faf7f3;
-    padding: 1rem 0 4.2rem;
-  }
-  .sol-interaction {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.4rem;
-  }
-  .sol-tier {
-    background: #fff;
-    border: 1px solid #ebebeb;
-    border-radius: 18px;
-    padding: 2.1rem 1.8rem;
-    text-align: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  .sol-tier:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 40px rgba(26, 32, 44, 0.1);
-  }
-  .sol-tier-badge {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #fe6019;
-    background: rgba(254, 96, 25, 0.1);
-    padding: 0.3rem 0.85rem;
-    border-radius: 999px;
-    margin-bottom: 1.1rem;
-  }
-  .sol-tier .sol-card-icon {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* TABS */
-  .sol-tabs {
-    display: flex;
-    gap: 0.7rem;
-    overflow-x: auto;
-    padding-bottom: 0.4rem;
-    scrollbar-width: thin;
-  }
-  .sol-tab {
-    flex: 0 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.45rem;
-    min-width: 128px;
-    padding: 0.85rem 1rem;
-    background: #fff;
-    border: 1px solid #ebebeb;
-    border-radius: 14px;
-    color: #666;
-    font-size: 0.86rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .sol-tab svg {
-    width: 26px;
-    height: 26px;
-  }
-  .sol-tab:hover {
-    border-color: rgba(254, 96, 25, 0.5);
-    color: #fe6019;
-  }
-  .sol-tab.active {
-    background: #fe6019;
-    border-color: #fe6019;
-    color: #fff;
-    box-shadow: 0 10px 24px rgba(254, 96, 25, 0.32);
-  }
-
-  /* PANELS */
-  .sol-panels {
-    margin-top: 1.2rem;
-  }
-  .sol-panel {
-    display: none;
-    position: relative;
-    border-radius: 24px;
-    overflow: hidden;
-    min-height: 540px;
-    color: #fff;
-  }
-  .sol-panel.active {
-    display: block;
-  }
-  .sol-panel-bg {
+  .hy-slide-bg {
     position: absolute;
     inset: 0;
     background-size: cover;
     background-position: center;
   }
-  .sol-panel-shade {
+  .hy-slide-shade {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 46%, rgba(10, 13, 17, 0.12), transparent 58%),
+      linear-gradient(180deg, rgba(10, 13, 17, 0.42), rgba(10, 13, 17, 0.55));
+  }
+  .hy-hero-main {
+    position: absolute;
+    left: 50%;
+    top: 53%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+  }
+  .hy-hero-title {
+    font-size: clamp(38px, 6.6vw, 80px);
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 2px 4px 7.6px rgba(84, 88, 97, 0.5);
+    margin: 0 0 56px;
+    line-height: 1.15;
+  }
+  .hy-hero-btn {
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 16px 56px;
+    background: var(--acc-soft);
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .hy-hero-btn:hover {
+    background: var(--acc);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .hy-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
+  .hy-arrow:hover {
+    background: rgba(255, 255, 255, 0.34);
+  }
+  .hy-arrow svg {
+    width: 22px;
+    height: 22px;
+  }
+  .hy-arrow.prev {
+    left: 34px;
+  }
+  .hy-arrow.next {
+    right: 34px;
+  }
+  .hy-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 26px;
+    transform: translateX(-50%);
+    z-index: 4;
+    display: flex;
+    gap: 10px;
+  }
+  .hy-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .hy-dot.on {
+    width: 28px;
+    background: var(--acc);
+  }
+
+  /* ---------- PAIN CLOUD ---------- */
+  .hy-pain {
+    position: relative;
+    overflow: hidden;
+    background: url("/images/solutions/photos/living.jpg") center / cover no-repeat;
+    padding: 120px 0 100px;
+  }
+  .hy-pain-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 13, 17, 0.88), rgba(10, 13, 17, 0.8));
+  }
+  .hy-pain .hy-wrap {
+    z-index: 1;
+  }
+  .hy-pain-cloud {
+    max-width: 1150px;
+    margin: 0 auto;
+    text-align: justify;
+    line-height: 1.9;
+  }
+  .hy-pain-cloud .p {
+    display: inline-block;
+    color: #fff;
+    margin: 0 34px 24px 0;
+    white-space: nowrap;
+  }
+  .hy-pain-cloud .px { font-size: 34px; color: rgba(255, 255, 255, 0.95); }
+  .hy-pain-cloud .p1 { font-size: 24px; color: rgba(255, 255, 255, 0.55); }
+  .hy-pain-cloud .p2 { font-size: 24px; color: rgba(255, 255, 255, 0.35); }
+  .hy-pain-cloud .p3 { font-size: 24px; color: rgba(255, 255, 255, 0.22); }
+  .hy-pain-cloud .p4 { font-size: 48px; color: #f6f8fc; font-weight: 700; }
+  .hy-pain-cloud .p5 { font-size: 34px; color: #f6f8fc; }
+  .hy-pain-cloud .p6 { font-size: 38px; color: #f6f8fc; }
+  .hy-pain-note {
+    margin-top: 64px;
+    text-align: center;
+  }
+  .hy-pain-note p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+  }
+  .hy-pain-note a {
+    color: #ffb347;
+    font-weight: 600;
+  }
+
+  /* ---------- SECTION TITLES ---------- */
+  .hy-tit {
+    font-size: 36px;
+    color: #222;
+    line-height: 46px;
+    text-align: center;
+    margin: 0 0 45px;
+  }
+  .hy-tit--lg {
+    font-size: 42px;
+    line-height: 52px;
+    padding-top: 90px;
+    margin-bottom: 20px;
+  }
+  .hy-tit-sub {
+    text-align: center;
+    color: #555;
+    font-size: 17px;
+    line-height: 28px;
+    margin: 0 auto 70px;
+    max-width: 760px;
+  }
+
+  /* ---------- SUBSYSTEMS ---------- */
+  .hy-sys {
+    background: #f7f9fa;
+    padding-bottom: 100px;
+  }
+  .hy-sys-grid {
+    display: grid;
+    grid-template-columns: 1fr 460px 1fr;
+    gap: 44px;
+    align-items: center;
+  }
+  .hy-sys-col--l {
+    text-align: right;
+  }
+  .hy-sys-item {
+    margin-bottom: 46px;
+  }
+  .hy-sys-item .h {
+    font-size: 22px;
+    color: #222;
+    font-weight: 700;
+    margin-bottom: 10px;
+    transition: color 0.25s ease;
+  }
+  .hy-sys-item:hover .h {
+    color: var(--acc);
+  }
+  .hy-sys-item .p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.75;
+  }
+  .hy-sys-center {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 420px;
+  }
+  .hy-sys-center img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 340px;
+    mix-blend-mode: multiply;
+  }
+  .hy-ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px dashed rgba(254, 96, 25, 0.35);
+    border-radius: 50%;
+  }
+  .hy-ring--1 {
+    width: 380px;
+    height: 380px;
+  }
+  .hy-ring--2 {
+    width: 500px;
+    height: 500px;
+    border-color: rgba(254, 96, 25, 0.18);
+  }
+
+  /* ---------- INTERACTION ---------- */
+  .hy-inter {
+    padding: 90px 0 100px;
+  }
+  .hy-inter-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  .hy-inter-card {
+    border: 1px solid #ececec;
+    background: #fff;
+  }
+  .hy-inter-card .pic {
+    aspect-ratio: 4 / 3;
+    background: #f6f6f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--acc);
+    overflow: hidden;
+  }
+  .hy-inter-card .pic svg {
+    width: 84px;
+    height: 84px;
+    transition: transform 0.3s ease;
+  }
+  .hy-inter-card:hover .pic svg {
+    transform: scale(1.12);
+  }
+  .hy-inter-card .txt {
+    padding: 26px 24px 30px;
+  }
+  .hy-inter-card .h {
+    font-size: 24px;
+    color: #222;
+    margin-bottom: 14px;
+    transition: color 0.25s ease;
+  }
+  .hy-inter-card:hover .h {
+    color: var(--acc);
+  }
+  .hy-inter-card .p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.9;
+    margin: 0;
+  }
+
+  /* ---------- SCENARIOS ---------- */
+  .hy-scn .hy-wrap .hy-tit {
+    padding-top: 90px;
+    margin-bottom: 40px;
+  }
+  .hy-tabs {
+    display: flex;
+    width: 100%;
+    border-top: 1px solid #eee;
+    background: #fff;
+  }
+  .hy-tab {
+    flex: 1 1 0;
+    min-height: 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #fff;
+    border: 0;
+    border-right: 1px solid #f0f0f0;
+    color: #666;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 12px 8px;
+  }
+  .hy-tab:last-child {
+    border-right: 0;
+  }
+  .hy-tab svg {
+    width: 30px;
+    height: 30px;
+  }
+  .hy-tab:hover {
+    color: var(--acc);
+  }
+  .hy-tab.on {
+    background: var(--acc);
+    color: #fff;
+  }
+  .hy-panel {
+    display: none;
+    position: relative;
+    height: clamp(540px, 80vh, 740px);
+    overflow: hidden;
+    color: #fff;
+  }
+  .hy-panel.on {
+    display: block;
+  }
+  .hy-panel-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .hy-panel-shade {
     position: absolute;
     inset: 0;
     background: linear-gradient(
       90deg,
-      rgba(12, 15, 20, 0.93) 0%,
-      rgba(12, 15, 20, 0.74) 46%,
-      rgba(12, 15, 20, 0.28) 100%
+      rgba(11, 14, 18, 0.9) 0%,
+      rgba(11, 14, 18, 0.58) 48%,
+      rgba(11, 14, 18, 0.2) 100%
     );
   }
-  .sol-panel-content {
+  .hy-panel .hy-wrap {
+    height: 100%;
+  }
+  .hy-panel-content {
     position: relative;
     z-index: 1;
-    max-width: 600px;
-    padding: clamp(28px, 5vw, 60px);
+    max-width: 640px;
+    padding-top: 72px;
   }
-  .sol-panel-eyebrow {
+  .hy-panel-eyebrow {
     display: inline-block;
-    font-size: 0.78rem;
+    font-size: 13px;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: #ffb347;
-    margin-bottom: 0.8rem;
+    color: var(--acc);
+    margin-bottom: 18px;
   }
-  .sol-panel-title {
-    font-size: clamp(1.5rem, 3vw, 2.1rem);
-    font-weight: 800;
-    line-height: 1.18;
-    color: #fff;
-    margin-bottom: 0.9rem;
+  .hy-panel-title {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0 0 30px;
   }
-  .sol-panel-desc {
-    color: rgba(255, 255, 255, 0.82);
-    font-size: 0.98rem;
-    line-height: 1.7;
-    margin-bottom: 1.4rem;
-  }
-  .sol-chips {
+  .hy-chips {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
   }
-  .sol-chips li {
+  .hy-chips li {
     display: flex;
     align-items: flex-start;
-    gap: 0.7rem;
+    gap: 12px;
+    margin-bottom: 15px;
   }
-  .chip-tag {
+  .hy-chips .tag {
     flex: 0 0 auto;
-    background: rgba(254, 96, 25, 0.92);
+    background: var(--acc);
     color: #fff;
-    font-size: 0.74rem;
+    font-size: 12px;
     font-weight: 700;
-    padding: 0.28rem 0.65rem;
-    border-radius: 7px;
+    line-height: 1;
+    padding: 5px 10px;
+    border-radius: 3px;
     white-space: nowrap;
-    margin-top: 0.1rem;
+    margin-top: 2px;
   }
-  .chip-text {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 0.92rem;
-    line-height: 1.55;
+  .hy-chips .tx {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 14px;
+    line-height: 1.65;
   }
-  .sol-tier-pills {
+  .hy-tier-pills {
     display: flex;
-    gap: 0.6rem;
-    margin-top: 1.5rem;
+    gap: 10px;
+    margin-top: 26px;
   }
-  .sol-tier-pills span {
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    border-radius: 999px;
-    padding: 0.32rem 0.95rem;
+  .hy-tier-pills span {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+    padding: 6px 18px;
   }
-  .sol-panel-cta {
+  .hy-panel-cta {
     position: absolute;
-    right: clamp(20px, 4vw, 40px);
-    bottom: clamp(20px, 4vw, 36px);
-    z-index: 1;
+    right: 40px;
+    bottom: 34px;
+    z-index: 2;
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    background: linear-gradient(90deg, #fe6019, #ff8a3d);
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(4px);
     color: #fff;
-    font-weight: 700;
-    font-size: 0.92rem;
-    padding: 0.65rem 1.3rem;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 22px;
     border-radius: 999px;
     text-decoration: none;
-    box-shadow: 0 10px 26px rgba(254, 96, 25, 0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: background 0.2s ease;
   }
-  .sol-panel-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 34px rgba(254, 96, 25, 0.55);
+  .hy-panel-cta:hover {
+    background: rgba(255, 255, 255, 0.28);
     color: #fff;
   }
+  .hy-panel-cta .ic {
+    font-size: 10px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-  /* REVEAL */
-  [data-reveal] {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  [data-reveal].is-visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  @media (max-width: 1024px) {
-    .sol-grid {
-      grid-template-columns: repeat(2, 1fr);
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1100px) {
+    .hy-sys-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
     }
-    .sol-pains {
-      grid-template-columns: repeat(2, 1fr);
+    .hy-sys-center {
+      order: -1;
+      min-height: 320px;
     }
+    .hy-sys-col--l {
+      text-align: left;
+    }
+    .hy-sys-item {
+      margin-bottom: 28px;
+    }
+    .hy-ring--1 { width: 300px; height: 300px; }
+    .hy-ring--2 { width: 380px; height: 380px; }
   }
-  @media (max-width: 768px) {
-    .sol-interaction {
+  @media (max-width: 900px) {
+    .hy-inter-grid {
       grid-template-columns: 1fr;
     }
-    .sol-panel-shade {
-      background: rgba(12, 15, 20, 0.82);
+    .hy-tabs {
+      overflow-x: auto;
     }
-    .sol-panel {
-      min-height: auto;
+    .hy-tab {
+      flex: 0 0 150px;
+      min-height: 84px;
+      font-size: 13px;
     }
-    .sol-panel-content {
-      max-width: none;
+    .hy-panel {
+      height: auto;
+      min-height: 0;
     }
-  }
-  @media (max-width: 560px) {
-    .sol-grid,
-    .sol-pains {
-      grid-template-columns: 1fr;
+    .hy-panel-shade {
+      background: rgba(11, 14, 18, 0.85);
     }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    [data-reveal] {
-      opacity: 1;
-      transform: none;
-      transition: none;
+    .hy-panel-content {
+      padding: 56px 0 80px;
+    }
+    .hy-panel-cta {
+      right: 20px;
+      bottom: 20px;
+    }
+    .hy-hero-title {
+      margin-bottom: 34px;
+    }
+    .hy-pain-cloud .p {
+      white-space: normal;
+      margin-right: 20px;
     }
   }
 </style>
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const section = document.querySelector(".sol");
-    if (!section) return;
+    const root = document.querySelector(".hy");
+    if (!root) return;
 
-    // scenario tabs
-    const tabs = section.querySelectorAll(".sol-tab");
-    const panels = section.querySelectorAll(".sol-panel");
+    // ----- hero slider -----
+    const slides = root.querySelectorAll(".hy-slide");
+    const dots = root.querySelectorAll(".hy-dot");
+    let cur = 0;
+    let timer = null;
+    const show = (idx) => {
+      cur = (idx + slides.length) % slides.length;
+      slides.forEach((s, i) => s.classList.toggle("on", i === cur));
+      dots.forEach((d, i) => d.classList.toggle("on", i === cur));
+    };
+    const restart = () => {
+      if (timer) clearInterval(timer);
+      timer = setInterval(() => show(cur + 1), 5500);
+    };
+    root.querySelector(".hy-arrow.prev")?.addEventListener("click", () => { show(cur - 1); restart(); });
+    root.querySelector(".hy-arrow.next")?.addEventListener("click", () => { show(cur + 1); restart(); });
+    dots.forEach((d) =>
+      d.addEventListener("click", () => { show(Number(d.dataset.dot)); restart(); })
+    );
+    if (slides.length > 1) restart();
+
+    // ----- scenario tabs -----
+    const tabs = root.querySelectorAll(".hy-tab");
+    const panels = root.querySelectorAll(".hy-panel");
     tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
         const key = tab.getAttribute("data-tab");
         tabs.forEach((t) => {
-          t.classList.remove("active");
+          t.classList.remove("on");
           t.setAttribute("aria-selected", "false");
         });
-        panels.forEach((p) => p.classList.remove("active"));
-        tab.classList.add("active");
+        panels.forEach((p) => p.classList.remove("on"));
+        tab.classList.add("on");
         tab.setAttribute("aria-selected", "true");
-        const target = section.querySelector(`.sol-panel[data-panel="${key}"]`);
-        if (target) target.classList.add("active");
+        root.querySelector(`.hy-panel[data-panel="${key}"]`)?.classList.add("on");
       });
     });
-
-    // scroll reveal
-    const els = section.querySelectorAll("[data-reveal]");
-    if (!("IntersectionObserver" in window)) {
-      els.forEach((el) => el.classList.add("is-visible"));
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-visible");
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    els.forEach((el) => io.observe(el));
   });
 </script>
