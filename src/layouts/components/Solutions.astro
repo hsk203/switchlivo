@@ -1,68 +1,88 @@
 ---
-// Solutions section — homepage block (English, generic, no real client names)
-// Structure references a typical whole-home solutions page:
-// Hero -> Subsystem grid -> Interaction tiers -> Room scenarios -> Industry verticals
+// Solutions page content — mirrors the structure of a typical whole-home
+// smart-solutions page (hongyan case.html pattern):
+// top consult bar -> pain wall -> hero -> 8 subsystems -> near/mid/far
+// interaction -> 6 room scenarios (tabbed) -> bottom CTA (rendered by page).
+import config from "@/config/config.json";
+
+const { email, phone } = config.params;
+const phonePretty = "+852 6419 0941";
+
+const pains = [
+  "Protocols that don't talk to each other",
+  "Long customization lead times",
+  "Inconsistent quality between batches",
+  "No firmware or OTA support after shipment",
+  "Certification gaps blocking market entry",
+  "High MOQs that lock out smaller brands",
+  "After-sales burden falling on your team",
+  "Look-alike panels, uneven performance",
+  "No white-label packaging or ODM service",
+  "Slow, hard-to-reach supplier support",
+  "Unclear roadmap for Matter & new standards",
+  "Energy data you can't act on",
+];
 
 const subsystems = [
   {
-    name: "Smart Lighting",
-    desc: "Dimmers, switches, and scene panels for precise, app-managed illumination.",
-    icon: "M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10c1 1 1 2 1 3h6c0-1 0-2 1-3a6 6 0 0 0-4-10z",
+    name: "Security Monitoring",
+    desc: "Video surveillance with whole-home arming; intrusion and anomaly alerts with one-touch emergency call.",
+    icon: "M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7zM12 12v3M9.5 12h5",
   },
   {
-    name: "Security & Access",
-    desc: "Smart locks, sensors, and cameras that keep spaces protected and monitored.",
-    icon: "M6 11h12v9H6zM9 11V8a3 3 0 0 1 6 0v3M12 15v2",
-  },
-  {
-    name: "Climate Control",
-    desc: "Thermostats, fans, and motorized curtains tuned to time and occupancy.",
-    icon: "M12 3v18M12 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4z",
+    name: "Healthy Environment",
+    desc: "Temperature, humidity, PM2.5 and VOC link AC, fresh air, purifiers and floor heating to optimize the indoors.",
+    icon: "M12 21c-4 0-7-2.5-7-6.5C5 10 9 7.5 12 3c3 4.5 7 7 7 11.5 0 4-3 6.5-7 6.5z",
   },
   {
     name: "Energy Management",
-    desc: "Metering and scheduling that reduce consumption without sacrificing comfort.",
+    desc: "Household energy monitoring with remote appliance control for a safer, clearer power bill.",
     icon: "M13 2L4 14h7l-1 8 9-12h-7z",
   },
   {
-    name: "Sensing & Automation",
-    desc: "Motion, occupancy, and environmental sensors that run scenes automatically.",
-    icon: "M12 3a4 4 0 0 0-4 4v1a4 4 0 0 0-1 8h10a4 4 0 0 0-1-8V7a4 4 0 0 0-4-4zM9 21h6",
+    name: "Smart Lighting",
+    desc: "Remote and voice control, stepless dimming and color tuning, scene management, adaptive brightness.",
+    icon: "M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10c1 1 1 2 1 3h6c0-1 0-2 1-3a6 6 0 0 0-4-10z",
   },
   {
-    name: "Gateway & Connectivity",
-    desc: "Multi-protocol hubs bridging Zigbee, Wi-Fi, BLE, and Matter devices.",
-    icon: "M5 12a7 7 0 0 1 14 0M8.5 12a3.5 3.5 0 0 1 7 0M12 12h0M2 12h0M22 12h0",
+    name: "AV & Entertainment",
+    desc: "One-touch movie mode: curtains close, lights fade with the TV — a private cinema at home.",
+    icon: "M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM8 21h8M10 9l4 2.5-4 2.5z",
   },
   {
-    name: "Smart Intercom",
-    desc: "Intercom and communication terminals for seamless in-home and entry control.",
-    icon: "M3 11a13 13 0 0 1 18 0M3 11l2-3 2 3M21 11l-2-3-2 3M8 14a5 5 0 0 1 8 0",
+    name: "Smart Water",
+    desc: "Central purification, antibacterial lines, safe drinking and smart leak protection for every scene.",
+    icon: "M12 3c3.5 4.5 6 7.5 6 10.5A6 6 0 0 1 6 13.5C6 10.5 8.5 7.5 12 3z",
   },
   {
-    name: "Central Management",
-    desc: "Hotel and building platforms unifying every subsystem in one console.",
-    icon: "M4 21V3h16v18M4 21h16M8 7h0M8 11h0M8 15h0M16 7h0M16 11h0M16 15h0",
+    name: "Home Management",
+    desc: "Health, energy and environment management systems that quietly lift everyday living.",
+    icon: "M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6",
+  },
+  {
+    name: "Central Management Hub",
+    desc: "One integrated smart central control connecting and commanding every subsystem in the home.",
+    icon: "M5 5h14v14H5zM9 9h6M9 12h6M9 15h3",
   },
 ];
 
 const interactions = [
   {
     tier: "Near",
-    name: "Local Control",
-    desc: "Panel and switch control at the wall — one-tap scenes for wake, sleep, away, and guest modes.",
+    name: "Panel & Switch Control",
+    desc: "Smart panels as the control terminal — keys and touch run whole-home scenes like wake, sleep, host and away, plus single-device control at close range.",
     icon: "M4 7h16M4 12h16M4 17h10",
   },
   {
     tier: "Mid",
-    name: "Voice & Scene",
-    desc: "Voice assistants and scene panels deliver hands-free, whole-home control from across the room.",
+    name: "Voice Control",
+    desc: "Voice panels and assistant speakers link into precise mid-range voice control of lights, curtains and appliances across the home.",
     icon: "M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3",
   },
   {
     tier: "Far",
     name: "App & Remote",
-    desc: "Manage devices, receive alerts, and check status from anywhere via the smartphone app and cloud.",
+    desc: "Away from home, manage every system from the phone app — locks, AC, lights — receive alerts, make video calls, and check home status in real time.",
     icon: "M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM11 18h2",
   },
 ];
@@ -70,94 +90,132 @@ const interactions = [
 const scenarios = [
   {
     key: "entry",
-    eyebrow: "Smart Entryway",
-    title: "A Safer, Brighter Welcome at the Door",
-    desc: "Automate the first moment of arrival. Welcome lighting, smart locks, and motion-triggered scenes turn an ordinary doorway into a secure, inviting gateway.",
-    points: ["Smart lock & access", "Motion-triggered lighting", "Arrival & away scenes", "Visitor intercom"],
-  },
-  {
-    key: "living",
-    eyebrow: "Smart Living Room",
-    title: "One Tap for the Perfect Ambiance",
-    desc: "Connect lighting, climate, and entertainment into scenes you control by app, voice, or wall switch — movie, party, or relax, your living room responds instantly.",
-    points: ["Scene presets", "Voice & app control", "Connected AV & climate", "Energy-aware automation"],
+    tab: "Smart Entryway",
+    tabIcon: "M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17M4 21h16M15 12h.01",
+    eyebrow: "Smart Home",
+    title: "Walk In, Leave the Stress at the Door",
+    desc: "Smart locks, panels and lighting work as one: lights greet you as the door opens, security arms itself, and guests pass freely — with home services just a tap away. Intelligence starts at the door.",
+    chips: [
+      { label: "Home Mode", text: "Door unlocks, entry lights on, AC pre-cools, fresh air starts" },
+      { label: "Away Mode", text: "One tap switches off lights & appliances and arms security" },
+      { label: "Video Intercom", text: "See and talk to visitors from the panel or your phone" },
+      { label: "Home Services", text: "Cleaning, maintenance and delivery access at the door" },
+    ],
   },
   {
     key: "kitchen",
-    eyebrow: "Smart Kitchen",
+    tab: "Smart Kitchen",
+    tabIcon: "M4 10h16M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3M3 10v2a5 5 0 0 0 5 5h8a5 5 0 0 0 5-5v-2M9 20h6",
+    eyebrow: "Smart Home",
     title: "Cook Smarter, Safer, Hands-Free",
-    desc: "Voice interaction, water-leak detection, and smart ventilation keep the kitchen efficient and safe, with connected appliances that follow your routines.",
-    points: ["Voice interaction", "Water-leak detection", "Smart ventilation", "Connected appliances"],
+    desc: "A voice panel as the kitchen hub connects indoor and outdoor ecosystems — grocery ordering and ready-meal delivery — while smart water, leak and smoke monitoring remove the hidden risks of cooking.",
+    chips: [
+      { label: "Voice Interaction", text: "Control lights, hood and appliances without touching anything" },
+      { label: "Life Services", text: "Fresh grocery ordering and meal delivery via the panel" },
+      { label: "Smart Water", text: "Purified, monitored water for cooking and drinking" },
+      { label: "Leak & Smoke", text: "Water-leak and smoke detection with instant alerts" },
+    ],
   },
   {
     key: "dining",
-    eyebrow: "Smart Dining",
+    tab: "Smart Dining",
+    tabIcon: "M7 3v6a2 2 0 0 0 4 0V3M9 11v10M17 3c-1.5 2-1.5 5 0 7v11",
+    eyebrow: "Smart Home",
     title: "Set the Mood for Every Meal",
-    desc: "Ambient lighting scenes, background music, and air-quality monitoring create an elegant, comfortable dining environment at the touch of a button.",
-    points: ["Ambient lighting scenes", "Background music", "Air quality monitoring", "Comfort climate"],
+    desc: "Voice-control lighting and background music to build warm, romantic scenes, while the environment panel tracks air quality and temperature — linking fresh-air and AC to keep every dinner elegant.",
+    chips: [
+      { label: "Voice Interaction", text: "Scenes change hands-free while you host" },
+      { label: "Smart Lighting", text: "Dinner, party and candlelight presets in one tap" },
+      { label: "Comfort Environment", text: "Air quality and climate auto-tuned to the room" },
+    ],
+  },
+  {
+    key: "living",
+    tab: "Smart Living Room",
+    tabIcon: "M5 11V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3M4 11a2 2 0 0 1 2 2v2h12v-2a2 2 0 1 1 4 0v5H2v-5a2 2 0 0 1 2-2zM6 20v1M18 20v1",
+    eyebrow: "Smart Home",
+    title: "Immersive Hosting, Cinema Nights",
+    desc: "Voice, touch and phone — immersive multi-mode interaction links lights, appliances, curtains and sensors into hosting and movie scenes, while household energy stays intelligently managed.",
+    chips: [
+      { label: "AI Hosting", text: "Guest scene welcomes visitors with light and climate" },
+      { label: "Cozy AV", text: "Movie mode: curtains close, lights fade with the TV" },
+      { label: "Healthy Environment", text: "Air and temperature tuned to the moment" },
+      { label: "Energy Management", text: "Standby power trimmed without losing comfort" },
+    ],
   },
   {
     key: "bedroom",
-    eyebrow: "Smart Bedroom",
-    title: "Rest Easier, Automatically",
-    desc: "Sleep-friendly lighting, scheduled curtains, and a thermostat that learns your rhythm — plus quiet night-time safety from sensors and smart access.",
-    points: ["Circadian lighting", "Curtain & climate automation", "Night-time safety", "Sleep routines"],
+    tab: "Smart Bedroom",
+    tabIcon: "M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 14h18M7 9V6h10v3",
+    eyebrow: "Smart Home",
+    title: "One Tap to Sleep, One Tap to Wake",
+    desc: "Sleep mode closes curtains and lights, arms security and shifts energy to night duty. Morning mode opens the curtains, disarms, and reads the day's weather — a good night built into the walls.",
+    chips: [
+      { label: "Sleep Management", text: "Lights, curtains and climate settle for the night" },
+      { label: "Healthy Environment", text: "Temperature and air tuned while you sleep" },
+      { label: "Human-centric Lighting", text: "Warm wake-up light instead of a blaring alarm" },
+      { label: "Safety Management", text: "Security stays on guard through the night" },
+    ],
   },
   {
     key: "bathroom",
-    eyebrow: "Smart Bathroom",
-    title: "A Spa-Grade Start to the Day",
-    desc: "Voice control, leak protection, and smart ventilation deliver a healthier, safer bathing experience — from the mirror to the tub.",
-    points: ["Voice control", "Safety & leak protection", "Smart ventilation", "Healthy environment"],
-  },
-];
-
-const industries = [
-  {
-    name: "Smart Hotel",
-    desc: "Guest-room automation, energy-saving scenes, and centralized management for hotels and serviced apartments.",
-    icon: "M3 21h18M5 21V7l7-4 7 4v14M9 9h0M15 9h0M9 13h0M15 13h0",
-  },
-  {
-    name: "Smart Residence",
-    desc: "Whole-home comfort, security, and convenience — lighting, climate, access, and scenes in one ecosystem.",
-    icon: "M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6",
-  },
-  {
-    name: "Smart Office",
-    desc: "Productivity-first spaces: meeting-room control, scheduled lighting, and climate tuned to occupancy.",
-    icon: "M3 21V8l9-5 9 5v13M7 21v-6h10v6M7 11h10",
-  },
-  {
-    name: "Smart Building",
-    desc: "Unified building management — metering, safety, and automation across commercial and public facilities.",
-    icon: "M4 21V3h16v18M4 21h16M8 7h0M8 11h0M8 15h0M16 7h0M16 11h0M16 15h0",
-  },
-  {
-    name: "Smart Lighting",
-    desc: "Architectural, landscape, and retail lighting — dimming, scene presets, and circadian scheduling.",
-    icon: "M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10c1 1 1 2 1 3h6c0-1 0-2 1-3a6 6 0 0 0-4-10z",
+    tab: "Smart Bathroom",
+    tabIcon: "M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2zM6 12V5a2 2 0 0 1 4 0M8 21l-1 1M17 21l1 1",
+    eyebrow: "Smart Home",
+    title: "A Spa-Grade Start to Every Day",
+    desc: "Smart mirror, heated bathing, human sensing and ventilation work together — from personal grooming to total comfort, a brand-new smart bathing experience.",
+    chips: [
+      { label: "Voice Control", text: "Lights, mirror and ventilation respond hands-free" },
+      { label: "Safety Protection", text: "Leak, humidity and overheating watched around the clock" },
+      { label: "Remote Control", text: "Pre-heat the bathroom before you're even home" },
+      { label: "Healthy Living", text: "Fresh air and comfort managed automatically" },
+    ],
   },
 ];
 ---
 
 <section class="sol" id="solutions">
+  <!-- TOP CONSULT BAR -->
+  <div class="sol-topbar">
+    <div class="container sol-topbar-in">
+      <p>
+        <strong>OEM &amp; ODM Inquiries</strong>
+        <a href={`mailto:${email}`}>{email}</a>
+        <a href={`tel:${phone}`}>{phonePretty}</a>
+      </p>
+      <a class="sol-topbar-cta" href="/contact">Contact Sales →</a>
+    </div>
+  </div>
+
+  <!-- PAIN WALL -->
+  <div class="container">
+    <div class="sol-head" data-reveal>
+      <span class="sol-eyebrow sol-eyebrow--center">Pain Points</span>
+      <h3 class="sol-h3">The Smart-Home Challenges We Solve</h3>
+      <p class="sol-lead">
+        If any of these sound familiar, you are exactly who we build for.
+      </p>
+    </div>
+    <ul class="sol-pains">
+      {pains.map((p) => <li>{p}</li>)}
+    </ul>
+  </div>
+
   <!-- HERO -->
   <div class="sol-hero">
-    <div class="sol-hero-pattern" aria-hidden="true"></div>
+    <div class="sol-hero-bg" aria-hidden="true"></div>
+    <div class="sol-hero-shade" aria-hidden="true"></div>
     <div class="container">
       <div class="sol-hero-inner" data-reveal>
-        <span class="sol-eyebrow">Solutions</span>
-        <h2 class="sol-hero-title">Smart Solutions for Every Connected Space</h2>
+        <span class="sol-eyebrow">Smart Solutions</span>
+        <h2 class="sol-hero-title">Whole-Home Smart Solutions</h2>
         <p class="sol-hero-sub">
-          From smart homes to smart hotels and commercial buildings, Switchlivo
-          delivers a complete, customizable ecosystem — engineered, manufactured,
-          and supported as your OEM &amp; ODM partner.
+          Smart panels as the control terminal — near, mid and far interaction —
+          connecting security, energy, lighting, environment and entertainment
+          into one ecosystem. Engineered and manufactured as your OEM &amp; ODM
+          partner.
         </p>
-        <div class="sol-hero-cta">
-          <a href="/products" class="btn btn-primary">Explore Products</a>
-          <a href="/contact" class="btn btn-ghost">Ask For Catalog</a>
-        </div>
+        <a href="/contact" class="btn-sol">Customize Your Solution</a>
       </div>
     </div>
   </div>
@@ -166,13 +224,13 @@ const industries = [
   <div class="container">
     <div class="sol-head" data-reveal>
       <span class="sol-eyebrow sol-eyebrow--center">Subsystems</span>
-      <h3 class="sol-h3">Subsystems That Power Every Space</h3>
+      <h3 class="sol-h3">Eight Systems, One Ecosystem</h3>
       <p class="sol-lead">
-        Every solution is composed from interoperable subsystems — specify exactly
-        what each project needs.
+        Every solution is composed from interoperable subsystems — specify
+        exactly what each project needs.
       </p>
     </div>
-    <div class="sol-grid sol-grid-4">
+    <div class="sol-grid">
       {
         subsystems.map((c) => (
           <div class="sol-card" data-reveal>
@@ -194,10 +252,10 @@ const industries = [
     <div class="container">
       <div class="sol-head" data-reveal>
         <span class="sol-eyebrow sol-eyebrow--center">Interaction</span>
-        <h3 class="sol-h3">Control Your Way — Near, Mid, and Far</h3>
+        <h3 class="sol-h3">Immersive Multi-Mode Interaction</h3>
         <p class="sol-lead">
-          One ecosystem, three interaction ranges: local at the wall, voice across
-          the room, and remote from anywhere.
+          One ecosystem, three interaction ranges — local at the wall, voice
+          across the room, remote from anywhere.
         </p>
       </div>
       <div class="sol-interaction">
@@ -219,68 +277,69 @@ const industries = [
     </div>
   </div>
 
-  <!-- ROOM SCENARIOS -->
+  <!-- ROOM SCENARIOS (TABBED) -->
   <div class="container">
     <div class="sol-head" data-reveal>
       <span class="sol-eyebrow sol-eyebrow--center">Scenarios</span>
-      <h3 class="sol-h3">Whole-Home Scenarios, Room by Room</h3>
+      <h3 class="sol-h3">Whole-Home Scenarios</h3>
       <p class="sol-lead">
-        See how Switchlivo brings comfort, security, and efficiency to the rooms
-        people use every day.
+        From the front door to the bathroom — see how one ecosystem runs every
+        room.
       </p>
     </div>
 
-    <div class="sol-scenarios">
+    <div class="sol-tabs" role="tablist" aria-label="Room scenarios">
       {
         scenarios.map((s, i) => (
-          <div class:list={["sol-scenario", i % 2 === 1 && "sol-scenario--reverse"]} data-reveal>
-            <div class="sol-scenario-media">
-              <img
-                src={`/images/solutions/scenario-${s.key}.svg`}
-                alt={s.eyebrow}
-                width="800"
-                height="600"
-                loading="lazy"
-              />
-            </div>
-            <div class="sol-scenario-text">
-              <span class="sol-eyebrow">{s.eyebrow}</span>
-              <h4 class="sol-scenario-title">{s.title}</h4>
-              <p class="sol-scenario-desc">{s.desc}</p>
-              <ul class="sol-points">
-                {s.points.map((p) => (
-                  <li>{p}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <button
+            type="button"
+            class:list={["sol-tab", i === 0 && "active"]}
+            data-tab={s.key}
+            role="tab"
+            aria-selected={i === 0 ? "true" : "false"}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d={s.tabIcon} />
+            </svg>
+            <span>{s.tab}</span>
+          </button>
         ))
       }
     </div>
-  </div>
 
-  <!-- INDUSTRY VERTICALS -->
-  <div class="container">
-    <div class="sol-head" data-reveal>
-      <span class="sol-eyebrow sol-eyebrow--center">By Industry</span>
-      <h3 class="sol-h3">Solutions Built for Every Segment</h3>
-      <p class="sol-lead">
-        One platform, adapted to the needs of hotels, residences, offices,
-        buildings, and lighting projects.
-      </p>
-    </div>
-    <div class="sol-grid sol-grid-3">
+    <div class="sol-panels">
       {
-        industries.map((it) => (
-          <div class="sol-card" data-reveal>
-            <span class="sol-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d={it.icon} />
-              </svg>
-            </span>
-            <h4 class="sol-card-title">{it.name}</h4>
-            <p class="sol-card-desc">{it.desc}</p>
-          </div>
+        scenarios.map((s, i) => (
+          <article
+            class:list={["sol-panel", i === 0 && "active"]}
+            data-panel={s.key}
+            role="tabpanel"
+          >
+            <div
+              class="sol-panel-bg"
+              style={`background-image:url('/images/solutions/photos/${s.key}.jpg')`}
+              aria-hidden="true"
+            />
+            <div class="sol-panel-shade" aria-hidden="true" />
+            <div class="sol-panel-content">
+              <span class="sol-panel-eyebrow">/ {s.eyebrow} /</span>
+              <h4 class="sol-panel-title">{s.title}</h4>
+              <p class="sol-panel-desc">{s.desc}</p>
+              <ul class="sol-chips">
+                {s.chips.map((c) => (
+                  <li>
+                    <span class="chip-tag">{c.label}</span>
+                    <span class="chip-text">{c.text}</span>
+                  </li>
+                ))}
+              </ul>
+              <div class="sol-tier-pills">
+                <span>Essential</span>
+                <span>Pro</span>
+              </div>
+            </div>
+            <a class="sol-panel-cta" href="/products">Explore Products →</a>
+          </article>
         ))
       }
     </div>
@@ -288,27 +347,49 @@ const industries = [
 </section>
 
 <style>
-  /* HERO */
-  .sol-hero {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(135deg, #1a202c 0%, #2a1d12 55%, #3a1f0c 100%);
+  /* TOP BAR */
+  .sol-topbar {
+    background: #14181f;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+    padding: 0.65rem 0;
+  }
+  .sol-topbar-in {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .sol-topbar p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    flex-wrap: wrap;
+  }
+  .sol-topbar strong {
     color: #fff;
-    padding: 5rem 0 5.5rem;
+    font-weight: 700;
   }
-  .sol-hero-pattern {
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 78% 22%, rgba(254, 96, 25, 0.28), transparent 42%),
-      radial-gradient(circle at 12% 88%, rgba(255, 179, 71, 0.16), transparent 45%);
-    pointer-events: none;
+  .sol-topbar a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
   }
-  .sol-hero-inner {
-    position: relative;
-    max-width: 760px;
-    margin: 0 auto;
+  .sol-topbar a:hover {
+    color: #ffb347;
+  }
+  .sol-topbar-cta {
+    font-weight: 700;
+    color: #ffb347 !important;
+  }
+
+  /* HEADINGS */
+  .sol-head {
     text-align: center;
+    max-width: 680px;
+    margin: 0 auto 2.4rem;
+    padding-top: 4.2rem;
   }
   .sol-eyebrow {
     display: inline-block;
@@ -316,66 +397,11 @@ const industries = [
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #ffb347;
+    color: #fe6019;
     margin-bottom: 0.9rem;
   }
   .sol-eyebrow--center {
     display: block;
-  }
-  .sol-hero-title {
-    font-size: clamp(1.9rem, 4vw, 3rem);
-    font-weight: 800;
-    line-height: 1.12;
-    margin-bottom: 1.2rem;
-    color: #fff;
-    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
-  }
-  .sol-hero-sub {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.82);
-    margin-bottom: 2rem;
-  }
-  .sol-hero-cta {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.8rem 1.7rem;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 0.98rem;
-    transition: all 0.25s ease;
-    text-decoration: none;
-  }
-  .btn-primary {
-    background: linear-gradient(90deg, #fe6019, #ff8a3d);
-    color: #fff;
-  }
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(254, 96, 25, 0.4);
-  }
-  .btn-ghost {
-    border: 1.5px solid rgba(255, 255, 255, 0.5);
-    color: #fff;
-  }
-  .btn-ghost:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: #fff;
-  }
-
-  /* HEADINGS */
-  .sol-head {
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto 2.8rem;
-    padding-top: 4.5rem;
   }
   .sol-h3 {
     font-size: clamp(1.5rem, 3vw, 2.1rem);
@@ -389,22 +415,114 @@ const industries = [
     line-height: 1.7;
   }
 
+  /* PAIN WALL */
+  .sol-pains {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.9rem;
+  }
+  .sol-pains li {
+    position: relative;
+    background: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 12px;
+    padding: 0.85rem 1rem 0.85rem 2.1rem;
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+  .sol-pains li::before {
+    content: "";
+    position: absolute;
+    left: 0.95rem;
+    top: 1.15em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fe6019;
+  }
+
+  /* HERO */
+  .sol-hero {
+    position: relative;
+    margin-top: 4.2rem;
+    min-height: clamp(460px, 62vh, 640px);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+  }
+  .sol-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url("/images/solutions/photos/hero.jpg") center / cover no-repeat;
+  }
+  .sol-hero-shade {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 42%, rgba(12, 15, 20, 0.18), transparent 55%),
+      linear-gradient(180deg, rgba(12, 15, 20, 0.55), rgba(12, 15, 20, 0.72));
+  }
+  .sol-hero-inner {
+    position: relative;
+    max-width: 760px;
+    padding: 4.5rem 0;
+  }
+  .sol-hero .sol-eyebrow {
+    color: #ffb347;
+    letter-spacing: 0.22em;
+  }
+  .sol-hero-title {
+    font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.12;
+    color: #fff;
+    margin-bottom: 1.1rem;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+  }
+  .sol-hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.86);
+    max-width: 640px;
+    margin: 0 auto 2.2rem;
+  }
+  .btn-sol {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 2.1rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(90deg, #fe6019, #ff8a3d);
+    box-shadow: 0 10px 30px rgba(254, 96, 25, 0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .btn-sol:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(254, 96, 25, 0.5);
+    color: #fff;
+  }
+
   /* GRID + CARDS */
   .sol-grid {
     display: grid;
-    gap: 1.5rem;
-  }
-  .sol-grid-3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .sol-grid-4 {
     grid-template-columns: repeat(4, 1fr);
+    gap: 1.4rem;
   }
   .sol-card {
     background: #fff;
     border: 1px solid #ebebeb;
     border-radius: 18px;
-    padding: 2rem 1.6rem;
+    padding: 1.7rem 1.4rem;
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
   .sol-card:hover {
@@ -416,54 +534,54 @@ const industries = [
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 52px;
-    height: 52px;
+    width: 50px;
+    height: 50px;
     border-radius: 14px;
     background: rgba(254, 96, 25, 0.1);
     color: #fe6019;
-    margin-bottom: 1.1rem;
+    margin-bottom: 1rem;
   }
   .sol-card-icon svg {
-    width: 26px;
-    height: 26px;
+    width: 25px;
+    height: 25px;
   }
   .sol-card-icon--lg {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 1.3rem;
+    width: 58px;
+    height: 58px;
+    margin-bottom: 1.2rem;
   }
   .sol-card-icon--lg svg {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
   }
   .sol-card-title {
-    font-size: 1.2rem;
+    font-size: 1.12rem;
     font-weight: 700;
     color: #222;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.45rem;
   }
   .sol-card-desc {
     color: #777;
-    font-size: 0.96rem;
-    line-height: 1.65;
+    font-size: 0.94rem;
+    line-height: 1.6;
   }
 
   /* INTERACTION TIERS */
   .sol-interaction-wrap {
-    margin-top: 4.5rem;
+    margin-top: 4.2rem;
     background: #faf7f3;
-    padding: 1rem 0 4.5rem;
+    padding: 1rem 0 4.2rem;
   }
   .sol-interaction {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 1.4rem;
   }
   .sol-tier {
     background: #fff;
     border: 1px solid #ebebeb;
     border-radius: 18px;
-    padding: 2.2rem 1.8rem;
+    padding: 2.1rem 1.8rem;
     text-align: center;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
@@ -479,76 +597,179 @@ const industries = [
     text-transform: uppercase;
     color: #fe6019;
     background: rgba(254, 96, 25, 0.1);
-    padding: 0.3rem 0.8rem;
+    padding: 0.3rem 0.85rem;
     border-radius: 999px;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.1rem;
   }
   .sol-tier .sol-card-icon {
     margin-left: auto;
     margin-right: auto;
   }
 
-  /* SCENARIOS */
-  .sol-scenarios {
+  /* TABS */
+  .sol-tabs {
+    display: flex;
+    gap: 0.7rem;
+    overflow-x: auto;
+    padding-bottom: 0.4rem;
+    scrollbar-width: thin;
+  }
+  .sol-tab {
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-  }
-  .sol-scenario {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 2.5rem;
-  }
-  .sol-scenario--reverse .sol-scenario-media {
-    order: 2;
-  }
-  .sol-scenario-media {
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 16px 40px rgba(26, 32, 44, 0.1);
+    gap: 0.45rem;
+    min-width: 128px;
+    padding: 0.85rem 1rem;
     background: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 14px;
+    color: #666;
+    font-size: 0.86rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
   }
-  .sol-scenario-media img {
+  .sol-tab svg {
+    width: 26px;
+    height: 26px;
+  }
+  .sol-tab:hover {
+    border-color: rgba(254, 96, 25, 0.5);
+    color: #fe6019;
+  }
+  .sol-tab.active {
+    background: #fe6019;
+    border-color: #fe6019;
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(254, 96, 25, 0.32);
+  }
+
+  /* PANELS */
+  .sol-panels {
+    margin-top: 1.2rem;
+  }
+  .sol-panel {
+    display: none;
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    min-height: 540px;
+    color: #fff;
+  }
+  .sol-panel.active {
     display: block;
-    width: 100%;
-    height: auto;
   }
-  .sol-scenario-title {
-    font-size: 1.5rem;
+  .sol-panel-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .sol-panel-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(12, 15, 20, 0.93) 0%,
+      rgba(12, 15, 20, 0.74) 46%,
+      rgba(12, 15, 20, 0.28) 100%
+    );
+  }
+  .sol-panel-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    padding: clamp(28px, 5vw, 60px);
+  }
+  .sol-panel-eyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #ffb347;
+    margin-bottom: 0.8rem;
+  }
+  .sol-panel-title {
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
     font-weight: 800;
-    color: #222;
-    margin: 0.6rem 0 0.9rem;
+    line-height: 1.18;
+    color: #fff;
+    margin-bottom: 0.9rem;
   }
-  .sol-scenario-desc {
-    color: #777;
-    font-size: 1rem;
+  .sol-panel-desc {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.98rem;
     line-height: 1.7;
-    margin-bottom: 1.1rem;
+    margin-bottom: 1.4rem;
   }
-  .sol-points {
+  .sol-chips {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.55rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
   }
-  .sol-points li {
-    position: relative;
-    padding-left: 1.6rem;
-    color: #444;
-    font-size: 0.96rem;
+  .sol-chips li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
   }
-  .sol-points li::before {
-    content: "";
+  .chip-tag {
+    flex: 0 0 auto;
+    background: rgba(254, 96, 25, 0.92);
+    color: #fff;
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 0.28rem 0.65rem;
+    border-radius: 7px;
+    white-space: nowrap;
+    margin-top: 0.1rem;
+  }
+  .chip-text {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+  .sol-tier-pills {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+  .sol-tier-pills span {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 999px;
+    padding: 0.32rem 0.95rem;
+  }
+  .sol-panel-cta {
     position: absolute;
-    left: 0;
-    top: 0.45em;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #fe6019;
+    right: clamp(20px, 4vw, 40px);
+    bottom: clamp(20px, 4vw, 36px);
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: linear-gradient(90deg, #fe6019, #ff8a3d);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 0.65rem 1.3rem;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 10px 26px rgba(254, 96, 25, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .sol-panel-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 34px rgba(254, 96, 25, 0.55);
+    color: #fff;
   }
 
   /* REVEAL */
@@ -563,31 +784,30 @@ const industries = [
   }
 
   @media (max-width: 1024px) {
-    .sol-grid-4 {
+    .sol-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .sol-pains {
       grid-template-columns: repeat(2, 1fr);
     }
   }
-  @media (max-width: 900px) {
-    .sol-grid-3 {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  @media (max-width: 768px) {
     .sol-interaction {
       grid-template-columns: 1fr;
     }
-    .sol-scenario {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+    .sol-panel-shade {
+      background: rgba(12, 15, 20, 0.82);
     }
-    .sol-scenario--reverse .sol-scenario-media {
-      order: 0;
+    .sol-panel {
+      min-height: auto;
+    }
+    .sol-panel-content {
+      max-width: none;
     }
   }
   @media (max-width: 560px) {
-    .sol-grid-3,
-    .sol-grid-4 {
-      grid-template-columns: 1fr;
-    }
-    .sol-points {
+    .sol-grid,
+    .sol-pains {
       grid-template-columns: 1fr;
     }
   }
@@ -602,8 +822,29 @@ const industries = [
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const els = document.querySelectorAll(".sol [data-reveal]");
-    if (!els.length) return;
+    const section = document.querySelector(".sol");
+    if (!section) return;
+
+    // scenario tabs
+    const tabs = section.querySelectorAll(".sol-tab");
+    const panels = section.querySelectorAll(".sol-panel");
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const key = tab.getAttribute("data-tab");
+        tabs.forEach((t) => {
+          t.classList.remove("active");
+          t.setAttribute("aria-selected", "false");
+        });
+        panels.forEach((p) => p.classList.remove("active"));
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
+        const target = section.querySelector(`.sol-panel[data-panel="${key}"]`);
+        if (target) target.classList.add("active");
+      });
+    });
+
+    // scroll reveal
+    const els = section.querySelectorAll("[data-reveal]");
     if (!("IntersectionObserver" in window)) {
       els.forEach((el) => el.classList.add("is-visible"));
       return;
