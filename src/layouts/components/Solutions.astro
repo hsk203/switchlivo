@@ -924,18 +924,20 @@ const scenarios = [
     // ----- scenario tabs -----
     const tabs = root.querySelectorAll(".hy-tab");
     const panels = root.querySelectorAll(".hy-panel");
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        const key = tab.getAttribute("data-tab");
-        tabs.forEach((t) => {
-          t.classList.remove("on");
-          t.setAttribute("aria-selected", "false");
-        });
-        panels.forEach((p) => p.classList.remove("on"));
-        tab.classList.add("on");
-        tab.setAttribute("aria-selected", "true");
-        root.querySelector(`.hy-panel[data-panel="${key}"]`)?.classList.add("on");
+    const activate = (tab) => {
+      const key = tab.getAttribute("data-tab");
+      tabs.forEach((t) => {
+        t.classList.remove("on");
+        t.setAttribute("aria-selected", "false");
       });
+      panels.forEach((p) => p.classList.remove("on"));
+      tab.classList.add("on");
+      tab.setAttribute("aria-selected", "true");
+      root.querySelector(`.hy-panel[data-panel="${key}"]`)?.classList.add("on");
+    };
+    tabs.forEach((tab) => {
+      tab.addEventListener("mouseenter", () => activate(tab));
+      tab.addEventListener("click", () => activate(tab));
     });
   });
 </script>
