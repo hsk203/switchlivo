@@ -1,8 +1,8 @@
 ---
 const applications = [
-  { no: "01", title: "Smart Home", desc: "Bring lighting, curtains, climate and everyday routines together through a consistent wall-control experience.", img: "/images/solutions/residential.svg", alt: "Contemporary residential smart home interior", tags: ["Whole-home control", "Room scenes", "Retrofit & new build"] },
-  { no: "02", title: "Smart Hotel", desc: "Create intuitive guest-room controls for lighting, climate, curtains and hospitality functions across room types.", img: "/images/solutions/hotel.svg", alt: "Contemporary hotel room with integrated wall controls", tags: ["Guest-room control", "DND & housekeeping", "Room standardization"] },
-  { no: "03", title: "Commercial & Office", desc: "Simplify shared-space operation with coordinated lighting and scene control for offices and meeting rooms.", img: "/images/solutions/commercial.svg", alt: "Modern commercial office interior", tags: ["Meeting scenes", "Shared spaces", "Centralized operation"] },
+  { no: "01", title: "Smart Home", desc: "Bring lighting, curtains, climate and everyday routines together through a consistent wall-control experience.", img: "/images/solutions/residential.webp", alt: "Contemporary residential smart home interior", tags: ["Whole-home control", "Room scenes", "Retrofit & new build"] },
+  { no: "02", title: "Smart Hotel", desc: "Create intuitive guest-room controls for lighting, climate, curtains and hospitality functions across room types.", img: "/images/solutions/hotel.webp", alt: "Contemporary hotel room with integrated wall controls", tags: ["Guest-room control", "DND & housekeeping", "Room standardization"] },
+  { no: "03", title: "Commercial & Office", desc: "Simplify shared-space operation with coordinated lighting and scene control for offices and meeting rooms.", img: "/images/solutions/office.webp", alt: "Modern commercial office interior", tags: ["Meeting scenes", "Shared spaces", "Centralized operation"] },
 ];
 const systems = [
   ["Smart Lighting", "Switching, dimming and scene control for comfortable, flexible spaces."],
@@ -13,15 +13,15 @@ const systems = [
   ["Centralized Control", "Combine supported functions in one consistent panel experience."],
 ];
 const rooms = [
-  { key: "living", label: "Living Room", title: "A more considered way to live.", img: "/images/solutions/residential.svg", points: ["Set the mood with lighting scenes", "Coordinate curtains and climate", "Keep everyday controls close at hand"] },
-  { key: "bedroom", label: "Bedroom", title: "Comfort, from one bedside touch.", img: "/images/solutions/panel-detail.svg", points: ["Create sleep and wake-up routines", "Control bedside and ambient lighting", "Simplify daily operation"] },
-  { key: "hotel", label: "Hotel Room", title: "A consistent guest-room experience.", img: "/images/solutions/hotel.svg", points: ["Organize controls by room type", "Make key guest functions intuitive", "Support a cohesive room specification"] },
-  { key: "office", label: "Office", title: "Spaces that respond to the workday.", img: "/images/solutions/commercial.svg", points: ["Set meeting and presentation scenes", "Simplify shared-space lighting", "Keep controls clear for every user"] },
+  { key: "living", label: "Living Room", title: "A more considered way to live.", img: "/images/solutions/residential.webp", points: ["Set the mood with lighting scenes", "Coordinate curtains and climate", "Keep everyday controls close at hand"] },
+  { key: "bedroom", label: "Bedroom", title: "Comfort, from one bedside touch.", img: "/images/solutions/photos/bedroom.jpg", points: ["Create sleep and wake-up routines", "Control bedside and ambient lighting", "Simplify daily operation"] },
+  { key: "hotel", label: "Hotel Room", title: "A consistent guest-room experience.", img: "/images/solutions/hotel.webp", points: ["Organize controls by room type", "Make key guest functions intuitive", "Support a cohesive room specification"] },
+  { key: "office", label: "Office", title: "Spaces that respond to the workday.", img: "/images/solutions/office.webp", points: ["Set meeting and presentation scenes", "Simplify shared-space lighting", "Keep controls clear for every user"] },
 ];
 ---
 <section class="solutions-page">
   <section class="sol-hero">
-    <img class="sol-hero-image" src="/images/solutions/residential.svg" alt="Modern interior illustrating integrated smart switch panel control" fetchpriority="high" />
+    <img class="sol-hero-image" src="/images/solutions/hero-living.webp" alt="Modern residential interior" fetchpriority="high" />
     <div class="sol-hero-overlay"></div>
     <div class="sol-container sol-hero-content">
       <span class="sol-eyebrow">SWITCHLIVO SOLUTIONS</span>
@@ -51,7 +51,7 @@ const rooms = [
       <div class="sol-section-head sol-light-head"><div><span class="sol-kicker">CONNECTED FUNCTIONS</span><h2>Key functions, one<br />clear interface.</h2></div><p>Build a coherent control experience by bringing compatible devices and functions together through the smart switch panel.</p></div>
       <div class="sol-system-layout">
         <div class="sol-system-list">{systems.map((s,i) => <article class="sol-system-item"><span>0{i+1}</span><div><h3>{s[0]}</h3><p>{s[1]}</p></div></article>)}</div>
-        <div class="sol-panel-visual"><img src="/images/solutions/panel-detail.svg" alt="Illustrative smart touch panel interface" loading="lazy" /><div class="sol-panel-caption"><span>WALL CONTROL</span><strong>One touchpoint for everyday functions.</strong></div></div>
+        <div class="sol-panel-visual"><img src="/images/solutions/switch-panel.webp" alt="Illustrative smart touch panel interface" loading="lazy" /><div class="sol-panel-caption"><span>WALL CONTROL</span><strong>One touchpoint for everyday functions.</strong></div></div>
       </div>
       <p class="sol-disclaimer">Available functions depend on the selected panel model, supported protocols and compatible devices. Confirm the configuration with our team before specification.</p>
     </div>
