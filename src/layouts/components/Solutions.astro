@@ -59,7 +59,7 @@ const rooms = [
   <section class="sol-rooms">
     <div class="sol-container"><div class="sol-section-head"><div><span class="sol-kicker">ROOM-BY-ROOM EXPERIENCE</span><h2>Designed around the room.</h2></div><p>Explore typical control priorities across key spaces. Actual functions can be tailored to the selected model and project design.</p></div></div>
     <div class="sol-room-tabs" role="tablist" aria-label="Room applications">{rooms.map((r,i)=><button type="button" class:list={["sol-room-tab",i===0 && "active"]} data-room={r.key} role="tab" aria-selected={i===0 ? "true":"false"}>{r.label}</button>)}</div>
-    {rooms.map((r,i)=><div class:list={["sol-room-panel",i===0 && "active"]} data-room-panel={r.key}><img src={r.img} alt={r.label+" interior designed for intuitive smart control"} loading="lazy" /><div class="sol-room-shade"></div><div class="sol-container sol-room-content"><span class="sol-kicker">ROOM APPLICATION / 0{i+1}</span><h3>{r.title}</h3><ul>{r.points.map(p=><li>{p}</li>)}</ul><a href="/contact" class="sol-btn">Plan This Space <span>↗</span></a></div></div>)}
+    {rooms.map((r,i)=><div class:list={["sol-room-panel",i===0 && "active"]} data-room-panel={r.key}><img src={i === 0 ? r.img : undefined} data-src={i === 0 ? undefined : r.img} alt={r.label+" interior designed for intuitive smart control"} loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : "auto"} decoding="async" /><div class="sol-room-shade"></div><div class="sol-container sol-room-content"><span class="sol-kicker">ROOM APPLICATION / 0{i+1}</span><h3>{r.title}</h3><ul>{r.points.map(p=><li>{p}</li>)}</ul><a href="/contact" class="sol-btn">Plan This Space <span>↗</span></a></div></div>)}
   </section>
 
   <section class="sol-partners">
@@ -74,5 +74,5 @@ const rooms = [
 @media(prefers-reduced-motion:reduce){.sol-app-image img,.sol-btn{transition:none}}
 </style>
 <script>
-document.addEventListener("astro:page-load",()=>{document.querySelectorAll(".solutions-page").forEach((root)=>{const tabs=root.querySelectorAll(".sol-room-tab");const panels=root.querySelectorAll(".sol-room-panel");tabs.forEach((tab)=>{tab.addEventListener("click",()=>{const key=tab.dataset.room;tabs.forEach(t=>{t.classList.toggle("active",t===tab);t.setAttribute("aria-selected",t===tab?"true":"false")});panels.forEach(p=>p.classList.toggle("active",p.dataset.roomPanel===key))})})})});
+document.addEventListener("astro:page-load",()=>{document.querySelectorAll(".solutions-page").forEach((root)=>{const tabs=root.querySelectorAll(".sol-room-tab");const panels=root.querySelectorAll(".sol-room-panel");tabs.forEach((tab)=>{tab.addEventListener("click",()=>{const key=tab.dataset.room;tabs.forEach(t=>{t.classList.toggle("active",t===tab);t.setAttribute("aria-selected",t===tab?"true":"false")});panels.forEach(p=>{const isActive=p.dataset.roomPanel===key;p.classList.toggle("active",isActive);if(isActive){const image=p.querySelector("img");if(image&&!image.getAttribute("src")&&image.dataset.src){image.src=image.dataset.src;image.removeAttribute("data-src")}}})})})})});
 </script>
