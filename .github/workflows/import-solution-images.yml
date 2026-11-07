@@ -45,10 +45,10 @@ jobs:
               "room-hotel.webp": "https://images.unsplash.com/photo-1760573776062-7d2a7baeb49d?auto=format&fit=crop&w=1800&q=86",
               "room-office.webp": "https://images.unsplash.com/photo-1765371512971-9d4da531d004?auto=format&fit=crop&w=1800&q=86",
               "hero-smart-control.webp": "https://images.pexels.com/photos/16423104/pexels-photo-16423104.jpeg",
-              "room-living-hq.webp": "https://images.pexels.com/photos/37760315/pexels-photo-37760315.jpeg",
-              "room-bedroom-hq.webp": "https://images.pexels.com/photos/31573582/pexels-photo-31573582.jpeg",
-              "room-hotel-hq.webp": "https://images.pexels.com/photos/27164975/pexels-photo-27164975.jpeg",
-              "room-office-hq.webp": "https://images.pexels.com/photos/18033206/pexels-photo-18033206.jpeg",
+              "room-living-hq.webp": "https://images.pexels.com/photos/28456458/pexels-photo-28456458.jpeg",
+              "room-bedroom-hq.webp": "https://images.pexels.com/photos/35868592/pexels-photo-35868592.jpeg",
+              "room-hotel-hq.webp": "https://images.pexels.com/photos/17948132/pexels-photo-17948132.jpeg",
+              "room-office-hq.webp": "https://images.pexels.com/photos/20390771/pexels-photo-20390771.jpeg",
           }
 
           out = Path("public/images/solutions")
