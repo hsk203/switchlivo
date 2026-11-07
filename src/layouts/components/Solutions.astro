@@ -1,352 +1,79 @@
 ---
-// Switchlivo Solutions page — rebuilt from the hongyan case-page layout,
-// with two sections deliberately removed per the owner's brief:
-//  - NO project-cases block (no real-estate project gallery)
-//  - NO immersive multi-mode interaction block (no near/mid/far cards)
-// Remaining structure: full-bleed hero slider, pain-phrase cloud,
-// panel-centred subsystem layout, room-scenario tabs, distributor strip.
-// Images: hero slides and room-scenario panels are Unsplash (free licence,
-// no Cloudflare R2 involved). To host them in-repo later, download them
-// into public/images/solutions/photos/ and swap the URLs below for local
-// paths — no other change needed.
-const slides = [
-  {
-    img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop",
-    alt: "Modern living room",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=2000&auto=format&fit=crop",
-    alt: "Modern kitchen",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=2000&auto=format&fit=crop",
-    alt: "Hotel-style bedroom",
-  },
+const applications = [
+  { no: "01", title: "Smart Home", desc: "Bring lighting, curtains, climate and everyday routines together through a consistent wall-control experience.", img: "/images/solutions/residential.svg", alt: "Contemporary residential smart home interior", tags: ["Whole-home control", "Room scenes", "Retrofit & new build"] },
+  { no: "02", title: "Smart Hotel", desc: "Create intuitive guest-room controls for lighting, climate, curtains and hospitality functions across room types.", img: "/images/solutions/hotel.svg", alt: "Contemporary hotel room with integrated wall controls", tags: ["Guest-room control", "DND & housekeeping", "Room standardization"] },
+  { no: "03", title: "Commercial & Office", desc: "Simplify shared-space operation with coordinated lighting and scene control for offices and meeting rooms.", img: "/images/solutions/commercial.svg", alt: "Modern commercial office interior", tags: ["Meeting scenes", "Shared spaces", "Centralized operation"] },
 ];
-
-const pains = [
-  "Protocols that don't talk to each other",
-  "Long customization lead times",
-  "Inconsistent quality between batches",
-  "No firmware or OTA support after shipment",
-  "Certification gaps blocking market entry",
-  "High MOQs that lock out smaller brands",
-  "After-sales burden falling on your team",
-  "Look-alike panels, uneven performance",
+const systems = [
+  ["Smart Lighting", "Switching, dimming and scene control for comfortable, flexible spaces."],
+  ["Climate Control", "Coordinate compatible air-conditioning and comfort devices from the wall."],
+  ["Curtains & Shading", "Bring compatible curtain motors into daily routines and room scenes."],
+  ["Hotel Functions", "Support guest-room functions such as DND and housekeeping where configured."],
+  ["Security & Sensors", "Connect supported sensors and security devices for clearer status and alerts."],
+  ["Centralized Control", "Combine supported functions in one consistent panel experience."],
 ];
-
-const systemsLeft = [
-  {
-    h: "Smart Lighting",
-    p: "Dimming, colour temperature and scenes from one panel — no extra wall clutter, no app-only control.",
-  },
-  {
-    h: "Climate & Comfort",
-    p: "AC, fresh air and floor heating linked to the panel, so one scene sets temperature and light together.",
-  },
-  {
-    h: "Energy Management",
-    p: "Panel-level energy view for homes and hotels, cutting standby waste without changing guest habits.",
-  },
-  {
-    h: "Security & Access",
-    p: "Arm, disarm and door status from the entry panel, with alerts pushed to the phone app.",
-  },
-];
-const systemsRight = [
-  {
-    h: "Curtains & Shading",
-    p: "Curtain motors join the same scene: movie mode closes curtains and dims lights in one tap.",
-  },
-  {
-    h: "Hotel Room Control",
-    p: "Guest-room panels for light, climate, curtains and Do Not Disturb — one standard panel per room type.",
-  },
-  {
-    h: "Office & Meeting",
-    p: "Meeting-room scenes for presentation, discussion and away — set from the wall, not a remote hunt.",
-  },
-  {
-    h: "Central Panel Hub",
-    p: "The switch panel is the hub: one glass panel commands every subsystem, with the app as backup.",
-  },
-];
-
-const scenarios = [
-  {
-    key: "entry",
-    tab: "Entryway",
-    title: "Walk in, and the home is already ready.",
-    img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2000&auto=format&fit=crop",
-    chips: [
-      { label: "Home Mode", text: "Lights on, security disarmed, fresh air and AC start from the entry panel." },
-      { label: "Away Mode", text: "One tap switches off lights and appliances and arms security." },
-      { label: "Guest Access", text: "Door status and intercom on the panel — see and talk before opening." },
-    ],
-  },
-  {
-    key: "kitchen",
-    tab: "Kitchen",
-    title: "Hands busy? The panel still listens to one tap.",
-    img: "https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=2000&auto=format&fit=crop",
-    chips: [
-      { label: "Scene Control", text: "Cooking, cleaning and dining presets for light and ventilation." },
-      { label: "Safety First", text: "Smoke and leak alerts shown on the panel and pushed to the phone." },
-      { label: "Easy Clean", text: "Flat glass panel, no gaps for grease — wipe clean in seconds." },
-    ],
-  },
-  {
-    key: "dining",
-    tab: "Dining",
-    title: "One scene, the right light for the table.",
-    img: "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=2000&auto=format&fit=crop",
-    chips: [
-      { label: "Dinner Scene", text: "Warm dimmed light, curtains closed, music-ready in one tap." },
-      { label: "Party Scene", text: "Brighter, livelier presets for hosting, still from one panel." },
-      { label: "Comfort", text: "Climate and air follow the room, not a separate remote." },
-    ],
-  },
-  {
-    key: "living",
-    tab: "Living Room",
-    title: "Touch the wall, and the room responds.",
-    img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=2000&auto=format&fit=crop",
-    chips: [
-      { label: "Movie Mode", text: "Curtains close, lights fade, TV scene ready — one panel." },
-      { label: "Host Mode", text: "Welcome light, music and climate for guests, set in advance." },
-      { label: "Energy Saving", text: "Standby power trimmed automatically, comfort untouched." },
-    ],
-  },
-  {
-    key: "bedroom",
-    tab: "Bedroom",
-    title: "One tap to sleep, one tap to rise.",
-    img: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=2000&auto=format&fit=crop",
-    chips: [
-      { label: "Sleep Mode", text: "Curtains and lights close, security arms, night-duty energy." },
-      { label: "Morning Mode", text: "Curtains open gently, lights warm up, the day starts softly." },
-      { label: "Hotel Ready", text: "Same panel logic for hotel rooms: sleep, wake, DND, housekeeping." },
-    ],
-  },
-  {
-    key: "bathroom",
-    tab: "Bathroom",
-    title: "Comfort and safety, handled quietly.",
-    img: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=2000&auto=format&fit=crop",
-    chips: [
-      { label: "Ventilation", text: "Humidity-linked fan control, no manual switching." },
-      { label: "Safety Watch", text: "Leak and overheating monitoring around the clock." },
-      { label: "Warm Start", text: "Pre-heat and mirror defog before you step in." },
-    ],
-  },
+const rooms = [
+  { key: "living", label: "Living Room", title: "A more considered way to live.", img: "/images/solutions/residential.svg", points: ["Set the mood with lighting scenes", "Coordinate curtains and climate", "Keep everyday controls close at hand"] },
+  { key: "bedroom", label: "Bedroom", title: "Comfort, from one bedside touch.", img: "/images/solutions/panel-detail.svg", points: ["Create sleep and wake-up routines", "Control bedside and ambient lighting", "Simplify daily operation"] },
+  { key: "hotel", label: "Hotel Room", title: "A consistent guest-room experience.", img: "/images/solutions/hotel.svg", points: ["Organize controls by room type", "Make key guest functions intuitive", "Support a cohesive room specification"] },
+  { key: "office", label: "Office", title: "Spaces that respond to the workday.", img: "/images/solutions/commercial.svg", points: ["Set meeting and presentation scenes", "Simplify shared-space lighting", "Keep controls clear for every user"] },
 ];
 ---
-
-<section class="sl">
-  <!-- HERO SLIDER -->
-  <div class="sl-hero">
-    {
-      slides.map((s, i) => (
-        <div class:list={["sl-slide", i === 0 && "on"]}>
-          <div class="sl-slide-bg" style={`background-image:url('${s.img}')`} role="img" aria-label={s.alt} />
-          <div class="sl-slide-shade" />
-        </div>
-      ))
-    }
-    <div class="sl-hero-main">
-      <h1 class="sl-hero-title">Smart Switch Panel Solutions</h1>
-      <p class="sl-hero-sub">One glass panel for home, hotel and office — lighting, climate, curtains and security, built for distributors and projects.</p>
-      <a href="/contact" class="sl-hero-btn">Request a Quote</a>
+<section class="solutions-page">
+  <section class="sol-hero">
+    <img class="sol-hero-image" src="/images/solutions/residential.svg" alt="Modern interior illustrating integrated smart switch panel control" fetchpriority="high" />
+    <div class="sol-hero-overlay"></div>
+    <div class="sol-container sol-hero-content">
+      <span class="sol-eyebrow">SWITCHLIVO SOLUTIONS</span>
+      <h1>Smart Control.<br /><em>Thoughtfully Connected.</em></h1>
+      <p>Smart switch panel solutions for residential, hospitality and commercial spaces — designed to bring everyday controls together in one refined interface.</p>
+      <div class="sol-actions"><a class="sol-btn" href="/contact">Discuss Your Project <span>↗</span></a><a class="sol-text-link" href="#applications">Explore Applications <span>↓</span></a></div>
     </div>
-    <button class="sl-arrow prev" type="button" aria-label="Previous slide">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7" /></svg>
-    </button>
-    <button class="sl-arrow next" type="button" aria-label="Next slide">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7" /></svg>
-    </button>
-    <div class="sl-dots">
-      {slides.map((_, i) => <span class:list={["sl-dot", i === 0 && "on"]} data-dot={i} />)}
-    </div>
-  </div>
+    <div class="sol-hero-note"><span>01 / 03</span><span>SMART SWITCH PANEL APPLICATIONS</span></div>
+  </section>
 
-  <!-- PAIN CLOUD -->
-  <div class="sl-pain">
-    <div class="sl-pain-shade" />
-    <div class="sl-wrap">
-      <h2 class="sl-pain-title">If any of these sound familiar, the panel is the problem — not your project.</h2>
-      <div class="sl-pain-cloud">
-        {pains.map((t) => <span class="p">{t}</span>)}
+  <section class="sol-intro sol-container">
+    <div><span class="sol-kicker">ONE PLATFORM, MANY SPACES</span><h2>Control that fits<br />the way spaces work.</h2></div>
+    <div class="sol-intro-copy"><p>Every project has different users, room types and operating needs. SwitchLivo brings key functions to the wall, helping create a simpler and more consistent control experience.</p><p>From a private residence to a hotel room or shared workspace, start with the application and configure the panel experience around the project.</p></div>
+  </section>
+
+  <section id="applications" class="sol-applications">
+    <div class="sol-container">
+      <div class="sol-section-head"><div><span class="sol-kicker">APPLICATIONS</span><h2>Solutions for real spaces.</h2></div><p>Explore how smart switch panels can support different environments and project requirements.</p></div>
+      <div class="sol-app-grid">
+        {applications.map((a) => <article class="sol-app-card"><div class="sol-app-image"><img src={a.img} alt={a.alt} loading="lazy" /><span class="sol-app-number">{a.no}</span></div><div class="sol-app-body"><h3>{a.title}</h3><p>{a.desc}</p><div class="sol-tags">{a.tags.map((tag) => <span>{tag}</span>)}</div><a href="/contact" class="sol-card-link">Discuss this application <b>↗</b></a></div></article>)}
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- SUBSYSTEMS: panel in the centre -->
-  <div class="sl-sys">
-    <div class="sl-wrap">
-      <h2 class="sl-tit">Eight Systems, One Panel</h2>
-      <p class="sl-sub">Everything runs through the switch panel on the wall. The phone app is a backup, not a requirement.</p>
-      <div class="sl-sys-grid">
-        <div class="sl-sys-col">
-          {systemsLeft.map((s) => (
-            <div class="sl-sys-item">
-              <h3>{s.h}</h3>
-              <p>{s.p}</p>
-            </div>
-          ))}
-        </div>
-        <div class="sl-sys-center" aria-label="Smart switch panel">
-          <div class="sl-panel">
-            <div class="sl-panel-top"><span>21:30</span><span>26°C</span></div>
-            <div class="sl-panel-btns">
-              <span>Lighting</span><span>Climate</span><span>Curtains</span><span>Scene</span>
-            </div>
-            <div class="sl-panel-foot">Switchlivo · Glass Touch Panel</div>
-          </div>
-        </div>
-        <div class="sl-sys-col">
-          {systemsRight.map((s) => (
-            <div class="sl-sys-item">
-              <h3>{s.h}</h3>
-              <p>{s.p}</p>
-            </div>
-          ))}
-        </div>
+  <section class="sol-systems">
+    <div class="sol-container">
+      <div class="sol-section-head sol-light-head"><div><span class="sol-kicker">CONNECTED FUNCTIONS</span><h2>Key functions, one<br />clear interface.</h2></div><p>Build a coherent control experience by bringing compatible devices and functions together through the smart switch panel.</p></div>
+      <div class="sol-system-layout">
+        <div class="sol-system-list">{systems.map((s,i) => <article class="sol-system-item"><span>0{i+1}</span><div><h3>{s[0]}</h3><p>{s[1]}</p></div></article>)}</div>
+        <div class="sol-panel-visual"><img src="/images/solutions/panel-detail.svg" alt="Illustrative smart touch panel interface" loading="lazy" /><div class="sol-panel-caption"><span>WALL CONTROL</span><strong>One touchpoint for everyday functions.</strong></div></div>
       </div>
+      <p class="sol-disclaimer">Available functions depend on the selected panel model, supported protocols and compatible devices. Confirm the configuration with our team before specification.</p>
     </div>
-  </div>
+  </section>
 
-  <!-- ROOM SCENARIOS -->
-  <div class="sl-scen">
-    <div class="sl-wrap">
-      <h2 class="sl-tit">Room by Room, One Panel Logic</h2>
-    </div>
-    <div class="sl-tabs" role="tablist">
-      {scenarios.map((s, i) => (
-        <button class:list={["sl-tab", i === 0 && "on"]} data-tab={s.key} role="tab" aria-selected={i === 0 ? "true" : "false"} type="button">{s.tab}</button>
-      ))}
-    </div>
-    {scenarios.map((s, i) => (
-      <div class:list={["sl-panel-scene", i === 0 && "on"]} data-panel={s.key}>
-        <div class="sl-panel-bg" style={`background-image:url('${s.img}')`} />
-        <div class="sl-panel-shade" />
-        <div class="sl-wrap sl-panel-content">
-          <h3 class="sl-panel-title">{s.title}</h3>
-          <ul class="sl-chips">
-            {s.chips.map((c) => (
-              <li><span class="tag">{c.label}</span><span class="tx">{c.text}</span></li>
-            ))}
-          </ul>
-          <a class="sl-panel-cta" href="/contact">Ask about this scenario <span class="ic">→</span></a>
-        </div>
-      </div>
-    ))}
-  </div>
+  <section class="sol-rooms">
+    <div class="sol-container"><div class="sol-section-head"><div><span class="sol-kicker">ROOM-BY-ROOM EXPERIENCE</span><h2>Designed around the room.</h2></div><p>Explore typical control priorities across key spaces. Actual functions can be tailored to the selected model and project design.</p></div></div>
+    <div class="sol-room-tabs" role="tablist" aria-label="Room applications">{rooms.map((r,i)=><button type="button" class:list={["sol-room-tab",i===0 && "active"]} data-room={r.key} role="tab" aria-selected={i===0 ? "true":"false"}>{r.label}</button>)}</div>
+    {rooms.map((r,i)=><div class:list={["sol-room-panel",i===0 && "active"]} data-room-panel={r.key}><img src={r.img} alt={r.label+" smart control environment"} loading="lazy" /><div class="sol-room-shade"></div><div class="sol-container sol-room-content"><span class="sol-kicker">ROOM APPLICATION / 0{i+1}</span><h3>{r.title}</h3><ul>{r.points.map(p=><li>{p}</li>)}</ul><a href="/contact" class="sol-btn">Plan This Space <span>↗</span></a></div></div>)}
+  </section>
 
-  <!-- DISTRIBUTOR STRIP -->
-  <div class="sl-strip">
-    <div class="sl-wrap sl-strip-grid">
-      <div>
-        <h2 class="sl-tit" style="text-align:left;margin-bottom:12px">For Distributors &amp; Projects</h2>
-        <p class="sl-sub" style="text-align:left;margin:0">Same panel platform across home, hotel and office projects — with your branding, your language and your market's voltage and frequency options. Confirm the exact model's certification for your market before ordering.</p>
-      </div>
-      <ul class="sl-strip-list">
-        <li><strong>OEM / ODM</strong><span>Your logo, UI language and packaging</span></li>
-        <li><strong>Sample first</strong><span>Test one panel before a bulk order</span></li>
-        <li><strong>Project support</strong><span>Room-type panel lists and scene presets</span></li>
-      </ul>
-    </div>
-  </div>
+  <section class="sol-partners">
+    <div class="sol-container sol-partner-grid"><div><span class="sol-kicker">FOR DISTRIBUTORS & PROJECT PARTNERS</span><h2>Make the solution<br />work for your market.</h2><p>Discuss product selection, branding and project requirements with our team. We can review the intended application and help identify a suitable panel configuration.</p><a href="/contact" class="sol-btn">Talk to SwitchLivo <span>↗</span></a></div><div class="sol-partner-points"><article><span>01</span><div><h3>OEM / ODM Enquiries</h3><p>Discuss logo, interface language and packaging requirements.</p></div></article><article><span>02</span><div><h3>Samples & Evaluation</h3><p>Review the selected model and compatibility before a larger order.</p></div></article><article><span>03</span><div><h3>Project Coordination</h3><p>Share room schedules and functional requirements for discussion.</p></div></article></div></div>
+  </section>
 </section>
 
 <style>
-  .sl { --acc: #fe6019; --ink: #111827; --mut: #5b6470; }
-  .sl-wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-  .sl-hero { position: relative; height: clamp(480px, 78vh, 680px); overflow: hidden; color: #fff; }
-  .sl-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease; }
-  .sl-slide.on { opacity: 1; }
-  .sl-slide-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
-  .sl-slide-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,13,17,0.72), rgba(10,13,17,0.25) 60%, rgba(10,13,17,0.1)); }
-  .sl-hero-main { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 150px 24px 0; }
-  .sl-hero-title { font-size: clamp(38px, 6vw, 68px); font-weight: 800; line-height: 1.1; margin: 0 0 16px; max-width: 760px; }
-  .sl-hero-sub { font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.88); max-width: 620px; margin: 0 0 28px; }
-  .sl-hero-btn { display: inline-block; background: var(--acc); color: #fff; font-weight: 700; padding: 13px 30px; border-radius: 4px; text-decoration: none; }
-  .sl-arrow { position: absolute; z-index: 3; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border: 1px solid rgba(255,255,255,0.6); background: rgba(0,0,0,0.25); color: #fff; border-radius: 50%; cursor: pointer; }
-  .sl-arrow svg { width: 22px; height: 22px; margin: 0 auto; display: block; }
-  .sl-arrow.prev { left: 22px; } .sl-arrow.next { right: 22px; }
-  .sl-dots { position: absolute; z-index: 3; left: 50%; bottom: 26px; transform: translateX(-50%); display: flex; gap: 10px; }
-  .sl-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; }
-  .sl-dot.on { background: var(--acc); }
-  .sl-pain { position: relative; background: #101418; color: #fff; padding: 72px 0; overflow: hidden; }
-  .sl-pain-shade { position: absolute; inset: 0; background: radial-gradient(600px 300px at 20% 0%, rgba(254,96,25,0.25), transparent 70%); }
-  .sl-pain-title { position: relative; font-size: clamp(22px, 3vw, 32px); font-weight: 700; max-width: 760px; margin: 0 0 28px; line-height: 1.4; }
-  .sl-pain-cloud { position: relative; display: flex; flex-wrap: wrap; gap: 12px; }
-  .sl-pain-cloud .p { border: 1px solid rgba(255,255,255,0.28); border-radius: 999px; padding: 9px 18px; font-size: 14px; color: rgba(255,255,255,0.85); }
-  .sl-tit { text-align: center; font-size: clamp(26px, 3.5vw, 38px); font-weight: 800; color: var(--ink); margin: 0 0 12px; }
-  .sl-sub { text-align: center; color: var(--mut); font-size: 16px; line-height: 1.65; max-width: 720px; margin: 0 auto 44px; }
-  .sl-sys { padding: 84px 0; background: #faf8f6; }
-  .sl-sys-grid { display: grid; grid-template-columns: 1fr 340px 1fr; gap: 40px; align-items: center; }
-  .sl-sys-item { margin-bottom: 30px; }
-  .sl-sys-item h3 { font-size: 18px; margin: 0 0 6px; color: var(--ink); }
-  .sl-sys-item p { font-size: 14.5px; line-height: 1.65; color: var(--mut); margin: 0; }
-  .sl-sys-center { display: flex; justify-content: center; }
-  .sl-panel { width: 280px; background: #0e1216; border-radius: 16px; padding: 22px; color: #fff; box-shadow: 0 24px 60px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.12); }
-  .sl-panel-top { display: flex; justify-content: space-between; font-size: 22px; font-weight: 700; margin-bottom: 22px; }
-  .sl-panel-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .sl-panel-btns span { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.14); border-radius: 8px; padding: 16px 8px; text-align: center; font-size: 13px; }
-  .sl-panel-foot { margin-top: 20px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.55); letter-spacing: 0.08em; }
-  .sl-scen { padding: 84px 0 0; }
-  .sl-tabs { display: flex; justify-content: center; flex-wrap: wrap; gap: 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; margin-top: 20px; }
-  .sl-tab { background: #fff; border: 0; border-right: 1px solid #eee; padding: 16px 26px; font-size: 15px; font-weight: 600; color: #666; cursor: pointer; }
-  .sl-tab.on { background: var(--acc); color: #fff; }
-  .sl-panel-scene { display: none; position: relative; height: clamp(520px, 75vh, 700px); overflow: hidden; color: #fff; }
-  .sl-panel-scene.on { display: block; }
-  .sl-panel-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
-  .sl-panel-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,13,17,0.55) 0%, rgba(10,13,17,0.38) 48%, rgba(10,13,17,0.18) 100%); }
-  .sl-panel-content { position: relative; z-index: 1; padding-top: 68px; max-width: 1200px; }
-  .sl-panel-title { font-size: 30px; font-weight: 700; line-height: 1.4; max-width: 560px; margin: 0 0 28px; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.45); }
-  .sl-chips { list-style: none; padding: 20px 20px 6px; margin: 0; max-width: 560px; background: rgba(10,13,17,0.48); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.16); border-radius: 12px; }
-  .sl-chips li { display: flex; gap: 12px; margin-bottom: 15px; align-items: flex-start; }
-  .sl-chips .tag { flex: 0 0 auto; background: var(--acc); color: #fff; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 3px; white-space: nowrap; }
-  .sl-chips .tx { color: rgba(255,255,255,0.82); font-size: 14px; line-height: 1.65; }
-  .sl-panel-cta { display: inline-flex; margin-top: 22px; color: #fff; background: var(--acc); padding: 12px 24px; border-radius: 999px; text-decoration: none; font-size: 14px; font-weight: 700; }
-  .sl-strip { padding: 64px 0; background: #fff; }
-  .sl-strip-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; }
-  .sl-strip-list { list-style: none; padding: 0; margin: 0; }
-  .sl-strip-list li { display: flex; flex-direction: column; border-left: 3px solid var(--acc); padding-left: 14px; margin-bottom: 18px; }
-  .sl-strip-list strong { color: var(--ink); } .sl-strip-list span { color: var(--mut); font-size: 14px; }
-  @media (max-width: 900px) {
-    .sl-sys-grid { grid-template-columns: 1fr; } .sl-sys-center { order: -1; }
-    .sl-strip-grid { grid-template-columns: 1fr; } .sl-hero-main { padding-top: 110px; }
-    .sl-panel-scene { height: auto; min-height: 560px; } .sl-panel-cta { right: 20px; bottom: 20px; }
-  }
+.solutions-page{--navy:#111b24;--orange:#e96b3a;--ink:#18232c;--muted:#69737b;--cream:#f5f3ef;color:var(--ink)}.sol-container{width:min(1180px,calc(100% - 48px));margin-inline:auto}.sol-hero{height:min(740px,78vh);min-height:570px;position:relative;overflow:hidden;background:#27343b;color:#fff}.sol-hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.sol-hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,22,29,.84),rgba(12,22,29,.42) 58%,rgba(12,22,29,.08))}.sol-hero-content{position:relative;z-index:1;padding-top:clamp(125px,17vh,190px)}.sol-eyebrow,.sol-kicker{font-size:11px;font-weight:800;letter-spacing:.19em;color:var(--orange)}.sol-hero h1{font-size:clamp(44px,6.5vw,78px);line-height:1.04;letter-spacing:-.045em;margin:22px 0;max-width:820px;color:#fff}.sol-hero h1 em{font-style:normal;color:#f0a17f}.sol-hero-content>p{max-width:590px;color:rgba(255,255,255,.82);font-size:17px;line-height:1.8}.sol-actions{display:flex;align-items:center;gap:28px;margin-top:34px}.sol-btn{display:inline-flex;align-items:center;gap:25px;background:var(--orange);color:white!important;text-decoration:none;padding:15px 22px;font-size:13px;font-weight:750;letter-spacing:.02em;transition:transform .2s,background .2s}.sol-btn:hover{background:#d85d30;transform:translateY(-2px)}.sol-btn span{font-size:18px}.sol-text-link{color:white;text-decoration:none;font-size:13px}.sol-text-link span{color:#f0a17f;margin-left:8px}.sol-hero-note{position:absolute;bottom:28px;left:max(24px,calc((100% - 1180px)/2));right:max(24px,calc((100% - 1180px)/2));display:flex;justify-content:space-between;border-top:1px solid #ffffff55;padding-top:13px;color:#ffffffb8;font-size:10px;letter-spacing:.16em}.sol-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;padding-block:105px}.sol-intro h2,.sol-section-head h2,.sol-partners h2{font-size:clamp(34px,4.4vw,52px);line-height:1.12;letter-spacing:-.035em;margin:15px 0 0}.sol-intro-copy{padding-top:16px;max-width:550px}.sol-intro-copy p,.sol-section-head>p,.sol-partners p{color:var(--muted);font-size:15px;line-height:1.85}.sol-applications{background:var(--cream);padding:88px 0 100px}.sol-section-head{display:flex;justify-content:space-between;align-items:end;gap:45px;margin-bottom:42px}.sol-section-head>p{max-width:390px;margin:0 0 5px}.sol-app-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.sol-app-card{background:white;min-width:0}.sol-app-image{height:245px;position:relative;overflow:hidden;background:#ddd}.sol-app-image img{width:100%;height:100%;object-fit:cover;transition:transform .6s}.sol-app-card:hover .sol-app-image img{transform:scale(1.04)}.sol-app-number{position:absolute;left:18px;top:18px;background:var(--orange);color:#fff;padding:8px 11px;font-size:11px;letter-spacing:.1em}.sol-app-body{padding:25px 25px 26px}.sol-app-body h3{font-size:24px;margin:0 0 12px}.sol-app-body>p{color:var(--muted);font-size:14px;line-height:1.75;min-height:74px;margin:0}.sol-tags{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0 24px}.sol-tags span{font-size:10px;color:#53606a;background:#f2f2ef;padding:7px 9px}.sol-card-link{display:flex;justify-content:space-between;border-top:1px solid #e8e8e5;padding-top:16px;color:var(--ink);font-size:12px;font-weight:750;text-decoration:none}.sol-card-link b{color:var(--orange);font-size:17px}.sol-systems{background:var(--navy);color:#fff;padding:100px 0 70px}.sol-light-head h2{color:white}.sol-light-head>p{color:#b5bec3}.sol-system-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:65px;align-items:center}.sol-system-list{display:grid;grid-template-columns:1fr 1fr;column-gap:32px}.sol-system-item{display:flex;gap:15px;padding:22px 0;border-top:1px solid #ffffff25}.sol-system-item>span{font-size:11px;color:var(--orange);padding-top:4px}.sol-system-item h3{font-size:16px;margin:0 0 8px;color:#fff}.sol-system-item p{font-size:12px;line-height:1.7;color:#aeb9bf;margin:0}.sol-panel-visual{position:relative;max-width:420px;margin:auto}.sol-panel-visual img{width:100%;display:block}.sol-panel-caption{position:absolute;bottom:24px;left:24px;right:24px;background:#111b24e8;padding:16px 18px;display:flex;flex-direction:column;gap:6px}.sol-panel-caption span{font-size:9px;letter-spacing:.16em;color:var(--orange)}.sol-panel-caption strong{font-size:14px;color:#fff}.sol-disclaimer{font-size:11px;color:#829099;line-height:1.6;margin:28px 0 0}.sol-rooms{padding:100px 0 0}.sol-room-tabs{display:flex;justify-content:center;flex-wrap:wrap;border-block:1px solid #e6e6e2;margin-top:35px}.sol-room-tab{border:0;background:#fff;padding:17px 28px;color:#68727a;font-size:13px;font-weight:700;cursor:pointer;border-bottom:3px solid transparent}.sol-room-tab.active{color:var(--ink);border-bottom-color:var(--orange)}.sol-room-panel{display:none;position:relative;min-height:560px;overflow:hidden;color:white}.sol-room-panel.active{display:block}.sol-room-panel>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.sol-room-shade{position:absolute;inset:0;background:linear-gradient(90deg,#111b24d9,#111b2475 55%,#111b2420)}.sol-room-content{position:relative;padding-top:82px;padding-bottom:75px}.sol-room-content h3{font-size:clamp(32px,4vw,48px);max-width:560px;line-height:1.15;margin:17px 0 25px;color:#fff}.sol-room-content ul{list-style:none;padding:0;margin:0 0 30px}.sol-room-content li{padding:10px 0 10px 22px;position:relative;color:#ffffffdc;font-size:14px}.sol-room-content li:before{content:"";position:absolute;left:0;top:18px;width:7px;height:7px;background:var(--orange);border-radius:50%}.sol-partners{background:var(--cream);padding:100px 0}.sol-partner-grid{display:grid;grid-template-columns:1fr .9fr;gap:90px;align-items:center}.sol-partners h2{margin-bottom:20px}.sol-partners p{max-width:500px;margin-bottom:28px}.sol-partner-points article{display:flex;gap:22px;padding:23px 0;border-bottom:1px solid #dcdedb}.sol-partner-points article:first-child{border-top:1px solid #dcdedb}.sol-partner-points article>span{font-size:12px;color:var(--orange);padding-top:4px}.sol-partner-points h3{font-size:17px;margin:0 0 6px}.sol-partner-points p{font-size:13px;margin:0}
+@media(max-width:800px){.sol-container{width:min(100% - 36px,620px)}.sol-hero{min-height:570px;height:75vh}.sol-hero-content{padding-top:130px}.sol-intro,.sol-partner-grid{grid-template-columns:1fr;gap:24px;padding-block:72px}.sol-section-head{display:block}.sol-section-head>p{margin-top:18px}.sol-app-grid{grid-template-columns:1fr}.sol-app-image{height:260px}.sol-app-body>p{min-height:0}.sol-systems{padding:72px 0 50px}.sol-system-layout{grid-template-columns:1fr;gap:25px}.sol-system-list{column-gap:18px}.sol-panel-visual{max-width:330px}.sol-rooms{padding-top:72px}.sol-room-tabs{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap}.sol-room-tab{white-space:nowrap;padding:16px 18px}.sol-room-panel{min-height:540px}.sol-room-content{padding-top:65px}.sol-partners{padding:72px 0}.sol-partner-grid{padding-block:0;gap:35px}}
+@media(max-width:480px){.sol-hero h1{font-size:43px}.sol-hero-content>p{font-size:15px}.sol-actions{align-items:flex-start;flex-direction:column;gap:18px}.sol-hero-note{font-size:8px}.sol-system-list{grid-template-columns:1fr}.sol-room-content h3{font-size:34px}.sol-room-panel{min-height:570px}}
+@media(prefers-reduced-motion:reduce){.sol-app-image img,.sol-btn{transition:none}}
 </style>
-
 <script>
-  document.addEventListener("astro:page-load", () => {
-    const root = document.querySelector(".sl");
-    if (!root) return;
-    const slides = root.querySelectorAll(".sl-slide");
-    const dots = root.querySelectorAll(".sl-dot");
-    let cur = 0, timer = null;
-    const show = (idx) => {
-      cur = (idx + slides.length) % slides.length;
-      slides.forEach((s, i) => s.classList.toggle("on", i === cur));
-      dots.forEach((d, i) => d.classList.toggle("on", i === cur));
-    };
-    const restart = () => { if (timer) clearInterval(timer); timer = setInterval(() => show(cur + 1), 5500); };
-    root.querySelector(".sl-arrow.prev")?.addEventListener("click", () => { show(cur - 1); restart(); });
-    root.querySelector(".sl-arrow.next")?.addEventListener("click", () => { show(cur + 1); restart(); });
-    dots.forEach((d) => d.addEventListener("click", () => { show(Number(d.dataset.dot)); restart(); }));
-    if (slides.length > 1) restart();
-    const tabs = root.querySelectorAll(".sl-tab");
-    const panels = root.querySelectorAll(".sl-panel-scene");
-    const activate = (tab) => {
-      const key = tab.getAttribute("data-tab");
-      tabs.forEach((t) => { t.classList.remove("on"); t.setAttribute("aria-selected", "false"); });
-      panels.forEach((p) => p.classList.remove("on"));
-      tab.classList.add("on"); tab.setAttribute("aria-selected", "true");
-      root.querySelector(`.sl-panel-scene[data-panel="${key}"]`)?.classList.add("on");
-    };
-    tabs.forEach((tab) => { tab.addEventListener("mouseenter", () => activate(tab)); tab.addEventListener("click", () => activate(tab)); });
-  });
+document.addEventListener("astro:page-load",()=>{document.querySelectorAll(".solutions-page").forEach((root)=>{const tabs=root.querySelectorAll(".sol-room-tab");const panels=root.querySelectorAll(".sol-room-panel");tabs.forEach((tab)=>{tab.addEventListener("click",()=>{const key=tab.dataset.room;tabs.forEach(t=>{t.classList.toggle("active",t===tab);t.setAttribute("aria-selected",t===tab?"true":"false")});panels.forEach(p=>p.classList.toggle("active",p.dataset.roomPanel===key))})})})});
 </script>
