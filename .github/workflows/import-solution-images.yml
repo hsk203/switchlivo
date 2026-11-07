@@ -58,9 +58,21 @@ jobs:
                   raw = response.read()
               image = Image.open(BytesIO(raw))
               image = ImageOps.exif_transpose(image).convert("RGB")
-              image.thumbnail((5000, 4000), Image.Resampling.LANCZOS)
+              # Room-tab photography is displayed in a wide 1180px panel.
+              # Keep a 2x source for high-density screens without shipping oversized originals.
+              if filename in {
+                  "room-living-hq.webp",
+                  "room-bedroom-hq.webp",
+                  "room-hotel-hq.webp",
+                  "room-office-hq.webp",
+              }:
+                  image.thumbnail((2200, 1400), Image.Resampling.LANCZOS)
+                  quality = 80
+              else:
+                  image.thumbnail((5000, 4000), Image.Resampling.LANCZOS)
+                  quality = 88
               target = out / filename
-              image.save(target, "WEBP", quality=88, method=6)
+              image.save(target, "WEBP", quality=quality, method=6)
               print(f"{target}: {image.width}x{image.height}, {target.stat().st_size} bytes")
           PY
 
