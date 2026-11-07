@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Download and optimize licensed Unsplash photos
+      - name: Download and optimize licensed Pexels and Unsplash photos
         run: |
           python -m pip install --disable-pip-version-check Pillow
           mkdir -p public/images/solutions
@@ -43,6 +43,11 @@ jobs:
               "room-bedroom.webp": "https://images.unsplash.com/photo-1774716926071-fc03e73d0806?auto=format&fit=crop&w=1800&q=86",
               "room-hotel.webp": "https://images.unsplash.com/photo-1760573776062-7d2a7baeb49d?auto=format&fit=crop&w=1800&q=86",
               "room-office.webp": "https://images.unsplash.com/photo-1765371512971-9d4da531d004?auto=format&fit=crop&w=1800&q=86",
+              "hero-smart-control.webp": "https://images.pexels.com/photos/16423104/pexels-photo-16423104.jpeg",
+              "room-living-hq.webp": "https://images.pexels.com/photos/37760315/pexels-photo-37760315.jpeg",
+              "room-bedroom-hq.webp": "https://images.pexels.com/photos/31573582/pexels-photo-31573582.jpeg",
+              "room-hotel-hq.webp": "https://images.pexels.com/photos/27164975/pexels-photo-27164975.jpeg",
+              "room-office-hq.webp": "https://images.pexels.com/photos/18033206/pexels-photo-18033206.jpeg",
           }
 
           out = Path("public/images/solutions")
@@ -52,15 +57,15 @@ jobs:
                   raw = response.read()
               image = Image.open(BytesIO(raw))
               image = ImageOps.exif_transpose(image).convert("RGB")
-              image.thumbnail((2400, 1800), Image.Resampling.LANCZOS)
+              image.thumbnail((5000, 4000), Image.Resampling.LANCZOS)
               target = out / filename
-              image.save(target, "WEBP", quality=84, method=6)
+              image.save(target, "WEBP", quality=88, method=6)
               print(f"{target}: {image.width}x{image.height}, {target.stat().st_size} bytes")
           PY
 
       - name: Verify generated assets
         run: |
-          test "$(find public/images/solutions -maxdepth 1 -name '*.webp' | wc -l)" -eq 10
+          test "$(find public/images/solutions -maxdepth 1 -name '*.webp' | wc -l)" -eq 15
           file public/images/solutions/*.webp
           du -h public/images/solutions/*.webp
 
