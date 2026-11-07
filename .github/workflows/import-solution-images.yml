@@ -38,6 +38,11 @@ jobs:
               "hotel.webp": "https://images.unsplash.com/photo-1776500587913-6e55907a738e?auto=format&fit=crop&w=1800&q=86",
               "office.webp": "https://images.unsplash.com/photo-1774953037913-af0cf688491a?auto=format&fit=crop&w=1800&q=86",
               "switch-panel.webp": "https://images.unsplash.com/photo-1739083168122-f1f59db99e78?auto=format&fit=crop&w=1400&q=88",
+              "hero-main.webp": "https://images.unsplash.com/photo-1772797583328-f83bc3f94f80?auto=format&fit=crop&w=2400&q=88",
+              "room-living.webp": "https://images.unsplash.com/photo-1774200981075-a728eaaa3824?auto=format&fit=crop&w=1800&q=86",
+              "room-bedroom.webp": "https://images.unsplash.com/photo-1774716926071-fc03e73d0806?auto=format&fit=crop&w=1800&q=86",
+              "room-hotel.webp": "https://images.unsplash.com/photo-1760573776062-7d2a7baeb49d?auto=format&fit=crop&w=1800&q=86",
+              "room-office.webp": "https://images.unsplash.com/photo-1765371512971-9d4da531d004?auto=format&fit=crop&w=1800&q=86",
           }
 
           out = Path("public/images/solutions")
@@ -55,7 +60,7 @@ jobs:
 
       - name: Verify generated assets
         run: |
-          test "$(find public/images/solutions -maxdepth 1 -name '*.webp' | wc -l)" -eq 5
+          test "$(find public/images/solutions -maxdepth 1 -name '*.webp' | wc -l)" -eq 10
           file public/images/solutions/*.webp
           du -h public/images/solutions/*.webp
 
