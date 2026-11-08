@@ -1,78 +1,1039 @@
 ---
-const applications = [
-  { no: "01", title: "Smart Home", desc: "Bring lighting, curtains, climate and everyday routines together through a consistent wall-control experience.", img: "/images/solutions/residential.webp", alt: "Contemporary residential smart home interior", tags: ["Whole-home control", "Room scenes", "Retrofit & new build"] },
-  { no: "02", title: "Smart Hotel", desc: "Create intuitive guest-room controls for lighting, climate, curtains and hospitality functions across room types.", img: "/images/solutions/hotel.webp", alt: "Contemporary hotel room with integrated wall controls", tags: ["Guest-room control", "DND & housekeeping", "Room standardization"] },
-  { no: "03", title: "Commercial & Office", desc: "Simplify shared-space operation with coordinated lighting and scene control for offices and meeting rooms.", img: "/images/solutions/office.webp", alt: "Modern commercial office interior", tags: ["Meeting scenes", "Shared spaces", "Centralized operation"] },
+// Solutions page content — visual language faithfully mirrors the hongyan
+// case.html design: full-bleed photo hero slider (huge white title + translucent
+// accent button + arrows), a floating pain-phrase cloud on a dark photo,
+// center-product-with-side-annotations subsystem layout, square-corner
+// interaction cards, and a flush tab bar with full-bleed room scenes.
+// Accent = brand orange #FE6019 (hongyan uses green #009d85).
+import config from "@/config/config.json";
+
+const { email, phone } = config.params;
+const phonePretty = "+852 6419 0941";
+
+const slides = [
+  { img: "/images/solutions/photos/hero.jpg" },
+  { img: "/images/solutions/photos/kitchen.jpg" },
+  { img: "/images/solutions/photos/bedroom.jpg" },
 ];
-const systems = [
-  ["Smart Lighting", "Switching, dimming and scene control for comfortable, flexible spaces."],
-  ["Climate Control", "Coordinate compatible air-conditioning and comfort devices from the wall."],
-  ["Curtains & Shading", "Bring compatible curtain motors into daily routines and room scenes."],
-  ["Hotel Functions", "Support guest-room functions such as DND and housekeeping where configured."],
-  ["Security & Sensors", "Connect supported sensors and security devices for clearer status and alerts."],
-  ["Centralized Control", "Combine supported functions in one consistent panel experience."],
+
+// pain cloud — sizes & opacities alternate like hongyan's s2 phrase wall
+const pains = [
+  { t: "Protocols that don't talk to each other", c: "px" },
+  { t: "Long customization lead times", c: "p1" },
+  { t: "Inconsistent quality between batches", c: "p2" },
+  { t: "No firmware or OTA support after shipment", c: "p4" },
+  { t: "Certification gaps blocking market entry", c: "p1" },
+  { t: "High MOQs that lock out smaller brands", c: "p3" },
+  { t: "After-sales burden falling on your team", c: "p1" },
+  { t: "Look-alike panels, uneven performance", c: "p5" },
+  { t: "No white-label or ODM service", c: "p2" },
+  { t: "Slow, hard-to-reach supplier support", c: "p3" },
+  { t: "Unclear roadmap for Matter & new standards", c: "p6" },
+  { t: "Energy data you can't act on", c: "p1" },
 ];
-const rooms = [
-  { key: "living", label: "Living Room", title: "A more considered way to live.", img: "/images/solutions/room-living-hq.webp", points: ["Set the mood with lighting scenes", "Coordinate curtains and climate", "Keep everyday controls close at hand"] },
-  { key: "bedroom", label: "Bedroom", title: "Comfort, from one bedside touch.", img: "/images/solutions/room-bedroom-hq.webp", points: ["Create sleep and wake-up routines", "Control bedside and ambient lighting", "Simplify daily operation"] },
-  { key: "hotel", label: "Hotel Room", title: "A consistent guest-room experience.", img: "/images/solutions/room-hotel-hq.webp", points: ["Organize controls by room type", "Make key guest functions intuitive", "Support a cohesive room specification"] },
-  { key: "office", label: "Office", title: "Spaces that respond to the workday.", img: "/images/solutions/room-office-hq.webp", points: ["Set meeting and presentation scenes", "Simplify shared-space lighting", "Keep controls clear for every user"] },
+
+const subsystemsLeft = [
+  {
+    h: "Security Monitoring",
+    p: "Video surveillance with whole-home arming; intrusion and anomaly alerts with one-touch emergency call.",
+  },
+  {
+    h: "Healthy Environment",
+    p: "Temperature, humidity, PM2.5 and VOC link AC, fresh air, purifiers and floor heating to optimize the indoors.",
+  },
+  {
+    h: "Energy Management",
+    p: "Household energy monitoring with remote appliance control for a safer, clearer power bill.",
+  },
+  {
+    h: "Smart Lighting",
+    p: "Remote and voice control, stepless dimming and color tuning, scene management, adaptive brightness.",
+  },
+];
+const subsystemsRight = [
+  {
+    h: "AV & Entertainment",
+    p: "One-touch movie mode: curtains close, lights fade with the TV — a private cinema at home.",
+  },
+  {
+    h: "Smart Water",
+    p: "Central purification, antibacterial lines, safe drinking and smart leak protection for every scene.",
+  },
+  {
+    h: "Home Management",
+    p: "Health, energy and environment management systems that quietly lift everyday living.",
+  },
+  {
+    h: "Central Management Hub",
+    p: "One integrated smart central control connecting and commanding every subsystem in the home.",
+  },
+];
+
+const interactions = [
+  {
+    h: "Near Interaction",
+    p: "Smart panels as the control terminal — keys and touch run whole-home scenes like wake, sleep, host and away, plus single-device control at close range.",
+    icon: "M4 7h16M4 12h16M4 17h10",
+  },
+  {
+    h: "Mid Interaction",
+    p: "Voice panels and assistant speakers link into precise mid-range voice control of lights, curtains and appliances across the home.",
+    icon: "M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3",
+  },
+  {
+    h: "Far Interaction",
+    p: "Away from home, manage every system from the phone app — locks, AC, lights — receive alerts, make video calls, and check home status in real time.",
+    icon: "M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM11 18h2",
+  },
+];
+
+const scenarios = [
+  {
+    key: "entry",
+    tab: "Smart Entryway",
+    tabIcon: "M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17M4 21h16M15 12h.01",
+    title: "Walk in, leave the stress at the door —\nenjoy the warmth of home.",
+    chips: [
+      { label: "Home Mode", text: "Smart lock senses the door opening: lights on, security disarmed, fresh air and AC start" },
+      { label: "Away Mode", text: "One tap switches off all lights and appliances, auto-arms security, closes the windows" },
+      { label: "Video Intercom", text: "Central screen connects to the door station — see visitors, talk, and grant access" },
+      { label: "Home Services", text: "Cleaning bookings, maintenance visits and parcel access, all from the entry panel" },
+    ],
+  },
+  {
+    key: "kitchen",
+    tab: "Smart Kitchen",
+    tabIcon: "M4 10h16M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3M3 10v2a5 5 0 0 0 5 5h8a5 5 0 0 0 5-5v-2M9 20h6",
+    title: "Hidden risks removed —\ncooking becomes a pleasure.",
+    chips: [
+      { label: "Voice Interaction", text: "Lights, hood and appliances respond without touching anything" },
+      { label: "Life Services", text: "Fresh grocery ordering and ready-meal delivery via the panel" },
+      { label: "Smart Water", text: "Purified, monitored water for cooking and drinking" },
+      { label: "Leak & Smoke", text: "Water-leak and smoke detection with instant phone alerts" },
+    ],
+  },
+  {
+    key: "dining",
+    tab: "Smart Dining",
+    tabIcon: "M7 3v6a2 2 0 0 0 4 0V3M9 11v10M17 3c-1.5 2-1.5 5 0 7v11",
+    title: "Warm, romantic scenes —\nan elegant dinner at home.",
+    chips: [
+      { label: "Voice Interaction", text: "Scenes change hands-free while you host" },
+      { label: "Smart Lighting", text: "Dinner, party and candlelight presets in one tap" },
+      { label: "Comfort Environment", text: "Air quality and climate auto-tuned to the room, linked with fresh air and AC" },
+    ],
+  },
+  {
+    key: "living",
+    tab: "Smart Living Room",
+    tabIcon: "M5 11V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3M4 11a2 2 0 0 1 2 2v2h12v-2a2 2 0 1 1 4 0v5H2v-5a2 2 0 0 1 2-2zM6 20v1M18 20v1",
+    title: "Voice, touch and phone —\na living room that responds.",
+    chips: [
+      { label: "AI Hosting", text: "Guest scene welcomes visitors with light, music and climate" },
+      { label: "Cozy AV", text: "Movie mode: curtains close, lights fade as the TV starts" },
+      { label: "Healthy Environment", text: "Air and temperature tuned to the moment" },
+      { label: "Energy Management", text: "Standby power trimmed intelligently, comfort untouched" },
+    ],
+  },
+  {
+    key: "bedroom",
+    tab: "Smart Bedroom",
+    tabIcon: "M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 14h18M7 9V6h10v3",
+    title: "One tap to sleep, one tap to rise —\na good night built into the walls.",
+    chips: [
+      { label: "Sleep Mode", text: "Curtains and lights close, security arms, energy shifts to night duty" },
+      { label: "Morning Mode", text: "Curtains open, security disarms, the day's weather plays softly" },
+      { label: "Human-centric Light", text: "A warm wake-up glow instead of a blaring alarm" },
+      { label: "Safety Management", text: "Security and climate stay on guard through the night" },
+    ],
+  },
+  {
+    key: "bathroom",
+    tab: "Smart Bathroom",
+    tabIcon: "M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2zM6 12V5a2 2 0 0 1 4 0M8 21l-1 1M17 21l1 1",
+    title: "From grooming to comfort —\na brand-new bathing experience.",
+    chips: [
+      { label: "Voice Control", text: "Lights, mirror and ventilation respond hands-free" },
+      { label: "Safety Protection", text: "Leak, humidity and overheating watched around the clock" },
+      { label: "Remote Control", text: "Pre-heat the bathroom before you're even home" },
+      { label: "Healthy Living", text: "Fresh air and comfort managed automatically" },
+    ],
+  },
 ];
 ---
-<section class="solutions-page">
-  <section class="sol-hero">
-    <div class="sol-hero-image"><img src="/images/solutions/hero-smart-control.webp" alt="Contemporary smart home interior with integrated wall control" fetchpriority="high" /><div class="sol-hero-image-shade"></div></div>
-    <div class="sol-container sol-hero-content">
-      <span class="sol-eyebrow">SWITCHLIVO SOLUTIONS</span>
-      <h1>Smart Control.<br /><em>Thoughtfully Connected.</em></h1>
-      <p>Smart switch panel solutions for residential, hospitality and commercial spaces — designed to bring everyday controls together in one refined interface.</p>
-      <div class="sol-actions"><a class="sol-btn" href="/contact">Discuss Your Project <span>↗</span></a><a class="sol-text-link" href="#applications">Explore Applications <span>↓</span></a></div>
+
+<section class="hy" id="solutions">
+  <!-- HERO SLIDER (full-bleed) -->
+  <div class="hy-hero">
+    {
+      slides.map((s, i) => (
+        <div class:list={["hy-slide", i === 0 && "on"]}>
+          <div class="hy-slide-bg" style={`background-image:url('${s.img}')`} />
+          <div class="hy-slide-shade" />
+        </div>
+      ))
+    }
+    <div class="hy-hero-main">
+      <h1 class="hy-hero-title">Whole-Home Smart Solutions</h1>
+      <a href="/contact" class="hy-hero-btn">Customize Now</a>
     </div>
-    <div class="sol-hero-note"><span>01 / 03</span><span>SMART SWITCH PANEL APPLICATIONS</span></div>
-  </section>
+    <button class="hy-arrow prev" type="button" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7" /></svg>
+    </button>
+    <button class="hy-arrow next" type="button" aria-label="Next slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7" /></svg>
+    </button>
+    <div class="hy-dots">
+      {slides.map((_, i) => <span class:list={["hy-dot", i === 0 && "on"]} data-dot={i} />)}
+    </div>
+  </div>
 
-  <section class="sol-intro sol-container">
-    <div><span class="sol-kicker">ONE PLATFORM, MANY SPACES</span><h2>Control that fits<br />the way spaces work.</h2></div>
-    <div class="sol-intro-copy"><p>Every project has different users, room types and operating needs. SwitchLivo brings key functions to the wall, helping create a simpler and more consistent control experience.</p><p>From a private residence to a hotel room or shared workspace, start with the application and configure the panel experience around the project.</p></div>
-  </section>
-
-  <section id="applications" class="sol-applications">
-    <div class="sol-container">
-      <div class="sol-section-head"><div><span class="sol-kicker">APPLICATIONS</span><h2>Solutions for real spaces.</h2></div><p>Explore how smart switch panels can support different environments and project requirements.</p></div>
-      <div class="sol-app-grid">
-        {applications.map((a) => <article class="sol-app-card"><div class="sol-app-image"><img src={a.img} alt={a.alt} loading="lazy" /><span class="sol-app-number">{a.no}</span></div><div class="sol-app-body"><h3>{a.title}</h3><p>{a.desc}</p><div class="sol-tags">{a.tags.map((tag) => <span>{tag}</span>)}</div><a href="/contact" class="sol-card-link">Discuss this application <b>↗</b></a></div></article>)}
+  <!-- PAIN CLOUD (full-bleed dark photo) -->
+  <div class="hy-pain">
+    <div class="hy-pain-shade" />
+    <div class="hy-wrap">
+      <div class="hy-pain-cloud">
+        {pains.map((p) => <span class:list={["p", p.c]}>{p.t}</span>)}
+      </div>
+      <div class="hy-pain-note">
+        <p>
+          Sound familiar? <a href="/contact">Talk to our OEM &amp; ODM team</a> —
+          {email} · {phonePretty}
+        </p>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="sol-systems">
-    <div class="sol-container">
-      <div class="sol-section-head sol-light-head"><div><span class="sol-kicker">CONNECTED FUNCTIONS</span><h2>Key functions, one<br />clear interface.</h2></div><p>Build a coherent control experience by bringing compatible devices and functions together through the smart switch panel.</p></div>
-      <div class="sol-system-layout">
-        <div class="sol-system-list">{systems.map((s,i) => <article class="sol-system-item"><span>0{i+1}</span><div><h3>{s[0]}</h3><p>{s[1]}</p></div></article>)}</div>
-        <div class="sol-panel-visual"><img src="/images/solutions/switch-panel.webp" alt="Illustrative smart touch panel interface" loading="lazy" /><div class="sol-panel-caption"><span>WALL CONTROL</span><strong>One touchpoint for everyday functions.</strong></div></div>
+  <!-- SUBSYSTEMS: center product + side annotations (light) -->
+  <div class="hy-sys">
+    <div class="hy-wrap">
+      <h2 class="hy-tit hy-tit--lg">Eight Systems, One Ecosystem</h2>
+      <p class="hy-tit-sub">
+        Smart panels as the control terminal — every subsystem interoperates,
+        and every piece can be customized for your brand.
+      </p>
+      <div class="hy-sys-grid">
+        <div class="hy-sys-col hy-sys-col--l">
+          {
+            subsystemsLeft.map((it) => (
+              <div class="hy-sys-item">
+                <div class="txt1">
+                  <div class="h">{it.h}</div>
+                  <div class="p">{it.p}</div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div class="hy-sys-center">
+          <span class="hy-ring hy-ring--1" aria-hidden="true" />
+          <span class="hy-ring hy-ring--2" aria-hidden="true" />
+          <img
+            src="https://cdn.switchlivo.com/products/x10-1-gang-smart-light-switch.webp?v=2"
+            alt="Switchlivo smart panel"
+            loading="lazy"
+          />
+        </div>
+        <div class="hy-sys-col hy-sys-col--r">
+          {
+            subsystemsRight.map((it) => (
+              <div class="hy-sys-item">
+                <div class="txt1">
+                  <div class="h">{it.h}</div>
+                  <div class="p">{it.p}</div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
       </div>
-      <p class="sol-disclaimer">Available functions depend on the selected panel model, supported protocols and compatible devices. Confirm the configuration with our team before specification.</p>
     </div>
-  </section>
+  </div>
 
-  <section class="sol-rooms">
-    <div class="sol-container"><div class="sol-section-head"><div><span class="sol-kicker">ROOM-BY-ROOM EXPERIENCE</span><h2>Designed around the room.</h2></div><p>Explore typical control priorities across key spaces. Actual functions can be tailored to the selected model and project design.</p></div></div>
-    <div class="sol-room-tabs" role="tablist" aria-label="Room applications">{rooms.map((r,i)=><button type="button" class:list={["sol-room-tab",i===0 && "active"]} data-room={r.key} role="tab" aria-selected={i===0 ? "true":"false"}>{r.label}</button>)}</div>
-    {rooms.map((r,i)=><div class:list={["sol-room-panel",i===0 && "active"]} data-room-panel={r.key}><img src={i === 0 ? r.img : undefined} data-src={i === 0 ? undefined : r.img} alt={r.label+" interior designed for intuitive smart control"} loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : "auto"} decoding="async" /><div class="sol-room-shade"></div><div class="sol-container sol-room-content"><span class="sol-kicker">ROOM APPLICATION / 0{i+1}</span><h3>{r.title}</h3><ul>{r.points.map(p=><li>{p}</li>)}</ul><a href="/contact" class="sol-btn">Plan This Space <span>↗</span></a></div></div>)}
-  </section>
+  <!-- INTERACTION: square-corner cards, image top / text below -->
+  <div class="hy-inter">
+    <div class="hy-wrap">
+      <h2 class="hy-tit">Immersive Multi-Mode Interaction</h2>
+      <div class="hy-inter-grid">
+        {
+          interactions.map((t) => (
+            <div class="hy-inter-card">
+              <div class="pic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d={t.icon} />
+                </svg>
+              </div>
+              <div class="txt">
+                <div class="h">{t.h}</div>
+                <div class="p">{t.p}</div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
 
-  <section class="sol-partners">
-    <div class="sol-container sol-partner-grid"><div><span class="sol-kicker">FOR DISTRIBUTORS & PROJECT PARTNERS</span><h2>Make the solution<br />work for your market.</h2><p>Discuss product selection, branding and project requirements with our team. We can review the intended application and help identify a suitable panel configuration.</p><a href="/contact" class="sol-btn">Talk to SwitchLivo <span>↗</span></a></div><div class="sol-partner-points"><article><span>01</span><div><h3>OEM / ODM Enquiries</h3><p>Discuss logo, interface language and packaging requirements.</p></div></article><article><span>02</span><div><h3>Samples & Evaluation</h3><p>Review the selected model and compatibility before a larger order.</p></div></article><article><span>03</span><div><h3>Project Coordination</h3><p>Share room schedules and functional requirements for discussion.</p></div></article></div></div>
-  </section>
+  <!-- SCENARIOS: flush tab bar + full-bleed scene -->
+  <div class="hy-scn">
+    <div class="hy-wrap">
+      <h2 class="hy-tit">Whole-Home Scenarios</h2>
+    </div>
+
+    <div class="hy-tabs" role="tablist" aria-label="Room scenarios">
+      {
+        scenarios.map((s, i) => (
+          <button
+            type="button"
+            class:list={["hy-tab", i === 0 && "on"]}
+            data-tab={s.key}
+            role="tab"
+            aria-selected={i === 0 ? "true" : "false"}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d={s.tabIcon} />
+            </svg>
+            <span>{s.tab}</span>
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="hy-panels">
+      {
+        scenarios.map((s, i) => (
+          <article
+            class:list={["hy-panel", i === 0 && "on"]}
+            data-panel={s.key}
+            role="tabpanel"
+          >
+            <div
+              class="hy-panel-bg"
+              style={`background-image:url('/images/solutions/photos/${s.key}.jpg')`}
+              aria-hidden="true"
+            />
+            <div class="hy-panel-shade" aria-hidden="true" />
+            <div class="hy-wrap">
+              <div class="hy-panel-content">
+                <span class="hy-panel-eyebrow">/ Smart Home /</span>
+                <h3 class="hy-panel-title">
+                  {s.title.split("\n").map((line, j) => (
+                    <>
+                      {j > 0 && <br />}
+                      {line}
+                    </>
+                  ))}
+                </h3>
+                <ul class="hy-chips">
+                  {s.chips.map((c) => (
+                    <li>
+                      <span class="tag">{c.label}</span>
+                      <span class="tx">{c.text}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div class="hy-tier-pills">
+                  <span>Essential</span>
+                  <span>Pro</span>
+                </div>
+              </div>
+            </div>
+            <a class="hy-panel-cta" href="/products">
+              <span class="ic">▶</span> Explore Products
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
 </section>
 
 <style>
-.solutions-page{--navy:#111b24;--orange:#e96b3a;--ink:#18232c;--muted:#69737b;--cream:#f5f3ef;color:var(--ink)}.sol-container{width:min(1180px,calc(100% - 48px));margin-inline:auto}.sol-hero{height:min(740px,78vh);min-height:570px;position:relative;overflow:hidden;background:#111b24;color:#fff}.sol-hero-image{position:absolute;inset:0;z-index:0;overflow:hidden}.sol-hero-image img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 52%;filter:none;opacity:1}.sol-hero-image-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,22,30,.88) 0%,rgba(12,22,30,.72) 43%,rgba(12,22,30,.28) 100%)}.sol-hero-content{position:relative;z-index:1;padding-top:clamp(125px,17vh,190px);max-width:1180px}.sol-hero-content>p{max-width:530px}.sol-hero h1{max-width:660px}.sol-eyebrow,.sol-kicker{font-size:11px;font-weight:800;letter-spacing:.19em;color:var(--orange)}.sol-hero h1{font-size:clamp(44px,6.5vw,78px);line-height:1.04;letter-spacing:-.045em;margin:22px 0;max-width:820px;color:#fff}.sol-hero h1 em{font-style:normal;color:#f0a17f}.sol-hero-content>p{max-width:590px;color:rgba(255,255,255,.82);font-size:17px;line-height:1.8}.sol-actions{display:flex;align-items:center;gap:28px;margin-top:34px}.sol-btn{display:inline-flex;align-items:center;gap:25px;background:var(--orange);color:white!important;text-decoration:none;padding:15px 22px;font-size:13px;font-weight:750;letter-spacing:.02em;transition:transform .2s,background .2s}.sol-btn:hover{background:#d85d30;transform:translateY(-2px)}.sol-btn span{font-size:18px}.sol-text-link{color:white;text-decoration:none;font-size:13px}.sol-text-link span{color:#f0a17f;margin-left:8px}.sol-hero-note{position:absolute;bottom:28px;left:max(24px,calc((100% - 1180px)/2));right:max(24px,calc((100% - 1180px)/2));display:flex;justify-content:space-between;border-top:1px solid #ffffff55;padding-top:13px;color:#ffffffb8;font-size:10px;letter-spacing:.16em}.sol-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;padding-block:105px}.sol-intro h2,.sol-section-head h2,.sol-partners h2{font-size:clamp(34px,4.4vw,52px);line-height:1.12;letter-spacing:-.035em;margin:15px 0 0}.sol-intro-copy{padding-top:16px;max-width:550px}.sol-intro-copy p,.sol-section-head>p,.sol-partners p{color:var(--muted);font-size:15px;line-height:1.85}.sol-applications{background:var(--cream);padding:88px 0 100px}.sol-section-head{display:flex;justify-content:space-between;align-items:end;gap:45px;margin-bottom:42px}.sol-section-head>p{max-width:390px;margin:0 0 5px}.sol-app-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.sol-app-card{background:white;min-width:0}.sol-app-image{height:245px;position:relative;overflow:hidden;background:#ddd}.sol-app-image img{width:100%;height:100%;object-fit:cover;transition:transform .6s}.sol-app-card:hover .sol-app-image img{transform:scale(1.04)}.sol-app-number{position:absolute;left:18px;top:18px;background:var(--orange);color:#fff;padding:8px 11px;font-size:11px;letter-spacing:.1em}.sol-app-body{padding:25px 25px 26px}.sol-app-body h3{font-size:24px;margin:0 0 12px}.sol-app-body>p{color:var(--muted);font-size:14px;line-height:1.75;min-height:74px;margin:0}.sol-tags{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0 24px}.sol-tags span{font-size:10px;color:#53606a;background:#f2f2ef;padding:7px 9px}.sol-card-link{display:flex;justify-content:space-between;border-top:1px solid #e8e8e5;padding-top:16px;color:var(--ink);font-size:12px;font-weight:750;text-decoration:none}.sol-card-link b{color:var(--orange);font-size:17px}.sol-systems{background:var(--cream);color:var(--ink);padding:100px 0 70px}.sol-light-head h2{color:var(--ink)}.sol-light-head>p{color:var(--muted)}.sol-system-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:65px;align-items:center}.sol-system-list{display:grid;grid-template-columns:1fr 1fr;column-gap:32px}.sol-system-item{display:flex;gap:15px;padding:22px 0;border-top:1px solid #dedfd9}.sol-system-item>span{font-size:11px;color:var(--orange);padding-top:4px}.sol-system-item h3{font-size:16px;margin:0 0 8px;color:var(--ink)}.sol-system-item p{font-size:12px;line-height:1.7;color:var(--muted);margin:0}.sol-panel-visual{position:relative;max-width:420px;margin:auto;padding:18px;background:#fff;border:1px solid #e8e5df;box-shadow:0 18px 48px rgba(24,35,44,.08)}.sol-panel-visual img{width:100%;display:block}.sol-panel-caption{position:absolute;bottom:24px;left:24px;right:24px;background:#111b24e8;padding:16px 18px;display:flex;flex-direction:column;gap:6px}.sol-panel-caption span{font-size:9px;letter-spacing:.16em;color:var(--orange)}.sol-panel-caption strong{font-size:14px;color:#fff}.sol-disclaimer{font-size:11px;color:#77828a;line-height:1.6;margin:28px 0 0}.sol-rooms{padding:100px 0 0}.sol-room-tabs{display:flex;justify-content:center;flex-wrap:wrap;border-block:1px solid #e6e6e2;margin-top:35px}.sol-room-tab{border:0;background:#fff;padding:17px 28px;color:#68727a;font-size:13px;font-weight:700;cursor:pointer;border-bottom:3px solid transparent}.sol-room-tab.active{color:var(--ink);border-bottom-color:var(--orange)}.sol-room-panel{display:none;position:relative;min-height:560px;overflow:hidden;color:white}.sol-room-panel.active{display:block}.sol-room-panel>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:none;opacity:1;transform:none}.sol-room-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,27,36,.52),rgba(17,27,36,.18) 48%,rgba(17,27,36,0) 82%);backdrop-filter:none}.sol-room-content{position:relative;padding-top:82px;padding-bottom:75px}.sol-room-content h3{font-size:clamp(32px,4vw,48px);max-width:560px;line-height:1.15;margin:17px 0 25px;color:#fff}.sol-room-content ul{list-style:none;padding:0;margin:0 0 30px}.sol-room-content li{padding:10px 0 10px 22px;position:relative;color:#ffffffdc;font-size:14px}.sol-room-content li:before{content:"";position:absolute;left:0;top:18px;width:7px;height:7px;background:var(--orange);border-radius:50%}.sol-partners{background:var(--cream);padding:100px 0}.sol-partner-grid{display:grid;grid-template-columns:1fr .9fr;gap:90px;align-items:center}.sol-partners h2{margin-bottom:20px}.sol-partners p{max-width:500px;margin-bottom:28px}.sol-partner-points article{display:flex;gap:22px;padding:23px 0;border-bottom:1px solid #dcdedb}.sol-partner-points article:first-child{border-top:1px solid #dcdedb}.sol-partner-points article>span{font-size:12px;color:var(--orange);padding-top:4px}.sol-partner-points h3{font-size:17px;margin:0 0 6px}.sol-partner-points p{font-size:13px;margin:0}
-@media(max-width:800px){.sol-container{width:min(100% - 36px,620px)}.sol-hero{min-height:570px;height:75vh}.sol-hero-content{padding-top:130px}.sol-intro,.sol-partner-grid{grid-template-columns:1fr;gap:24px;padding-block:72px}.sol-section-head{display:block}.sol-section-head>p{margin-top:18px}.sol-app-grid{grid-template-columns:1fr}.sol-app-image{height:260px}.sol-app-body>p{min-height:0}.sol-systems{padding:72px 0 50px}.sol-system-layout{grid-template-columns:1fr;gap:25px}.sol-system-list{column-gap:18px}.sol-panel-visual{max-width:330px}.sol-rooms{padding-top:72px}.sol-room-tabs{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap}.sol-room-tab{white-space:nowrap;padding:16px 18px}.sol-room-panel{min-height:540px}.sol-room-content{padding-top:65px}.sol-partners{padding:72px 0}.sol-partner-grid{padding-block:0;gap:35px}}
-@media(max-width:800px){.sol-hero-image img{object-position:62% center}.sol-hero-image-shade{background:linear-gradient(90deg,rgba(12,22,30,.82),rgba(12,22,30,.48))}.sol-hero-content{padding-top:105px}.sol-hero-content>p{max-width:460px}}\n@media(max-width:480px){.sol-hero{min-height:700px;height:780px}.sol-hero h1{font-size:43px}.sol-hero-content>p{font-size:15px;max-width:95%}.sol-actions{align-items:flex-start;flex-direction:column;gap:18px}.sol-hero-image img{object-position:60% center}.sol-hero-image-shade{background:linear-gradient(90deg,rgba(12,22,30,.84),rgba(12,22,30,.52))}.sol-hero-note{font-size:8px}.sol-system-list{grid-template-columns:1fr}.sol-room-content h3{font-size:34px}.sol-room-panel{min-height:570px}}
-@media(prefers-reduced-motion:reduce){.sol-app-image img,.sol-btn{transition:none}}
+  .hy {
+    --acc: #fe6019;
+    --acc-soft: rgba(254, 96, 25, 0.85);
+    background: #fff;
+  }
+  .hy-wrap {
+    position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+
+  /* ---------- HERO SLIDER ---------- */
+  .hy-hero {
+    position: relative;
+    height: clamp(520px, 74vh, 780px);
+    overflow: hidden;
+    background: #101418;
+  }
+  .hy-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+  }
+  .hy-slide.on {
+    opacity: 1;
+  }
+  .hy-slide-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .hy-slide-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 13, 17, 0.16), rgba(10, 13, 17, 0.3));
+  }
+  .hy-hero-main {
+    position: absolute;
+    left: 50%;
+    top: 53%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+  }
+  .hy-hero-title {
+    font-size: clamp(38px, 6.6vw, 80px);
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 2px 4px 7.6px rgba(84, 88, 97, 0.5);
+    margin: 0 0 56px;
+    line-height: 1.15;
+  }
+  .hy-hero-btn {
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 16px 56px;
+    background: var(--acc-soft);
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .hy-hero-btn:hover {
+    background: var(--acc);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .hy-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
+  .hy-arrow:hover {
+    background: rgba(255, 255, 255, 0.34);
+  }
+  .hy-arrow svg {
+    width: 22px;
+    height: 22px;
+  }
+  .hy-arrow.prev {
+    left: 34px;
+  }
+  .hy-arrow.next {
+    right: 34px;
+  }
+  .hy-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 26px;
+    transform: translateX(-50%);
+    z-index: 4;
+    display: flex;
+    gap: 10px;
+  }
+  .hy-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .hy-dot.on {
+    width: 28px;
+    background: var(--acc);
+  }
+
+  /* ---------- PAIN CLOUD ---------- */
+  .hy-pain {
+    position: relative;
+    overflow: hidden;
+    background: url("/images/solutions/photos/living.jpg") center / cover no-repeat;
+    padding: 120px 0 100px;
+  }
+  .hy-pain-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 13, 17, 0.6), rgba(10, 13, 17, 0.48));
+  }
+  .hy-pain .hy-wrap {
+    z-index: 1;
+  }
+  .hy-pain-cloud {
+    max-width: 1150px;
+    margin: 0 auto;
+    text-align: justify;
+    line-height: 1.9;
+  }
+  .hy-pain-cloud .p {
+    display: inline-block;
+    color: #fff;
+    margin: 0 34px 24px 0;
+    white-space: nowrap;
+  }
+  .hy-pain-cloud .px { font-size: 34px; color: rgba(255, 255, 255, 0.95); }
+  .hy-pain-cloud .p1 { font-size: 24px; color: rgba(255, 255, 255, 0.55); }
+  .hy-pain-cloud .p2 { font-size: 24px; color: rgba(255, 255, 255, 0.35); }
+  .hy-pain-cloud .p3 { font-size: 24px; color: rgba(255, 255, 255, 0.22); }
+  .hy-pain-cloud .p4 { font-size: 48px; color: #f6f8fc; font-weight: 700; }
+  .hy-pain-cloud .p5 { font-size: 34px; color: #f6f8fc; }
+  .hy-pain-cloud .p6 { font-size: 38px; color: #f6f8fc; }
+
+  .hy-pain-cloud span {
+    animation-duration: 18s;
+    animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+    will-change: opacity, transform;
+  }
+  @keyframes pain-0 {
+    0% { opacity: 0; transform: translateY(14px); }
+    5.0% { opacity: 1; transform: translateY(0); }
+    87% { opacity: 1; }
+    92%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  @keyframes pain-1 {
+    0% { opacity: 0; transform: translateY(14px); }
+    8.1% { opacity: 1; transform: translateY(0); }
+    87% { opacity: 1; }
+    92%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  @keyframes pain-2 {
+    0% { opacity: 0; transform: translateY(14px); }
+    11.1% { opacity: 1; transform: translateY(0); }
+    87% { opacity: 1; }
+    92%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  @keyframes pain-3 {
+    0% { opacity: 0; transform: translateY(14px); }
+    14.2% { opacity: 1; transform: translateY(0); }
+    87% { opacity: 1; }
+    92%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  @keyframes pain-4 {
+    0% { opacity: 0; transform: translateY(14px); }
+    17.2% { opacity: 1; transform: translateY(0); }
+    87% { opacity: 1; }
+    92%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  @keyframes pain-5 {
+    0% { opacity: 0; transform: translateY(14px); }
+    20.3% { opacity: 1; transform: translateY(0); }
+    87% { opacity: 1; }
+    92%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  @keyframes pain-6 {
+    0% { opacity: 0; transform: translateY(14px); }
+    23.3% { opacity: 1; transform: translateY(0); }
+    87% { opacity: 1; }
+    92%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  @keyframes pain-7 {
+    0% { opacity: 0; transform: translateY(14px); }
+    26.4% { opacity: 1; transform: translateY(0); }
+    87% { opacity: 1; }
+    92%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  @keyframes pain-8 {
+    0% { opacity: 0; transform: translateY(14px); }
+    29.4% { opacity: 1; transform: translateY(0); }
+    87% { opacity: 1; }
+    92%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  @keyframes pain-9 {
+    0% { opacity: 0; transform: translateY(14px); }
+    32.5% { opacity: 1; transform: translateY(0); }
+    87% { opacity: 1; }
+    92%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  @keyframes pain-10 {
+    0% { opacity: 0; transform: translateY(14px); }
+    35.6% { opacity: 1; transform: translateY(0); }
+    87% { opacity: 1; }
+    92%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  @keyframes pain-11 {
+    0% { opacity: 0; transform: translateY(14px); }
+    38.6% { opacity: 1; transform: translateY(0); }
+    87% { opacity: 1; }
+    92%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  .hy-pain-cloud span:nth-child(1) { animation-name: pain-0; }
+  .hy-pain-cloud span:nth-child(2) { animation-name: pain-1; }
+  .hy-pain-cloud span:nth-child(3) { animation-name: pain-2; }
+  .hy-pain-cloud span:nth-child(4) { animation-name: pain-3; }
+  .hy-pain-cloud span:nth-child(5) { animation-name: pain-4; }
+  .hy-pain-cloud span:nth-child(6) { animation-name: pain-5; }
+  .hy-pain-cloud span:nth-child(7) { animation-name: pain-6; }
+  .hy-pain-cloud span:nth-child(8) { animation-name: pain-7; }
+  .hy-pain-cloud span:nth-child(9) { animation-name: pain-8; }
+  .hy-pain-cloud span:nth-child(10) { animation-name: pain-9; }
+  .hy-pain-cloud span:nth-child(11) { animation-name: pain-10; }
+  .hy-pain-cloud span:nth-child(12) { animation-name: pain-11; }
+  @media (prefers-reduced-motion: reduce) {
+    .hy-pain-cloud span { animation: none; }
+  }
+
+  .hy-pain-note {
+    margin-top: 64px;
+    text-align: center;
+  }
+  .hy-pain-note p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+  }
+  .hy-pain-note a {
+    color: #ffb347;
+    font-weight: 600;
+  }
+
+  /* ---------- SECTION TITLES ---------- */
+  .hy-tit {
+    font-size: 36px;
+    color: #222;
+    line-height: 46px;
+    text-align: center;
+    margin: 0 0 45px;
+  }
+  .hy-tit--lg {
+    font-size: 42px;
+    line-height: 52px;
+    padding-top: 90px;
+    margin-bottom: 20px;
+  }
+  .hy-tit-sub {
+    text-align: center;
+    color: #555;
+    font-size: 17px;
+    line-height: 28px;
+    margin: 0 auto 70px;
+    max-width: 760px;
+  }
+
+  /* ---------- SUBSYSTEMS ---------- */
+  .hy-sys {
+    background:
+      radial-gradient(ellipse 62% 55% at 50% 52%, rgba(254, 96, 25, 0.07), transparent 70%),
+      linear-gradient(180deg, #fbf6f2 0%, #f7ede5 100%);
+    padding-bottom: 100px;
+  }
+  .hy-sys-grid {
+    display: grid;
+    grid-template-columns: 1fr 460px 1fr;
+    gap: 44px;
+    align-items: center;
+  }
+  .hy-sys-col--l {
+    text-align: right;
+  }
+  .hy-sys-item {
+    margin-bottom: 46px;
+  }
+  .hy-sys-item .h {
+    font-size: 22px;
+    color: #222;
+    font-weight: 700;
+    margin-bottom: 10px;
+    transition: color 0.25s ease;
+  }
+  .hy-sys-item:hover .h {
+    color: var(--acc);
+  }
+  .hy-sys-item .p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.75;
+  }
+  .hy-sys-center {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 420px;
+  }
+  .hy-sys-center::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 430px;
+    height: 430px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(254, 96, 25, 0.14) 0%, rgba(254, 96, 25, 0.05) 55%, transparent 72%);
+  }
+  .hy-sys-center img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 340px;
+    mix-blend-mode: multiply;
+  }
+  .hy-ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px dashed rgba(254, 96, 25, 0.35);
+    border-radius: 50%;
+  }
+  .hy-ring--1 {
+    width: 380px;
+    height: 380px;
+  }
+  .hy-ring--2 {
+    width: 500px;
+    height: 500px;
+    border-color: rgba(254, 96, 25, 0.18);
+  }
+
+  /* ---------- INTERACTION ---------- */
+  .hy-inter {
+    padding: 90px 0 100px;
+  }
+  .hy-inter-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  .hy-inter-card {
+    border: 1px solid #ececec;
+    background: #fff;
+  }
+  .hy-inter-card .pic {
+    aspect-ratio: 4 / 3;
+    background: #f6f6f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--acc);
+    overflow: hidden;
+  }
+  .hy-inter-card .pic svg {
+    width: 84px;
+    height: 84px;
+    transition: transform 0.3s ease;
+  }
+  .hy-inter-card:hover .pic svg {
+    transform: scale(1.12);
+  }
+  .hy-inter-card .txt {
+    padding: 26px 24px 30px;
+  }
+  .hy-inter-card .h {
+    font-size: 24px;
+    color: #222;
+    margin-bottom: 14px;
+    transition: color 0.25s ease;
+  }
+  .hy-inter-card:hover .h {
+    color: var(--acc);
+  }
+  .hy-inter-card .p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.9;
+    margin: 0;
+  }
+
+  /* ---------- SCENARIOS ---------- */
+  .hy-scn .hy-wrap .hy-tit {
+    padding-top: 90px;
+    margin-bottom: 40px;
+  }
+  .hy-tabs {
+    display: flex;
+    width: 100%;
+    border-top: 1px solid #eee;
+    background: #fff;
+  }
+  .hy-tab {
+    flex: 1 1 0;
+    min-height: 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #fff;
+    border: 0;
+    border-right: 1px solid #f0f0f0;
+    color: #666;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 12px 8px;
+  }
+  .hy-tab:last-child {
+    border-right: 0;
+  }
+  .hy-tab svg {
+    width: 30px;
+    height: 30px;
+  }
+  .hy-tab:hover {
+    color: var(--acc);
+  }
+  .hy-tab.on {
+    background: var(--acc);
+    color: #fff;
+  }
+  .hy-panel {
+    display: none;
+    position: relative;
+    height: clamp(540px, 80vh, 740px);
+    overflow: hidden;
+    color: #fff;
+  }
+  .hy-panel.on {
+    display: block;
+  }
+  .hy-panel-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .hy-panel-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(11, 14, 18, 0.9) 0%,
+      rgba(11, 14, 18, 0.58) 48%,
+      rgba(11, 14, 18, 0.2) 100%
+    );
+  }
+  .hy-panel .hy-wrap {
+    height: 100%;
+  }
+  .hy-panel-content {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    padding-top: 72px;
+  }
+  .hy-panel-eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--acc);
+    margin-bottom: 18px;
+  }
+  .hy-panel-title {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0 0 30px;
+  }
+  .hy-chips {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .hy-chips li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+  .hy-chips .tag {
+    flex: 0 0 auto;
+    background: var(--acc);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 5px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .hy-chips .tx {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .hy-tier-pills {
+    display: flex;
+    gap: 10px;
+    margin-top: 26px;
+  }
+  .hy-tier-pills span {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+    padding: 6px 18px;
+  }
+  .hy-panel-cta {
+    position: absolute;
+    right: 40px;
+    bottom: 34px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .hy-panel-cta:hover {
+    background: rgba(255, 255, 255, 0.28);
+    color: #fff;
+  }
+  .hy-panel-cta .ic {
+    font-size: 10px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1100px) {
+    .hy-sys-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .hy-sys-center {
+      order: -1;
+      min-height: 320px;
+    }
+    .hy-sys-col--l {
+      text-align: left;
+    }
+    .hy-sys-item {
+      margin-bottom: 28px;
+    }
+    .hy-ring--1 { width: 300px; height: 300px; }
+    .hy-ring--2 { width: 380px; height: 380px; }
+  }
+  @media (max-width: 900px) {
+    .hy-inter-grid {
+      grid-template-columns: 1fr;
+    }
+    .hy-tabs {
+      overflow-x: auto;
+    }
+    .hy-tab {
+      flex: 0 0 150px;
+      min-height: 84px;
+      font-size: 13px;
+    }
+    .hy-panel {
+      height: auto;
+      min-height: 0;
+    }
+    .hy-panel-shade {
+      background: rgba(11, 14, 18, 0.85);
+    }
+    .hy-panel-content {
+      padding: 56px 0 80px;
+    }
+    .hy-panel-cta {
+      right: 20px;
+      bottom: 20px;
+    }
+    .hy-hero-title {
+      margin-bottom: 34px;
+    }
+    .hy-pain-cloud .p {
+      white-space: normal;
+      margin-right: 20px;
+    }
+  }
 </style>
+
 <script>
-document.addEventListener("astro:page-load",()=>{document.querySelectorAll(".solutions-page").forEach((root)=>{const tabs=root.querySelectorAll(".sol-room-tab");const panels=root.querySelectorAll(".sol-room-panel");tabs.forEach((tab)=>{tab.addEventListener("click",()=>{const key=tab.dataset.room;tabs.forEach(t=>{t.classList.toggle("active",t===tab);t.setAttribute("aria-selected",t===tab?"true":"false")});panels.forEach(p=>{const isActive=p.dataset.roomPanel===key;p.classList.toggle("active",isActive);if(isActive){const image=p.querySelector("img");if(image&&!image.getAttribute("src")&&image.dataset.src){image.src=image.dataset.src;image.removeAttribute("data-src")}}})})})})});
+  document.addEventListener("astro:page-load", () => {
+    const root = document.querySelector(".hy");
+    if (!root) return;
+
+    // ----- hero slider -----
+    const slides = root.querySelectorAll(".hy-slide");
+    const dots = root.querySelectorAll(".hy-dot");
+    let cur = 0;
+    let timer = null;
+    const show = (idx) => {
+      cur = (idx + slides.length) % slides.length;
+      slides.forEach((s, i) => s.classList.toggle("on", i === cur));
+      dots.forEach((d, i) => d.classList.toggle("on", i === cur));
+    };
+    const restart = () => {
+      if (timer) clearInterval(timer);
+      timer = setInterval(() => show(cur + 1), 5500);
+    };
+    root.querySelector(".hy-arrow.prev")?.addEventListener("click", () => { show(cur - 1); restart(); });
+    root.querySelector(".hy-arrow.next")?.addEventListener("click", () => { show(cur + 1); restart(); });
+    dots.forEach((d) =>
+      d.addEventListener("click", () => { show(Number(d.dataset.dot)); restart(); })
+    );
+    if (slides.length > 1) restart();
+
+    // ----- scenario tabs -----
+    const tabs = root.querySelectorAll(".hy-tab");
+    const panels = root.querySelectorAll(".hy-panel");
+    const activate = (tab) => {
+      const key = tab.getAttribute("data-tab");
+      tabs.forEach((t) => {
+        t.classList.remove("on");
+        t.setAttribute("aria-selected", "false");
+      });
+      panels.forEach((p) => p.classList.remove("on"));
+      tab.classList.add("on");
+      tab.setAttribute("aria-selected", "true");
+      root.querySelector(`.hy-panel[data-panel="${key}"]`)?.classList.add("on");
+    };
+    tabs.forEach((tab) => {
+      tab.addEventListener("mouseenter", () => activate(tab));
+      tab.addEventListener("click", () => activate(tab));
+    });
+  });
 </script>
