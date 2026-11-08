@@ -1,6 +1,10 @@
 {
   "main": [
     {
+      "name": "Home",
+      "url": "/"
+    },
+    {
       "name": "Products",
       "url": "/products"
     },
