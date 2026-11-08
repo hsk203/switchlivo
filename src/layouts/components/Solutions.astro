@@ -116,32 +116,37 @@ document.addEventListener("astro:page-load", () => {
   document.querySelectorAll(".solutions-page").forEach((root) => {
     const tabs = root.querySelectorAll(".sol-room-tab");
     const panels = root.querySelectorAll(".sol-room-panel");
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        const key = tab.dataset.room;
-        tabs.forEach((item) => {
-          item.classList.toggle("active", item === tab);
-          item.setAttribute("aria-selected", item === tab ? "true" : "false");
-        });
-        panels.forEach((panel) => {
-          const isActive = panel.dataset.roomPanel === key;
-          panel.classList.toggle("active", isActive);
-          if (isActive) {
-            const image = panel.querySelector("img");
-            if (image && !image.getAttribute("src") && image.dataset.src) {
-              const src = image.dataset.src;
-              const srcset = image.dataset.srcset;
-              if (srcset) image.setAttribute("srcset", srcset);
-              image.setAttribute("sizes", "100vw");
-              image.fetchPriority = "high";
-              image.loading = "eager";
-              image.src = src;
-              image.removeAttribute("data-src");
-              image.removeAttribute("data-srcset");
-            }
-          }
-        });
+    const activateTab = (selectedTab) => {
+      const key = selectedTab.dataset.room;
+      tabs.forEach((item) => {
+        item.classList.toggle("active", item === selectedTab);
+        item.setAttribute("aria-selected", item === selectedTab ? "true" : "false");
       });
+      panels.forEach((panel) => {
+        const isActive = panel.dataset.roomPanel === key;
+        panel.classList.toggle("active", isActive);
+        if (isActive) {
+          const image = panel.querySelector("img");
+          if (image && !image.getAttribute("src") && image.dataset.src) {
+            const src = image.dataset.src;
+            const srcset = image.dataset.srcset;
+            if (srcset) image.setAttribute("srcset", srcset);
+            image.setAttribute("sizes", "100vw");
+            image.fetchPriority = "high";
+            image.loading = "eager";
+            image.src = src;
+            image.removeAttribute("data-src");
+            image.removeAttribute("data-srcset");
+          }
+        }
+      });
+    };
+    tabs.forEach((tab) => {
+      tab.addEventListener("pointerenter", (event) => {
+        if (event.pointerType === "mouse") activateTab(tab);
+      });
+      tab.addEventListener("focus", () => activateTab(tab));
+      tab.addEventListener("click", () => activateTab(tab));
     });
   });
 });
