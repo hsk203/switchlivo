@@ -13,7 +13,7 @@ const systems = [
   ["Centralized Control", "Combine supported functions in one consistent panel experience."],
 ];
 type RoomKey = "living" | "bedroom" | "hotel" | "office";
-const roomImageVersions: Record<RoomKey, string> = { living: "v5", bedroom: "v5", hotel: "v4", office: "v5" };
+const roomImageVersions: Record<RoomKey, string> = { living: "v6", bedroom: "v5", hotel: "v5", office: "v5" };
 const roomImageSrc = (key: RoomKey, width = 1600) => `/images/solutions/room-${key}-${width}-${roomImageVersions[key]}.webp`;
 const roomImageSrcset = (key: RoomKey) => [960, 1280, 1600, 1915].map((width) => `${roomImageSrc(key, width)} ${width}w`).join(", ");
 const rooms = [
