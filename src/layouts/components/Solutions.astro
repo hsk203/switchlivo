@@ -151,3 +151,56 @@ document.addEventListener("astro:page-load", () => {
   });
 });
 </script>
+
+
+<style>
+  .solutions-page {
+    --cream: #ffffff;
+  }
+
+  .solutions-page .sol-applications {
+    background: #ffffff;
+  }
+
+  .solutions-page .sol-app-card {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #e5e8e9;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(24, 35, 44, 0.06), 0 1px 2px rgba(24, 35, 44, 0.04);
+    transition:
+      transform 220ms ease,
+      border-color 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .solutions-page .sol-app-card:hover {
+    transform: translateY(-4px);
+    border-color: #d4dade;
+    box-shadow: 0 18px 40px rgba(24, 35, 44, 0.12);
+  }
+
+  .solutions-page .sol-app-image {
+    background: #f3f5f5;
+  }
+
+  .solutions-page .sol-tags span {
+    border: 1px solid #e8ebec;
+    border-radius: 999px;
+    background: #f7f8f8;
+  }
+
+  .solutions-page .sol-card-link {
+    border-top-color: #e8ebec;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .solutions-page .sol-app-card,
+    .solutions-page .sol-app-card:hover {
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

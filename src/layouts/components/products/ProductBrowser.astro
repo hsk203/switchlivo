@@ -152,7 +152,13 @@ const protocolCounts = PRODUCT_PROTOCOLS.map((p) => ({
         <div
           class="pro-sidemenu-top flex items-center justify-between border-b border-border px-5 py-4"
         >
-          <span class="title flex items-center text-base font-semibold text-text-dark">
+          <button
+            type="button"
+            data-filter-toggle
+            aria-expanded="true"
+            aria-controls="product-filter-options"
+            class="title flex items-center border-0 bg-transparent p-0 text-left text-base font-semibold text-text-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+          >
             <svg
               class="mr-2 h-4 w-4 text-primary"
               viewBox="0 0 20 20"
@@ -166,7 +172,7 @@ const protocolCounts = PRODUCT_PROTOCOLS.map((p) => ({
                 stroke-linecap="round"></path>
             </svg>
             Filter
-          </span>
+          </button>
           <button
             type="button"
             data-filter-reset
@@ -177,6 +183,8 @@ const protocolCounts = PRODUCT_PROTOCOLS.map((p) => ({
         </div>
 
         <div
+          id="product-filter-options"
+          data-filter-panel
           class="pro-sidemenu-scroller max-h-[calc(100vh-11rem)] overflow-y-auto px-3 py-4"
         >
           <div class="pro-sidemenu-list space-y-5">
@@ -483,6 +491,17 @@ const protocolCounts = PRODUCT_PROTOCOLS.map((p) => ({
       protocol: "Protocol",
     };
     const valueLabels: Record<string, Record<string, string>> = {};
+
+    const filterToggle = browser.querySelector<HTMLButtonElement>(
+      "[data-filter-toggle]"
+    );
+    const filterPanel = browser.querySelector<HTMLElement>("[data-filter-panel]");
+    filterToggle?.addEventListener("click", () => {
+      if (!filterPanel) return;
+      const expanded = filterToggle.getAttribute("aria-expanded") === "true";
+      filterToggle.setAttribute("aria-expanded", String(!expanded));
+      filterPanel.hidden = expanded;
+    });
 
     groups.forEach((g) => {
       const name = g.getAttribute("data-filter-group")!;
