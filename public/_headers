@@ -7,6 +7,9 @@
 /images/solutions/room-*-v4.webp
   Cache-Control: public, max-age=31536000, immutable
 
+/images/solutions/room-*-v5.webp
+  Cache-Control: public, max-age=31536000, immutable
+
 /images/solutions/residential-v2.webp
   Cache-Control: public, max-age=31536000, immutable
 

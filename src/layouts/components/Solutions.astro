@@ -12,8 +12,10 @@ const systems = [
   ["Security & Sensors", "Connect supported sensors and security devices for clearer status and alerts."],
   ["Centralized Control", "Combine supported functions in one consistent panel experience."],
 ];
-const roomImageSrc = (key, width = 1600) => `/images/solutions/room-${key}-${width}-v4.webp`;
-const roomImageSrcset = (key) => [960, 1280, 1600, 1915].map((width) => `${roomImageSrc(key, width)} ${width}w`).join(", ");
+type RoomKey = "living" | "bedroom" | "hotel" | "office";
+const roomImageVersions: Record<RoomKey, string> = { living: "v5", bedroom: "v5", hotel: "v4", office: "v5" };
+const roomImageSrc = (key: RoomKey, width = 1600) => `/images/solutions/room-${key}-${width}-${roomImageVersions[key]}.webp`;
+const roomImageSrcset = (key: RoomKey) => [960, 1280, 1600, 1915].map((width) => `${roomImageSrc(key, width)} ${width}w`).join(", ");
 const rooms = [
   { key: "living", label: "Living Room", title: "A more considered way to live.", img: roomImageSrc("living"), srcset: roomImageSrcset("living"), points: ["Set the mood with lighting scenes", "Coordinate curtains and climate", "Keep everyday controls close at hand"] },
   { key: "bedroom", label: "Bedroom", title: "Comfort, from one bedside touch.", img: roomImageSrc("bedroom"), srcset: roomImageSrcset("bedroom"), points: ["Create sleep and wake-up routines", "Control bedside and ambient lighting", "Simplify daily operation"] },
