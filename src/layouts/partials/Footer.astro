@@ -3,6 +3,7 @@ import config from "@/config/config.json";
 
 const { email, phone, footer_description, whatsapp } = config.params;
 const year = new Date().getFullYear();
+const { showIntro = true } = Astro.props;
 const phonePretty = phone;
 const whatsappUrl = `https://wa.me/${whatsapp.number}?text=${encodeURIComponent(whatsapp.message)}`;
 
@@ -29,6 +30,7 @@ const companyLinks = [
 
 <footer class="switchlivo-footer">
   <div class="footer-shell">
+    {showIntro && (
     <div class="footer-intro">
       <div class="footer-intro-copy">
         <span class="footer-kicker"><span class="kicker-line"></span> LET'S BUILD BETTER SPACES</span>
@@ -40,6 +42,7 @@ const companyLinks = [
         <span class="cta-arrow" aria-hidden="true">↗</span>
       </a>
     </div>
+    )}
 
     <div class="footer-main">
       <section class="footer-brand" aria-label="About Switchlivo">

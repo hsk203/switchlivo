@@ -51,8 +51,8 @@ const pageData = {
   content: d.summary ?? "",
 };
 
-const canonical = `${config.site.base_url}/products/${product.id}/`;
-const inquiryLink = `/contact/?product=${encodeURIComponent(
+const canonical = `${config.site.base_url}/products/${product.id}`;
+const inquiryLink = `/contact?product=${encodeURIComponent(
   model
 )}&title=${encodeURIComponent(d.title)}&reason=product-inquiry`;
 

@@ -17,8 +17,15 @@ const fontEntries = Object.entries(theme.fonts.font_family).filter(
   ([key]) => !key.includes("_type"),
 );
 
-const { title, meta_title, description, image, noindex, canonical } =
-  Astro.props;
+const {
+  title,
+  meta_title,
+  description,
+  image,
+  noindex,
+  canonical,
+  showFooterIntro = true,
+} = Astro.props;
 
 // 分享图：相对路径拼 base_url，绝对 URL（如 R2 CDN）原样使用
 const imageUrl = image
@@ -156,6 +163,6 @@ const canonicalUrl =
     <main id="main-content">
       <slot />
     </main>
-    <Footer />
+    <Footer showIntro={showFooterIntro} />
   </body>
 </html>

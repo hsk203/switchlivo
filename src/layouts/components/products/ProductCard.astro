@@ -8,7 +8,7 @@ interface Props {
 }
 const { product } = Astro.props;
 const d = product.data;
-const url = `/products/${product.id}/`;
+const url = `/products/${product.id}`;
 const regions = d.region.join(",");
 const protocols = d.protocol.join(",");
 const model = modelFromSlug(product.id);

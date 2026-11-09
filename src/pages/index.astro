@@ -3,10 +3,11 @@ import Base from "@/layouts/Base.astro";
 import Banner from "@/layouts/components/Banner.astro";
 import SolutionPlatform from "@/layouts/components/SolutionPlatform.astro";
 import Ecosystem from "@/layouts/components/Ecosystem.astro";
-import KeyFeatures from "@/layouts/components/KeyFeatures.astro";
-import Service from "@/layouts/components/Service.astro";
-import Testimonial from "@/layouts/components/Testimonial.astro";
-import Cta from "@/layouts/partials/Cta.astro";
+import HomeEcosystemIntro from "@/layouts/components/home/HomeEcosystemIntro.astro";
+import HomeProductShowcase from "@/layouts/components/home/HomeProductShowcase.astro";
+import HomeApplications from "@/layouts/components/home/HomeApplications.astro";
+import HomeOemPartnership from "@/layouts/components/home/HomeOemPartnership.astro";
+import HomeProofCta from "@/layouts/components/home/HomeProofCta.astro";
 import type { CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
 
@@ -14,17 +15,19 @@ const homepage = (await getEntry(
   "homepage",
   "-index"
 )) as CollectionEntry<"homepage">;
-const { banner, key_features, service, testimonial } = homepage.data;
+const { banner } = homepage.data;
 ---
 
 <Base
   title="Switchlivo — Smart Home, Smart Hotel & Smart Lighting OEM/ODM Manufacturer"
+  showFooterIntro={false}
 >
   <Banner banner={banner} />
   <SolutionPlatform />
   <Ecosystem />
-  <KeyFeatures key_features={key_features} />
-  <Service service={service} />
-  <Testimonial testimonial={testimonial} />
-  <Cta />
+  <HomeEcosystemIntro />
+  <HomeProductShowcase />
+  <HomeApplications />
+  <HomeOemPartnership />
+  <HomeProofCta />
 </Base>
