@@ -3,3 +3,15 @@
 
 /images/solutions/room-*-v3.webp
   Cache-Control: public, max-age=31536000, immutable
+
+/images/solutions/room-*-v4.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/solutions/residential-v2.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/solutions/hotel-v2.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/solutions/office-v2.webp
+  Cache-Control: public, max-age=31536000, immutable

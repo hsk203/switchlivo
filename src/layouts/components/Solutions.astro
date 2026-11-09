@@ -1,8 +1,8 @@
 ---
 const applications = [
-  { no: "01", title: "Smart Home", desc: "Bring lighting, curtains, climate and everyday routines together through a consistent wall-control experience.", img: "/images/solutions/residential.webp", alt: "Contemporary residential smart home interior", tags: ["Whole-home control", "Room scenes", "Retrofit & new build"] },
-  { no: "02", title: "Smart Hotel", desc: "Create intuitive guest-room controls for lighting, climate, curtains and hospitality functions across room types.", img: "/images/solutions/hotel.webp", alt: "Contemporary hotel room with integrated wall controls", tags: ["Guest-room control", "DND & housekeeping", "Room standardization"] },
-  { no: "03", title: "Commercial & Office", desc: "Simplify shared-space operation with coordinated lighting and scene control for offices and meeting rooms.", img: "/images/solutions/office.webp", alt: "Modern commercial office interior", tags: ["Meeting scenes", "Shared spaces", "Centralized operation"] },
+  { no: "01", title: "Smart Home", desc: "Bring lighting, curtains, climate and everyday routines together through a consistent wall-control experience.", img: "/images/solutions/residential-v2.webp", alt: "Residential interior with Switchlivo wall-mounted smart light controls", tags: ["Whole-home control", "Room scenes", "Retrofit & new build"] },
+  { no: "02", title: "Smart Hotel", desc: "Create intuitive guest-room controls for lighting, climate, curtains and hospitality functions across room types.", img: "/images/solutions/hotel-v2.webp", alt: "Hotel room with wall-mounted modular switch socket and thermostat", tags: ["Guest-room control", "DND & housekeeping", "Room standardization"] },
+  { no: "03", title: "Commercial & Office", desc: "Simplify shared-space operation with coordinated lighting and scene control for offices and meeting rooms.", img: "/images/solutions/office-v2.webp", alt: "Modern office with wall-mounted Switchlivo power and fan controls", tags: ["Meeting scenes", "Shared spaces", "Centralized operation"] },
 ];
 const systems = [
   ["Smart Lighting", "Switching, dimming and scene control for comfortable, flexible spaces."],
@@ -12,8 +12,8 @@ const systems = [
   ["Security & Sensors", "Connect supported sensors and security devices for clearer status and alerts."],
   ["Centralized Control", "Combine supported functions in one consistent panel experience."],
 ];
-const roomImageSrc = (key, width = 1600) => `/images/solutions/room-${key}-${width}-v3.webp`;
-const roomImageSrcset = (key) => [960, 1280, 1600, 2200].map((width) => `${roomImageSrc(key, width)} ${width}w`).join(", ");
+const roomImageSrc = (key, width = 1600) => `/images/solutions/room-${key}-${width}-v4.webp`;
+const roomImageSrcset = (key) => [960, 1280, 1600, 1915].map((width) => `${roomImageSrc(key, width)} ${width}w`).join(", ");
 const rooms = [
   { key: "living", label: "Living Room", title: "A more considered way to live.", img: roomImageSrc("living"), srcset: roomImageSrcset("living"), points: ["Set the mood with lighting scenes", "Coordinate curtains and climate", "Keep everyday controls close at hand"] },
   { key: "bedroom", label: "Bedroom", title: "Comfort, from one bedside touch.", img: roomImageSrc("bedroom"), srcset: roomImageSrcset("bedroom"), points: ["Create sleep and wake-up routines", "Control bedside and ambient lighting", "Simplify daily operation"] },
@@ -80,11 +80,11 @@ const rooms = [
           src={i === 0 ? r.img : undefined}
           srcset={i === 0 ? r.srcset : undefined}
           sizes="100vw"
-          width="2200"
-          height="943"
+          width="1915"
+          height="821"
           data-src={i === 0 ? undefined : r.img}
           data-srcset={i === 0 ? undefined : r.srcset}
-          alt={r.label + " interior designed for intuitive smart control"}
+          alt={r.label + " interior with Switchlivo wall-mounted smart controls"}
           loading="lazy"
           fetchpriority="auto"
           decoding="async"
