@@ -50,6 +50,19 @@ const canonicalUrl =
     }
     <!-- favicon -->
     <link rel="shortcut icon" href={config.site.favicon} />
+    <!-- Google tag (gtag.js) - GA4 SwitchLivo G-MD8L4SFZDZ -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-MD8L4SFZDZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-MD8L4SFZDZ");
+    </script>
     <!-- theme meta -->
     <meta name="theme-name" content="pinwheel-astro" />
     <meta name="msapplication-TileColor" content="#000000" />
