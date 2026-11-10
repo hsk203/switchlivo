@@ -1,6 +1,6 @@
 ---
 import { markdownify } from "@/lib/utils/textConverter";
-import Globe from "@/layouts/components/Globe.astro";
+import GlobalProductShowcase from "@/layouts/components/GlobalProductShowcase.astro";
 import config from "@/config/config.json";
 
 const { banner } = Astro.props;
@@ -45,7 +45,7 @@ const waHref = `https://wa.me/${wa.number}?text=${encodeURIComponent(wa.message)
         </div>
       </div>
       <div class="lg:col-6">
-        <Globe />
+        <GlobalProductShowcase />
       </div>
     </div>
   </div>

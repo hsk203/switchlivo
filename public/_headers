@@ -21,3 +21,9 @@
 
 /images/solutions/office-v2.webp
   Cache-Control: public, max-age=31536000, immutable
+
+/images/global-dotted-map.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/hero-products/*-v1.webp
+  Cache-Control: public, max-age=31536000, immutable

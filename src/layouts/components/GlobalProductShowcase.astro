@@ -1,0 +1,377 @@
+---
+import { getSinglePage } from "@/lib/contentParser.astro";
+
+const productCount = (await getSinglePage("products")).length;
+const featuredProducts = [
+  {
+    model: "X26A",
+    label: "Smart touch switch",
+    slug: "x26a-4-gang-2-scene-smart-touch-switch",
+    image: "/images/hero-products/x26a-v1.webp",
+    className: "tile-x26",
+  },
+  {
+    model: "4 Modular",
+    label: "Power & socket",
+    slug: "4-modular-switch-socket",
+    image: "/images/hero-products/socket-4-modular-v1.webp",
+    className: "tile-modular",
+  },
+  {
+    model: "NH04",
+    label: "Climate control",
+    slug: "nh04-smart-thermostat-touchscreen-for-heating-water-electric-boiler-systems",
+    image: "/images/hero-products/nh04-v1.webp",
+    className: "tile-nh04",
+  },
+  {
+    model: "X39UAG",
+    label: "Smart lighting control",
+    slug: "x39uag-4-gang-4-scene-smart-light-switch",
+    image: "/images/hero-products/x39uag-v1.webp",
+    className: "tile-x39",
+  },
+];
+---
+
+<div class="global-product-stage" aria-label="Switchlivo products for global smart-space projects">
+  <img class="world-map" src="/images/global-dotted-map.svg" alt="" aria-hidden="true" loading="eager" />
+
+  <svg class="connection-lines" viewBox="0 0 560 560" fill="none" aria-hidden="true">
+    <path d="M88 205C142 119 220 126 285 179S408 245 475 156" />
+    <path d="M79 343C166 264 254 280 315 342S416 402 489 327" />
+    <circle cx="88" cy="205" r="4" />
+    <circle cx="285" cy="179" r="4" />
+    <circle cx="475" cy="156" r="4" />
+    <circle cx="79" cy="343" r="4" />
+    <circle cx="315" cy="342" r="4" />
+    <circle cx="489" cy="327" r="4" />
+  </svg>
+
+  <div class="global-label">
+    <span class="label-dot" aria-hidden="true"></span>
+    <span>GLOBAL OEM / ODM</span>
+  </div>
+
+  {featuredProducts.map((product, index) => (
+    <a
+      class={`product-tile ${product.className}`}
+      href={`/products/${product.slug}/`}
+      aria-label={`Explore ${product.model} ${product.label}`}
+    >
+      <img
+        src={product.image}
+        alt={product.model}
+        loading="eager"
+        fetchpriority={index === 0 ? "high" : "auto"}
+        decoding="async"
+      />
+      <span class="product-caption">
+        <strong>{product.model}</strong>
+        <small>{product.label}</small>
+      </span>
+    </a>
+  ))}
+
+  <div class="global-stats" aria-label="Product catalogue and application areas">
+    <div class="stat">
+      <strong>{productCount.toLocaleString("en-US")}</strong>
+      <span>catalog listings</span>
+    </div>
+    <div class="stat-divider" aria-hidden="true"></div>
+    <div class="stat">
+      <strong>03</strong>
+      <span>application areas</span>
+    </div>
+    <p class="application-note">Smart home · Hotel · Lighting</p>
+  </div>
+</div>
+
+<style>
+  .global-product-stage {
+    --accent: #f97316;
+    position: relative;
+    width: min(100%, 560px);
+    aspect-ratio: 1;
+    margin-inline: auto;
+    isolation: isolate;
+    border: 1px solid rgba(31, 41, 55, 0.08);
+    border-radius: 30px;
+    box-shadow: 0 22px 58px rgba(31, 41, 55, 0.07);
+    background:
+      radial-gradient(ellipse at 54% 42%, rgba(249, 115, 22, 0.2) 0%, rgba(249, 115, 22, 0.05) 42%, rgba(249, 115, 22, 0) 74%),
+      linear-gradient(145deg, #14212b 0%, #22333e 100%);
+  }
+
+  .world-map {
+    position: absolute;
+    z-index: 0;
+    inset: 13% 2% 40%;
+    width: 96%;
+    height: 47%;
+    object-fit: contain;
+    opacity: 0.82;
+    pointer-events: none;
+  }
+
+  .connection-lines {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .connection-lines path {
+    stroke: rgba(249, 115, 22, 0.6);
+    stroke-width: 1.8;
+    stroke-dasharray: 4 8;
+    stroke-linecap: round;
+  }
+
+  .connection-lines circle {
+    fill: #f97316;
+    stroke: #fff;
+    stroke-width: 2;
+  }
+
+  .global-label {
+    position: absolute;
+    z-index: 5;
+    top: 6%;
+    left: 6%;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.58rem 0.82rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.12);
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    white-space: nowrap;
+  }
+
+  .label-dot {
+    width: 0.48rem;
+    height: 0.48rem;
+    flex: none;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.12);
+  }
+
+  .product-tile {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(31, 41, 55, 0.1);
+    border-radius: 17px;
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 14px 36px rgba(28, 39, 47, 0.12);
+    color: #1f2937;
+    text-decoration: none;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .product-tile:hover,
+  .product-tile:focus-visible {
+    z-index: 6;
+    transform: translateY(-4px);
+    box-shadow: 0 18px 38px rgba(28, 39, 47, 0.17);
+  }
+
+  .product-tile:focus-visible {
+    outline: 3px solid rgba(249, 115, 22, 0.55);
+    outline-offset: 3px;
+  }
+
+  .product-tile img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    padding: 0.34rem;
+    object-fit: contain;
+    background: #fff;
+  }
+
+  .product-caption {
+    display: flex;
+    width: 100%;
+    min-height: 2.8rem;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.12rem;
+    padding: 0.38rem 0.52rem 0.44rem;
+    border-top: 1px solid rgba(31, 41, 55, 0.07);
+    background: #fff;
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  .product-caption strong {
+    color: #1f2937;
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+
+  .product-caption small {
+    color: #6b7280;
+    font-size: 0.57rem;
+    font-weight: 500;
+  }
+
+  .tile-x26 {
+    z-index: 3;
+    top: 27%;
+    left: 31%;
+    width: 40%;
+    border-radius: 19px;
+  }
+
+  .tile-x26 img {
+    padding: 0.45rem;
+  }
+
+  .tile-modular {
+    top: 25%;
+    left: 1%;
+    width: 29%;
+  }
+
+  .tile-nh04 {
+    top: 17%;
+    right: 1%;
+    width: 29%;
+  }
+
+  .tile-x39 {
+    top: 45%;
+    right: 3%;
+    width: 28%;
+  }
+
+  .global-stats {
+    position: absolute;
+    z-index: 4;
+    right: 6%;
+    bottom: 4%;
+    left: 6%;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    min-height: 4.4rem;
+    padding: 0.7rem 0.95rem;
+    border: 1px solid rgba(31, 41, 55, 0.09);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 10px 30px rgba(24, 35, 44, 0.09);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
+    min-width: 0;
+  }
+
+  .stat strong {
+    color: #1f2937;
+    font-family: var(--font-secondary, inherit);
+    font-size: clamp(1.12rem, 2.3vw, 1.45rem);
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .stat span {
+    color: #6b7280;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 2rem;
+    flex: none;
+    background: rgba(31, 41, 55, 0.13);
+  }
+
+  .application-note {
+    margin: 0 0 0 auto;
+    color: #6b7280;
+    font-size: 0.58rem;
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: right;
+  }
+
+  @media (max-width: 1023px) {
+    .global-product-stage {
+      width: min(100%, 430px);
+      margin: 2.5rem auto 0;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .global-label {
+      top: 5%;
+      left: 3%;
+      padding: 0.48rem 0.64rem;
+      font-size: 0.53rem;
+    }
+
+    .product-caption {
+      min-height: 2.35rem;
+      padding: 0.28rem 0.28rem 0.32rem;
+    }
+
+    .product-caption strong {
+      font-size: 0.57rem;
+    }
+
+    .product-caption small {
+      font-size: 0.48rem;
+    }
+
+    .global-stats {
+      right: 3%;
+      bottom: 3%;
+      left: 3%;
+      gap: 0.55rem;
+      min-height: 3.9rem;
+      padding: 0.6rem 0.7rem;
+    }
+
+    .stat strong {
+      font-size: 1.1rem;
+    }
+
+    .stat span,
+    .application-note {
+      font-size: 0.49rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product-tile {
+      transition: none;
+    }
+
+    .product-tile:hover,
+    .product-tile:focus-visible {
+      transform: none;
+    }
+  }
+</style>
