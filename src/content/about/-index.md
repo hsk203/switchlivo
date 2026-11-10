@@ -1,40 +1,24 @@
 ---
 title: "About"
-page_title: "About our company"
-meta_title: ""
-description: ""
+page_title: "About Switchlivo"
+meta_title: "About Switchlivo — Smart Switch Panels from Shunde, Foshan"
+description: "Switchlivo is a smart switch panels manufacturer and supplier from Shunde, Foshan, Guangdong, China. OEM/ODM available. Contact us for quotations and samples."
 image: ""
 buttons:
-  - label: Download The Theme
-    link: "https://themefisher.com/astro-themes/pinwheel-astro"
+  - label: Contact Us
+    link: "/contact"
     enable: true
-  - label: Learn More
-    link: "#"
+  - label: View Products
+    link: "/products"
     outline: true
     enable: true
 
 # counter
-counter:
-  - name: "Customers"
-    number: 25
-    measurement: M
-    color: "#A3A1FB"
-  - name: "Customers"
-    number: 440
-    measurement: M
-    color: "#5EE2A0"
-  - name: "Customers"
-    number: 50
-    measurement: K
-    color: "#FE6019"
-  - name: "Customers"
-    number: 20
-    measurement: K
-    color: "#FEC163"
+counter: []
 
 # Gallery
 gallery:
-  title: We started with one single goal Empower entrepreneurs
+  title: Smart switch panels, made for real projects
   images:
     - "/images/about/gallery-img-1.png"
     - "/images/about/gallery-img-3.png"
@@ -42,48 +26,28 @@ gallery:
 
 ## our works
 features:
-  title: The six core work <br /> drive everything do
+  title: What Switchlivo does
   button:
-    label: Download The Theme
-    link: "https://themefisher.com/astro-themes/pinwheel-astro"
+    label: Contact Us
+    link: "/contact"
     enable: true
   features_list:
-    - title: Accessibility
-      content: Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec velit neque, autor sit amet aliuam vel
-    - title: Empowerement
-      content: Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec velit neque, autor sit amet aliuam vel
-    - title: Excellence
-      content: Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec velit neque, autor sit amet aliuam vel
-    - title: Innovation
-      content: Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec velit neque, autor sit amet aliuam vel
-    - title: Innovation
-      content: Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec velit neque, autor sit amet aliuam vel
-    - title: Innovation
-      content: Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec velit neque, autor sit amet aliuam vel
+    - title: Smart Switch Panels
+      content: Switch panels and touch panels for homes, hotels and offices, with modular sockets and compatible gateway options.
+    - title: OEM / ODM
+      content: Branding, housing, finish and packaging options for brands and distributors, agreed model by model.
+    - title: Quotations & Samples
+      content: Tell us your target market, product and quantity, and we will prepare a quotation and sample options.
+    - title: Distributor & Project Support
+      content: Panel lists and product selection support for distributors and project teams, worldwide, with a focus on Saudi Arabia, UAE, Southeast Asia and India.
 
 ## members
 members:
-  title: This is who we are
-  description: Donec sollicitudin molestie malesda. Donec sollitudin mol estie ultricies ligula sed magna dictum
-  member_list:
-    - name: Eleanor Pena
-      field: Co-founder & COO
-      image: "/images/users/user-1.png"
-    - name: Bukiakta Bansalo
-      field: Product Manager
-      image: "/images/users/user-2.png"
-    - name: Ortrin Okaster
-      field: Software Engineer
-      image: "/images/users/user-3.png"
-    - name: Eleanor Pena
-      field: Co-founder & COO
-      image: "/images/users/user-1.png"
-    - name: Bukiakta Bansalo
-      field: Product Manager
-      image: "/images/users/user-2.png"
-    - name: Ortrin Okaster
-      field: Software Engineer
-      image: "/images/users/user-3.png"
+  title: Our team
+  description: A small team in Shunde, Foshan, focused on smart switch panels. Contact us and you will talk directly with the team that handles your inquiry.
+  member_list: []
 ---
 
-Donec sollicitudin molestie malesda. Donec sollitudin molestie malesuada. Mauris pellentesque nec, egestas non nisi. Cras ultricies ligula sed magna dictum porta. Lorem
+Switchlivo is a smart switch panels manufacturer and supplier from Shunde, Foshan, Guangdong, China. OEM/ODM available. Contact us for quotations and samples.
+
+We serve brands, distributors and project teams worldwide, with a focus on Saudi Arabia, UAE, Southeast Asia and India. Tell us your target market, application and the product families you are considering, and we will help you start with the right models.
