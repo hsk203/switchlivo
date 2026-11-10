@@ -4,9 +4,11 @@ import Banner from "@/layouts/components/Banner.astro";
 import SolutionPlatform from "@/layouts/components/SolutionPlatform.astro";
 import Ecosystem from "@/layouts/components/Ecosystem.astro";
 import HomeEcosystemIntro from "@/layouts/components/home/HomeEcosystemIntro.astro";
+import HomeTrustStrip from "@/layouts/components/home/HomeTrustStrip.astro";
 import HomeProductShowcase from "@/layouts/components/home/HomeProductShowcase.astro";
 import HomeApplications from "@/layouts/components/home/HomeApplications.astro";
-import HomeOemPartnership from "@/layouts/components/home/HomeOemPartnership.astro";
+import HomeWhy from "@/layouts/components/home/HomeWhy.astro";
+import HomeProcess from "@/layouts/components/home/HomeProcess.astro";
 import HomeProofCta from "@/layouts/components/home/HomeProofCta.astro";
 import type { CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
@@ -26,8 +28,10 @@ const { banner } = homepage.data;
   <SolutionPlatform />
   <Ecosystem />
   <HomeEcosystemIntro />
+  <HomeTrustStrip />
   <HomeProductShowcase />
   <HomeApplications />
-  <HomeOemPartnership />
+  <HomeWhy />
+  <HomeProcess />
   <HomeProofCta />
 </Base>

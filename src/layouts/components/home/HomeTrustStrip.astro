@@ -1,0 +1,41 @@
+---
+// Trust strip — credibility band right below the ecosystem intro.
+// Facts only: manufacturer identity, OEM/ODM, real catalog size, shipping focus.
+const items = [
+  { t: "Manufacturer & Supplier", d: "Own factory in Shunde, Foshan" },
+  { t: "OEM & ODM", d: "Your brand, our engineering" },
+  { t: "322+ Products", d: "One catalog, project-ready" },
+  { t: "12 Categories", d: "From switches to thermostats" },
+  { t: "Worldwide Shipping", d: "Focus: Saudi Arabia, UAE, India & Southeast Asia" },
+];
+---
+
+<section class="home-trust" aria-label="Why buyers trust Switchlivo">
+  <div class="home-shell">
+    <ul class="home-trust-grid">
+      {
+        items.map((it) => (
+          <li>
+            <span class="home-trust-mark" aria-hidden="true" />
+            <div>
+              <strong>{it.t}</strong>
+              <p>{it.d}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .home-shell{width:min(1180px,calc(100% - 48px));margin-inline:auto}
+  .home-trust{padding:clamp(30px,4vw,44px) 0;background:#10161b;color:#fff}
+  .home-trust-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:26px;list-style:none;margin:0;padding:0}
+  .home-trust-grid li{display:flex;align-items:flex-start;gap:11px;margin:0;padding:0}
+  .home-trust-mark{flex:none;width:8px;height:8px;margin-top:6px;background:#FE6019;border-radius:2px;transform:rotate(45deg)}
+  .home-trust-grid strong{display:block;color:#fff;font-size:14px;font-weight:800;letter-spacing:-.01em}
+  .home-trust-grid p{margin:5px 0 0;color:rgba(255,255,255,.55);font-size:12px;line-height:1.55}
+  @media(max-width:960px){.home-trust-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}}
+  @media(max-width:520px){.home-trust-grid{grid-template-columns:1fr;gap:15px}}
+</style>
