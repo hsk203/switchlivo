@@ -1,39 +1,65 @@
 ---
-// Trust strip — a single editorial fact line under the dark intro.
-// Facts only: manufacturer identity, OEM/ODM, real catalog size, shipping focus.
-const items = [
-  { t: "Manufacturer & Supplier", d: "Own factory in Shunde, Foshan" },
-  { t: "OEM & ODM", d: "Your brand, our engineering" },
-  { t: "322+ Products", d: "12 categories, project-ready" },
-  { t: "Worldwide Shipping", d: "With a focus on Saudi Arabia, UAE, India & Southeast Asia" },
+// Factory trust — proof, not just words. Left: the production line in
+// Shunde, Foshan. Right: the four facts that can be verified — one factory,
+// catalog size, categories, OEM/ODM. No certifications, no customer names,
+// no testimonials: none exist.
+const facts = [
+  { n: "01", t: "Factory", d: "Our own production line in Shunde, Foshan" },
+  { n: "322+", t: "Models", d: "Switch panels, thermostats, sockets, gateways" },
+  { n: "12", t: "Categories", d: "One catalog, project-ready" },
+  { n: "OEM/ODM", t: "Branding", d: "Your brand, our engineering" },
 ];
 ---
 
-<section class="home-trust" aria-label="Why buyers trust Switchlivo">
+<section class="home-factory" aria-label="Our factory">
   <div class="home-shell">
-    <span class="home-trust-label">THE SHORT VERSION</span>
-    <ul class="home-trust-grid">
-      {
-        items.map((it) => (
-          <li>
-            <strong>{it.t}</strong>
-            <p>{it.d}</p>
-          </li>
-        ))
-      }
-    </ul>
+    <figure class="home-factory-photo">
+      <img
+        src="/images/production-line.webp"
+        alt="Switchlivo production line — workers assembling smart switch panels"
+        width="1920"
+        height="1280"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+    <div class="home-factory-copy">
+      <span class="home-kicker">THE FACTORY</span>
+      <h2>Built where it is made.</h2>
+      <p>
+        Every panel is assembled, tested and packed in our own factory in
+        Shunde, Foshan — the same team answers your questions, builds your
+        samples and ships your order.
+      </p>
+      <dl class="home-factory-facts">
+        {
+          facts.map((f) => (
+            <div>
+              <dt>{f.t}</dt>
+              <dd>{f.n}</dd>
+              <dd class="home-factory-fact-sub">{f.d}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
   </div>
 </section>
 
 <style>
   .home-shell{width:min(1180px,calc(100% - 48px));margin-inline:auto}
-  .home-trust{padding:clamp(34px,4vw,48px) 0;background:#fff;color:#1a202c;border-bottom:1px solid #e8e7e4}
-  .home-trust-label{display:block;margin-bottom:22px;color:#B84311;font-size:9px;font-weight:800;letter-spacing:.18em}
-  .home-trust-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;list-style:none;margin:0;padding:0}
-  .home-trust-grid li{margin:0;padding:0 26px;border-left:1px solid #e8e7e4}
-  .home-trust-grid li:first-child{padding-left:0;border-left:0}
-  .home-trust-grid strong{display:block;color:#1a202c;font-size:15px;font-weight:800;letter-spacing:-.01em}
-  .home-trust-grid p{margin:6px 0 0;color:#717b82;font-size:12px;line-height:1.6}
-  @media(max-width:960px){.home-trust-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 0}.home-trust-grid li{padding:0 22px}.home-trust-grid li:nth-child(odd){padding-left:0;border-left:0}}
-  @media(max-width:520px){.home-trust-grid{grid-template-columns:1fr}.home-trust-grid li{padding:0 0 0 14px;border-left:2px solid #f3c8b8}}
+  .home-factory{padding:clamp(64px,8vw,104px) 0;background:#fff;color:#1a202c}
+  .home-factory .home-shell{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,4.5vw,64px);align-items:center}
+  .home-factory-photo{margin:0}
+  .home-factory-photo img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px}
+  .home-kicker{display:inline-flex;align-items:center;gap:11px;color:#B84311;font-size:10px;font-weight:800;letter-spacing:.16em}
+  .home-factory h2{margin:16px 0 0;color:#1a202c;font-family:var(--font-primary);font-size:clamp(30px,3.8vw,44px);font-weight:700;line-height:1.12;letter-spacing:-.03em}
+  .home-factory-copy>p{max-width:480px;margin:16px 0 0;color:#4b5563;font-size:15px;line-height:1.75}
+  .home-factory-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 28px;margin:36px 0 0;padding:0}
+  .home-factory-facts div{border-top:2px solid #1a202c;padding-top:14px}
+  .home-factory-facts dt{margin:0;color:#6b7280;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+  .home-factory-facts dd{margin:6px 0 0;color:#1a202c;font-size:30px;font-weight:800;line-height:1;letter-spacing:-.03em}
+  .home-factory-facts .home-factory-fact-sub{margin:8px 0 0;color:#6b7280;font-size:12.5px;font-weight:500;line-height:1.55;letter-spacing:0}
+  @media(max-width:860px){.home-factory .home-shell{grid-template-columns:1fr;gap:32px}}
+  @media(max-width:520px){.home-factory-facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.home-factory-facts dd{font-size:25px}}
 </style>
