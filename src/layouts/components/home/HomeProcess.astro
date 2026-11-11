@@ -1,23 +1,23 @@
 ---
-// How it works — four steps from first email to first order.
+// How it works — a vertical timeline beside one big promise: quotation in 24 hours.
 const steps = [
   {
-    n: "1",
+    n: "01",
     t: "Send Inquiry",
     d: "Tell us the models, quantities and target market you have in mind.",
   },
   {
-    n: "2",
+    n: "02",
     t: "Quotation in 24 Hours",
     d: "A clear factory-direct quote with OEM/ODM options, within one working day.",
   },
   {
-    n: "3",
+    n: "03",
     t: "Sample",
     d: "Evaluate real samples — finish, feel and functionality — before deciding.",
   },
   {
-    n: "4",
+    n: "04",
     t: "Order",
     d: "Confirm your order and we schedule production, packing and shipment.",
   },
@@ -26,21 +26,31 @@ const steps = [
 
 <section class="home-process" aria-labelledby="home-process-title">
   <div class="home-shell">
-    <div class="home-process-header">
-      <span class="home-kicker"><span>05</span> HOW IT WORKS</span>
-      <h2 id="home-process-title">From first email<br /><em>to first container.</em></h2>
+    <div class="home-process-layout">
+      <div class="home-process-main">
+        <span class="home-kicker"><span>05</span> HOW IT WORKS</span>
+        <h2 id="home-process-title">From first email<br /><em>to first container.</em></h2>
+        <ol class="home-process-steps">
+          {
+            steps.map((s) => (
+              <li>
+                <span class="home-step-num">{s.n}</span>
+                <div>
+                  <h3>{s.t}</h3>
+                  <p>{s.d}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+      <aside class="home-process-promise" aria-label="Our quotation promise">
+        <span class="home-promise-label">THE PROMISE</span>
+        <p class="home-promise-big">24<span>h</span></p>
+        <p class="home-promise-text">From your inquiry to a factory-direct quotation — within one working day. No waiting a week to find out the price.</p>
+        <a class="home-promise-link" href="/contact">Start with an inquiry <span aria-hidden="true">↗</span></a>
+      </aside>
     </div>
-    <ol class="home-process-grid">
-      {
-        steps.map((s, i) => (
-          <li>
-            <span class:list={["home-step-dot", i === steps.length - 1 && "is-final"]}>{s.n}</span>
-            <h3>{s.t}</h3>
-            <p>{s.d}</p>
-          </li>
-        ))
-      }
-    </ol>
   </div>
 </section>
 
@@ -48,18 +58,27 @@ const steps = [
   .home-kicker{display:inline-flex;align-items:center;gap:11px;color:#B84311;font-size:10px;font-weight:800;letter-spacing:.16em}
   .home-kicker>span{color:#899198}
   .home-process{padding:clamp(76px,9vw,118px) 0;background:#fff;color:#1a202c}
-  .home-process-header{text-align:center;max-width:640px;margin:0 auto 56px}
-  .home-process h2{margin:16px 0 0;color:#1a202c;font-size:clamp(34px,4.6vw,56px);line-height:1.07;letter-spacing:-.045em}
+  .home-shell{width:min(1180px,calc(100% - 48px));margin-inline:auto}
+  .home-process-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start}
+  .home-process h2{margin:16px 0 40px;color:#1a202c;font-size:clamp(34px,4.6vw,56px);line-height:1.07;letter-spacing:-.045em}
   .home-process h2 em{font-style:normal;color:#FE6019}
-  .home-process-grid{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px;list-style:none;margin:0;padding:0}
-  .home-process-grid:before{content:"";position:absolute;top:25px;left:12%;right:12%;height:1px;background:#e3ded6}
-  .home-process-grid li{position:relative;margin:0;padding:0;text-align:center}
-  .home-step-dot{position:relative;z-index:1;display:grid;place-items:center;width:52px;height:52px;margin:0 auto;border-radius:50%;background:#1a202c;color:#fff;font-size:19px;font-weight:800;transition:background .25s ease,box-shadow .25s ease}
-  .home-step-dot.is-final{background:#FE6019}
-  .home-process-grid li:hover .home-step-dot{box-shadow:0 0 0 9px rgba(254,96,25,.13)}
-  .home-process-grid h3{margin:20px 0 9px;color:#1a202c;font-size:17px;letter-spacing:-.02em}
-  .home-process-grid p{margin:0 auto;max-width:250px;color:#717b82;font-size:13px;line-height:1.7}
-  @media(prefers-reduced-motion:reduce){.home-step-dot{transition:none}.home-process-grid li:hover .home-step-dot{box-shadow:none}}
-  @media(max-width:850px){.home-process-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:34px}.home-process-grid:before{display:none}}
-  @media(max-width:520px){.home-process-grid{grid-template-columns:1fr;gap:26px}.home-process-grid p{max-width:320px}}
+  .home-process-steps{list-style:none;margin:0;padding:0}
+  .home-process-steps li{position:relative;display:grid;grid-template-columns:64px 1fr;gap:18px;padding:0 0 30px 0}
+  .home-process-steps li:not(:last-child):before{content:"";position:absolute;top:34px;bottom:2px;left:17px;width:1px;background:#e3ded6}
+  .home-process-steps li:last-child{padding-bottom:0}
+  .home-step-num{position:relative;z-index:1;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#1a202c;color:#fff;font-size:12px;font-weight:800;letter-spacing:.04em}
+  .home-process-steps li:last-child .home-step-num{background:#FE6019}
+  .home-process-steps h3{margin:7px 0 5px;color:#1a202c;font-size:17px;letter-spacing:-.02em}
+  .home-process-steps p{max-width:480px;margin:0;color:#717b82;font-size:13px;line-height:1.7}
+  .home-process-promise{position:sticky;top:32px;border-radius:16px;background:#10161b;color:#fff;padding:38px 34px 34px}
+  .home-promise-label{display:block;color:#f0a17f;font-size:9px;font-weight:800;letter-spacing:.18em}
+  .home-promise-big{margin:18px 0 0;color:#fff;font-size:clamp(88px,9vw,132px);font-weight:800;line-height:.9;letter-spacing:-.06em}
+  .home-promise-big span{color:#FE6019;font-size:.55em}
+  .home-promise-text{margin:20px 0 0;color:rgba(255,255,255,.62);font-size:14px;line-height:1.75}
+  .home-promise-link{display:inline-flex;align-items:center;gap:9px;margin-top:24px;color:#fff;font-size:13px;font-weight:750;text-decoration:none}
+  .home-promise-link span{color:#FE6019;font-size:16px}
+  .home-promise-link:hover{text-decoration:underline}
+  .home-promise-link:focus-visible{outline:2px solid #f0a17f;outline-offset:3px}
+  @media(max-width:860px){.home-process-layout{grid-template-columns:1fr;gap:36px}.home-process-promise{position:static}}
+  @media(max-width:600px){.home-shell{width:min(100% - 36px,580px)}.home-process-steps li{grid-template-columns:48px 1fr;gap:13px}.home-process-steps li:not(:last-child):before{left:13px}.home-step-num{width:28px;height:28px;font-size:11px}.home-process-promise{padding:28px 24px}}
 </style>
