@@ -1,141 +1,59 @@
 ---
-// Rotating-headline strip placed directly under the hero banner.
-// Static "frame" lines stay fixed; the middle two lines cycle through pairs,
-// mirroring the reference site's animated headline block.
+// Static platform statement directly under the hero.
+// Was a rotating gradient headline; replaced with one fixed statement
+// in solid colors. Protocols listed are the ones in the product files
+// (Tuya / Zigbee / Matter / KNX / RS485). No certification claims.
 ---
 
-<section class="section platform-strip" aria-label="Our solution platform">
-  <div class="container">
-    <div class="platform-text">
-      <p class="platform-static">Our solution platform works with</p>
-
-      <div class="platform-rotor">
-        <div class="platform-pair">
-          <span class="platform-line">
-            Hotels, Residences &amp; Offices — any business type
-          </span>
-        </div>
-        <div class="platform-pair">
-          <span class="platform-line">
-            Tuya, Matter, HarmonyOS Connect, Xiaomi Mijia, KNX &amp; BLE Mesh
-          </span>
-        </div>
-      </div>
-
-      <p class="platform-static">— All in one ecosystem.</p>
-
-      <p class="platform-sub">
-        One complete ecosystem for smart hotels, homes, and offices — with full OEM &amp; ODM flexibility.<br>
-        Covering certifications, eco standards, and technical parameters.
-      </p>
-    </div>
+<section class="platform" aria-label="Our solution platform">
+  <div class="platform-shell">
+    <h2 class="platform-title">One platform for homes, hotels and offices.</h2>
+    <p class="platform-protocols">
+      Panels, thermostats, sockets and gateways that work with
+      <strong>Tuya</strong>, <strong>Zigbee</strong>, <strong>Matter</strong>,
+      <strong>KNX</strong> and <strong>RS485</strong>.
+    </p>
+    <p class="platform-sub">
+      One complete ecosystem for smart hotels, homes and offices — with full
+      OEM &amp; ODM flexibility.
+    </p>
   </div>
 </section>
 
 <style>
-  .platform-strip {
-    background: transparent;
-  }
-
-  /* this strip only: a bit more room so the longest rotating line never clips.
-     the max-width itself lives in src/styles/components.css — a rule in this
-     scoped <style> can never outrank the layered !important .container. */
-
-  .platform-text {
-    max-width: none;
-    margin-inline: auto;
+  .platform {
+    padding: clamp(56px, 7vw, 84px) 0;
+    background: #f7f6f3;
+    color: #1a202c;
     text-align: center;
   }
-
-  .platform-static {
+  .platform-shell {
+    width: min(860px, calc(100% - 48px));
+    margin-inline: auto;
+  }
+  .platform-title {
     margin: 0;
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    line-height: 1.25;
+    color: #1a202c;
+    font-family: var(--font-primary);
+    font-size: clamp(28px, 3.6vw, 44px);
     font-weight: 700;
-    letter-spacing: -0.02em;
-    color: #1f2937;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
   }
-
-  /* stacked grid: all pairs share one cell, container sizes to the tallest */
-  .platform-rotor {
-    display: grid;
-    margin: 0.3em 0;
-  }
-
-  .platform-pair {
-    grid-area: 1 / 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.08em;
-    opacity: 0;
-    animation: platform-rotor 5s ease-in-out infinite;
-    will-change: opacity, transform;
-  }
-  .platform-pair:nth-child(1) {
-    animation-delay: 0s;
-  }
-  .platform-pair:nth-child(2) {
-    animation-delay: 2.5s;
-  }
-
-  .platform-line {
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    line-height: 1.25;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    background-image: linear-gradient(to left, #f97316, #fb923c, #fbbf24);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  /* desktop: one sentence, one line, never wraps */
-  @media (min-width: 1024px) {
-    .platform-line {
-      white-space: nowrap;
-    }
-  }
-
-  .platform-sub {
-    max-width: 46rem;
-    margin: 1.6rem auto 0;
-    font-size: clamp(1rem, 1.4vw, 1.15rem);
+  .platform-protocols {
+    margin: 20px 0 0;
+    color: #4b5563;
+    font-size: clamp(15px, 1.6vw, 17px);
     line-height: 1.7;
-    color: #374151;
   }
-
-  @keyframes platform-rotor {
-    0% {
-      opacity: 0;
-      transform: translateY(0.5em);
-    }
-    7% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    43% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    50% {
-      opacity: 0;
-      transform: translateY(-0.5em);
-    }
-    100% {
-      opacity: 0;
-      transform: translateY(-0.5em);
-    }
+  .platform-protocols strong {
+    color: #1a202c;
+    font-weight: 700;
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    .platform-pair {
-      animation: none;
-      opacity: 0;
-    }
-    .platform-pair:nth-child(1) {
-      opacity: 1;
-      transform: none;
-    }
+  .platform-sub {
+    margin: 14px 0 0;
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.7;
   }
 </style>
