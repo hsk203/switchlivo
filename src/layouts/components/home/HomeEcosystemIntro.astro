@@ -1,57 +1,58 @@
 <section class="home-ecosystem" aria-labelledby="home-ecosystem-title">
   <div class="home-shell">
-    <div class="home-ecosystem-top">
-      <span class="home-kicker"><span>01</span> WHAT WE MAKE</span>
-      <span class="home-side-note">322+ products · 12 categories · Shunde, Foshan</span>
-    </div>
-    <div class="home-ecosystem-heading">
-      <h2 id="home-ecosystem-title">Smart Switch Panels,<br /><em>Factory Direct.</em></h2>
-      <div class="home-ecosystem-copy">
-        <p>SwitchLivo makes smart switch panels in our own factory in Shunde, Foshan, China. Touch switches, scene switches, fan controls and modular sockets — 322+ models across 12 categories, ready for your brand and your market.</p>
-        <a href="#representative-products" class="home-text-link">Explore representative products <span aria-hidden="true">↓</span></a>
+    <span class="home-kicker"><span>01</span> WHAT WE MAKE</span>
+    <h2 id="home-ecosystem-title">We make one thing well:<br /><em>smart switch panels.</em></h2>
+    <p class="home-ecosystem-lede">Not a gadget catalog. Not a trading list. One factory in Shunde, Foshan, building the wall controls that homes, hotels and commercial projects actually order — touch switches, scene switches, fan controls, modular sockets and thermostats.</p>
+
+    <dl class="home-ecosystem-stats">
+      <div>
+        <dt>Models in the catalog</dt>
+        <dd>322<span>+</span></dd>
       </div>
-    </div>
-    <div class="home-ecosystem-pillars">
-      <article>
-        <span class="home-pillar-index">A / PANELS</span>
-        <h3>Switch panels first</h3>
-        <p>Touch, scene and modular panels — the wall controls your project starts with.</p>
-      </article>
-      <article>
-        <span class="home-pillar-index">B / CLIMATE &amp; POWER</span>
-        <h3>Same platform, more controls</h3>
-        <p>Thermostats, sockets and power controls that share the same design language.</p>
-      </article>
-      <article>
-        <span class="home-pillar-index">C / OEM &amp; ODM</span>
-        <h3>Your brand, our factory</h3>
-        <p>Logo, finish, packaging and firmware customized to your market.</p>
-      </article>
+      <div>
+        <dt>Product categories</dt>
+        <dd>12</dd>
+      </div>
+      <div>
+        <dt>Factory</dt>
+        <dd>01</dd>
+      </div>
+    </dl>
+
+    <div class="home-ecosystem-foot">
+      <ul class="home-ecosystem-tags" aria-label="Product families">
+        <li>Touch switches</li>
+        <li>Scene switches</li>
+        <li>Fan controls</li>
+        <li>Modular sockets</li>
+        <li>Thermostats</li>
+        <li>Gateways</li>
+      </ul>
+      <a href="#representative-products" class="home-text-link">See the panels <span aria-hidden="true">↓</span></a>
     </div>
   </div>
 </section>
 
 <style>
-  .home-ecosystem{padding:clamp(68px,8vw,112px) 0 52px;background:#fff;color:#1a202c}
+  .home-ecosystem{padding:clamp(84px,10vw,140px) 0 clamp(64px,7vw,96px);background:#10161b;color:#fff}
   .home-shell{width:min(1180px,calc(100% - 48px));margin-inline:auto}
-  .home-ecosystem-top{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:30px}
-  .home-kicker{display:inline-flex;align-items:center;gap:11px;color:#B84311;font-size:10px;font-weight:800;letter-spacing:.16em}
-  .home-kicker>span{color:#899198}
-  .home-side-note{color:#7b858c;font-size:12px;letter-spacing:.04em}
-  .home-ecosystem-heading{display:grid;grid-template-columns:1.1fr .8fr;gap:70px;align-items:end;padding-bottom:48px;border-bottom:1px solid #e8e7e4}
-  .home-ecosystem h2{margin:0;color:#1a202c;font-size:clamp(36px,5.4vw,66px);line-height:1.04;letter-spacing:-.045em}
+  .home-kicker{display:inline-flex;align-items:center;gap:11px;color:#f0a17f;font-size:10px;font-weight:800;letter-spacing:.16em}
+  .home-kicker>span{color:rgba(255,255,255,.4)}
+  .home-ecosystem h2{margin:22px 0 0;max-width:900px;color:#fff;font-size:clamp(42px,6.8vw,84px);line-height:1.02;letter-spacing:-.05em}
   .home-ecosystem h2 em{font-style:normal;color:#FE6019}
-  .home-ecosystem-copy{max-width:490px;padding-bottom:3px}
-  .home-ecosystem-copy p{margin:0 0 21px;color:#626d75;font-size:15px;line-height:1.8}
-  .home-text-link{display:inline-flex;align-items:center;gap:10px;color:#1a202c;font-size:13px;font-weight:750;text-decoration:none}
+  .home-ecosystem-lede{max-width:720px;margin:26px 0 0;color:rgba(255,255,255,.62);font-size:16px;line-height:1.8}
+  .home-ecosystem-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin:58px 0 0;padding:0;border-top:1px solid rgba(255,255,255,.14)}
+  .home-ecosystem-stats div{padding-top:26px}
+  .home-ecosystem-stats dt{order:2;margin-top:10px;color:rgba(255,255,255,.5);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+  .home-ecosystem-stats dd{margin:0;color:#fff;font-size:clamp(56px,8vw,96px);font-weight:800;line-height:.95;letter-spacing:-.05em}
+  .home-ecosystem-stats dd span{color:#FE6019}
+  .home-ecosystem-stats div{display:flex;flex-direction:column}
+  .home-ecosystem-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px;margin-top:56px;padding-top:26px;border-top:1px solid rgba(255,255,255,.14)}
+  .home-ecosystem-tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+  .home-ecosystem-tags li{border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:8px 13px;color:rgba(255,255,255,.78);font-size:12px;font-weight:650}
+  .home-text-link{display:inline-flex;align-items:center;gap:10px;color:#fff;font-size:13px;font-weight:750;text-decoration:none;white-space:nowrap}
   .home-text-link span{color:#FE6019;font-size:17px;transition:transform .2s}
   .home-text-link:hover span{transform:translateY(3px)}
-  @media(prefers-reduced-motion:reduce){.home-text-link:hover span{transform:none}}
-  .home-ecosystem-pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;padding-top:31px}
-  .home-ecosystem-pillars article{padding:2px 18px 0 0}
-  .home-pillar-index{color:#B84311;font-size:9px;font-weight:800;letter-spacing:.16em}
-  .home-ecosystem-pillars h3{margin:12px 0 7px;color:#1a202c;font-size:17px;letter-spacing:-.02em}
-  .home-ecosystem-pillars p{max-width:300px;margin:0;color:#747e85;font-size:13px;line-height:1.65}
-  @media(max-width:760px){.home-shell{width:min(100% - 36px,580px)}.home-ecosystem-top{align-items:flex-start;flex-direction:column;gap:9px;margin-bottom:22px}.home-ecosystem-heading{grid-template-columns:1fr;gap:22px;padding-bottom:32px}.home-ecosystem h2{font-size:clamp(36px,10vw,54px)}.home-ecosystem-pillars{grid-template-columns:1fr;gap:20px;padding-top:24px}.home-ecosystem-pillars article{padding:0 0 0 13px;border-left:2px solid #f3c8b8}.home-side-note{font-size:11px}}
-  @media(prefers-reduced-motion:reduce){.home-text-link span{transition:none}}
+  @media(max-width:760px){.home-shell{width:min(100% - 36px,580px)}.home-ecosystem-stats{grid-template-columns:1fr;gap:0}.home-ecosystem-stats div{padding:20px 0;border-bottom:1px solid rgba(255,255,255,.1)}.home-ecosystem-stats div:last-child{border-bottom:0}.home-ecosystem-stats dd{font-size:64px}.home-ecosystem-foot{margin-top:36px}}
+  @media(prefers-reduced-motion:reduce){.home-text-link span{transition:none}.home-text-link:hover span{transform:none}}
 </style>
