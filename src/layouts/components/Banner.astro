@@ -1,6 +1,5 @@
 ---
 import { markdownify } from "@/lib/utils/textConverter";
-import GlobalProductShowcase from "@/layouts/components/GlobalProductShowcase.astro";
 import config from "@/config/config.json";
 
 const { banner } = Astro.props;
@@ -11,58 +10,63 @@ const wa = config.params.whatsapp;
 const waHref = `https://wa.me/${wa.number}?text=${encodeURIComponent(wa.message)}`;
 ---
 
-<section class="section banner relative">
+<section class="section banner relative" aria-label="SwitchLivo smart switch panels">
   <div class="container">
-    <div class="row items-center">
-      <div class="lg:col-6">
-        <h1 class="banner-title" set:html={markdownify(title)} />
+    <div class="banner-content">
+      <h1 class="banner-title" set:html={markdownify(title)} />
 
-        <p class="banner-subtitle mt-6" set:html={markdownify(content)} />
+      <p class="banner-subtitle mt-6" set:html={markdownify(content)} />
 
-        <div class="banner-actions mt-8">
-          {
-            wa.enable && (
-              <a
-                class="btn banner-cta banner-wa"
-                href={waHref}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
-                </svg>
-                {wa.label}
-              </a>
-            )
-          }
-          {
-            button.enable && (
-              <a class="btn btn-primary banner-cta" href={button.link}>
-                {button.label}
-              </a>
-            )
-          }
-        </div>
-      </div>
-      <div class="lg:col-6">
-        <GlobalProductShowcase />
+      <div class="banner-actions mt-8">
+        {
+          wa.enable && (
+            <a
+              class="btn banner-cta banner-wa"
+              href={waHref}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+              </svg>
+              {wa.label}
+            </a>
+          )
+        }
+        {
+          button.enable && (
+            <a class="btn btn-primary banner-cta" href={button.link}>
+              {button.label}
+            </a>
+          )
+        }
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  /* pull the hero closer to the navbar, like the reference site */
   .banner {
-    padding-top: 2rem;
+    min-height: clamp(590px, 46vw, 760px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: clamp(5rem, 8vw, 8rem) 0;
+    background-color: #111a20;
+    background-image:
+      linear-gradient(90deg, rgba(12, 19, 24, .22) 0%, rgba(12, 19, 24, .10) 48%, rgba(12, 19, 24, .02) 100%),
+      url("/images/home-hero-integrated.svg");
+    background-position: center;
+    background-size: cover;
+    isolation: isolate;
   }
 
-  /* ---- orange gradient on the bold lead-in of the headline ----
-     Kept global (the class name is unique to this component) because
-     Astro's scoped selectors cannot reach the <strong> that markdownify
-     injects — and cannot reach the <font> nodes the browser's page
-     translator wraps text runs in, which is what breaks
-     background-clip:text if only the <strong> itself were styled. */
+  .banner-content {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 760px);
+  }
+
   :global(.banner-title strong),
   :global(.banner-title strong *) {
     background-image: linear-gradient(to left, #f97316, #fb923c, #fbbf24);
@@ -73,60 +77,49 @@ const waHref = `https://wa.me/${wa.number}?text=${encodeURIComponent(wa.message)
     -webkit-text-fill-color: transparent;
   }
 
+  :global(.banner-title) {
+    max-width: 760px;
+    color: #fff;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, .12);
+  }
+
   .banner-subtitle {
-    color: #374151;
+    max-width: 650px;
+    color: rgba(255, 255, 255, .82);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, .18);
   }
 
-  /* let the subtitle extend past the column so it wraps to two lines (font size unchanged) */
-  @media (min-width: 1024px) {
-    .banner-subtitle {
-      margin-right: -9rem;
-      max-width: none;
-    }
-  }
-
-  /* the two hero CTAs sit side by side and wrap on narrow screens */
   .banner-actions {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.875rem;
+    gap: .875rem;
   }
 
   .banner-cta {
-    transition:
-      transform 0.25s ease,
-      box-shadow 0.25s ease,
-      filter 0.25s ease;
+    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
     will-change: transform;
   }
 
   .banner-cta:hover {
     transform: translateY(-3px);
     filter: brightness(1.06);
-    box-shadow: 0 10px 28px rgba(249, 115, 22, 0.45);
+    box-shadow: 0 10px 28px rgba(249, 115, 22, .35);
   }
 
   .banner-cta:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 16px rgba(249, 115, 22, 0.4);
   }
 
-  /* ---- WhatsApp CTA : lighter mint-to-green gradient ---- */
   .banner-wa {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: .5rem;
     border: 0;
     border-radius: 50px;
     padding-inline: 1.75rem;
-    background-image: linear-gradient(
-      184.78deg,
-      #82ebbd 7.64%,
-      #52e093 45%,
-      #22c466 120.07%
-    );
+    background-image: linear-gradient(184.78deg, #82ebbd 7.64%, #52e093 45%, #22c466 120.07%);
     color: #fff;
     font-weight: 600;
     line-height: 1;
@@ -141,12 +134,39 @@ const waHref = `https://wa.me/${wa.number}?text=${encodeURIComponent(wa.message)
     flex: none;
   }
 
-  /* lighter mint glow on hover/active so the state change still reads clearly */
   .banner-wa:hover {
-    box-shadow: 0 10px 28px rgba(82, 224, 147, 0.5);
+    box-shadow: 0 10px 28px rgba(82, 224, 147, .38);
   }
 
-  .banner-wa:active {
-    box-shadow: 0 5px 16px rgba(82, 224, 147, 0.45);
+  @media (max-width: 767px) {
+    .banner {
+      min-height: 690px;
+      align-items: flex-start;
+      padding: 4.5rem 0 3rem;
+      background-position: 62% center;
+    }
+
+    .banner::before {
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(13, 21, 26, .93) 0%, rgba(13, 21, 26, .82) 47%, rgba(13, 21, 26, .22) 100%);
+      content: "";
+    }
+
+    .banner-content {
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .banner-cta {
+      transition: none;
+    }
+
+    .banner-cta:hover,
+    .banner-cta:active {
+      transform: none;
+    }
   }
 </style>
