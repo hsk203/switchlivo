@@ -26,10 +26,7 @@ function esc(s: string): string {
     .replace(/'/g, "&#39;");
 }
 
-async function handleContact(
-  request: Request,
-  env: Env
-): Promise<Response> {
+async function handleContact(request: Request, env: Env): Promise<Response> {
   try {
     const body = (await request.json()) as Record<string, string>;
     const { name, email, message } = body;
@@ -44,7 +41,7 @@ async function handleContact(
     if (!name || !email || !message || !turnstileToken) {
       return Response.json(
         { success: false, msg: "缺少表单字段" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -58,13 +55,13 @@ async function handleContact(
           secret: TURNSTILE_SECRET || "",
           response: turnstileToken,
         }),
-      }
+      },
     );
     const verifyJson = (await verifyRes.json()) as { success: boolean };
     if (!verifyJson.success) {
       return Response.json(
         { success: false, msg: "人机验证失败" },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -81,7 +78,7 @@ async function handleContact(
       });
       return Response.json(
         { success: false, msg: "邮件服务未就绪，请稍后重试或直接邮件联系我们" },
-        { status: 503 }
+        { status: 503 },
       );
     }
 
@@ -101,10 +98,10 @@ async function handleContact(
           `<p><strong>客户姓名：</strong>${esc(name)}</p>` +
           `<p><strong>客户邮箱：</strong>${esc(email)}</p>` +
           (company ? `<p><strong>公司：</strong>${esc(company)}</p>` : "") +
-          (country ? `<p><strong>国家/地区：</strong>${esc(country)}</p>` : "") +
-          (product
-            ? `<p><strong>询价产品：</strong>${esc(product)}</p>`
+          (country
+            ? `<p><strong>国家/地区：</strong>${esc(country)}</p>`
             : "") +
+          (product ? `<p><strong>询价产品：</strong>${esc(product)}</p>` : "") +
           (reason ? `<p><strong>询价类型：</strong>${esc(reason)}</p>` : "") +
           `<p><strong>留言内容：</strong></p>` +
           `<p>${esc(message)}</p>`,
@@ -129,7 +126,7 @@ async function handleContact(
           success: false,
           msg: `邮件发送失败（${mailRes.status}）：${detail}`,
         },
-        { status: 502 }
+        { status: 502 },
       );
     }
     console.log("[inquiry] 发送成功：", mailResult);
@@ -141,7 +138,7 @@ async function handleContact(
     console.error("接口异常：", detail);
     return Response.json(
       { success: false, msg: `服务器异常（${detail}）` },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -153,7 +150,7 @@ export default {
       if (request.method !== "POST") {
         return Response.json(
           { success: false, msg: "仅支持 POST" },
-          { status: 405 }
+          { status: 405 },
         );
       }
       return handleContact(request, env);
