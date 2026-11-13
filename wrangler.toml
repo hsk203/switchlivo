@@ -1,0 +1,9 @@
+name = "switchlivo"
+compatibility_date = "2026-11-13"
+
+# Worker 入口：静态资源走 env.ASSETS，/api/contact 走 src/worker.ts 里移植的 Brevo 逻辑。
+main = "src/worker.ts"
+
+[assets]
+binding = "ASSETS"
+directory = "./dist"
